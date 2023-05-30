@@ -1,11 +1,14 @@
 export const rol = [
     {
-        nombre:'Administrador',
+        ID:1,
+        Descripcion:'Administrador',
     },
     {
-        nombre:'Cliente',
+        ID:2,
+        Descripcion:'Cliente',
     },
 {
-        nombre:'Vendedor',
+    ID:3,
+        Descripcion:'Vendedor',
 },
 ];

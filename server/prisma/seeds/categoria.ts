@@ -1,14 +1,14 @@
 export const categoria = [
     {
-        nombre:'Camisas',
+        Descripcion:'Camisas',
     },
     {
-        nombre:'Pantalones',
+        Descripcion:'Pantalones',
     },
     {
-        nombre:'Tenis',
+        Descripcion:'Tenis',
     },
     {
-        nombre:'Sweters',
+        Descripcion:'Sweters',
     },
 ];
