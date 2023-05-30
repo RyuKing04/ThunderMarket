@@ -1,0 +1,40 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Marketplace Thunder ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc",
+    "dev":"nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyuKing04/ThunderMarket.git"
+  },
+  "author": "Antonio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RyuKing04/ThunderMarket/issues"
+  },
+  "homepage": "https://github.com/RyuKing04/ThunderMarket#readme",
+  "devDependencies": {
+    "@types/node": "^20.2.5",
+    "bcrypt": "^5.1.0",
+    "chalk": "^5.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.22",
+    "passport-jwt": "^4.0.1",
+    "prisma": "^4.14.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.14.1"
+  },
+  "prisma": {"seeds":"ts-node prisma/seeds.ts"}
+}

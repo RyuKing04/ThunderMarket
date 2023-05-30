@@ -1,0 +1,127 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Rol{  
+  ID Int @id 
+  Descripcion String 
+  Usuario Usuario[]
+}
+model Usuario{
+  ID Int @id 
+  Nombre String 
+  Apellido String 
+  Email String 
+  Password String 
+  Empresa String? 
+  RolID Int 
+  Rol Rol @relation(fields: [RolID], references: [ID])
+  Direccion Direccion[]
+  MetodoDePago MetodoDePago[]
+  Factura Factura[]
+  Comentario Comentario[]
+  Preguntas Preguntas[]
+}
+model Direccion{  
+    ID Int @id @default(autoincrement())
+    Provincia String
+    Canton String
+    Distrito String
+    CodigoPostal String
+    Direccion String
+    telefono String
+    UsuarioID Int
+    Usuario Usuario @relation(fields: [UsuarioID], references: [ID])
+    Factura Factura[]
+}
+model MetodoDePago{
+  ID Int @id @default(autoincrement())
+  Nombre String
+  Tipo String
+  Proveedor String 
+  NumeroDeCuenta String
+  Expira DateTime 
+  UsuarioID Int
+  Usuario Usuario @relation(fields: [UsuarioID], references: [ID])
+  Factura Factura[]
+}   
+model Producto{
+  ID Int @id @default(autoincrement())
+  Nombre String
+  Precio Float
+  Cantidad Int
+  Estado  Boolean
+  CategoriaID Int
+  Categoria Categoria @relation(fields: [CategoriaID], references: [ID])
+  imagen imagen[]
+  FacturaDetalle FacturaDetalle[]
+  Preguntas Preguntas[]
+}
+model Categoria{
+  ID Int @id @default(autoincrement())
+  Descripcion String
+  Producto Producto[]
+}
+model imagen{ 
+  ID Int @id @default(autoincrement())
+  imagen String
+  ProductoID Int
+  Producto Producto @relation(fields: [ProductoID], references: [ID])
+}
+model FacturaDetalle{
+  ID Int @id @default(autoincrement())
+  Cantidad Int
+  Subtotal Float
+  FacturaID Int
+  Factura Factura @relation(fields: [FacturaID], references: [ID])
+  ProductoID Int
+  Producto Producto @relation(fields: [ProductoID], references: [ID])
+  Comentario Comentario[]
+}
+model Factura{
+  ID Int @id @default(autoincrement())
+  Fecha DateTime
+  Total Float
+  Estado Boolean
+  UsuarioID Int
+  Usuario Usuario @relation(fields: [UsuarioID], references: [ID])
+  FacturaDetalle FacturaDetalle[]
+  DireccionID Int
+  Direccion Direccion @relation(fields: [DireccionID], references: [ID])
+  MetodoDePagoID Int
+  MetodoDePago MetodoDePago @relation(fields: [MetodoDePagoID], references: [ID])
+}
+model Comentario{
+  ID Int @id @default(autoincrement())
+  ComentarioCliente String
+  CalificacionCliente String
+  ComentarioVendedor String
+  CalificacionVendedor String
+  UsuarioID Int
+  Usuario Usuario @relation(fields: [UsuarioID], references: [ID]) 
+  FacturaDetalleID Int
+  FacturaDetalle FacturaDetalle @relation(fields: [FacturaDetalleID], references: [ID])
+}
+model Preguntas{
+  ID Int @id @default(autoincrement())
+  Pregunta String
+  IDRespuesta Int
+  Respuesta Respuesta @relation(fields: [IDRespuesta], references: [ID])
+  UsuarioID Int
+  Usuario Usuario @relation(fields: [UsuarioID], references: [ID])
+  ProductoID Int
+  Producto Producto @relation(fields: [ProductoID], references: [ID])
+}
+model Respuesta{
+  ID Int @id @default(autoincrement())
+  Respuesta String
+  Preguntas Preguntas[]
+}
