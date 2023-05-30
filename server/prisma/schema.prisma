@@ -90,7 +90,7 @@ model Factura{
   ID Int @id @default(autoincrement())
   Fecha DateTime
   Total Float
-  Estado Boolean
+  Estado String
   UsuarioID Int
   Usuario Usuario @relation(fields: [UsuarioID], references: [ID])
   FacturaDetalle FacturaDetalle[]

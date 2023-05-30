@@ -91,7 +91,7 @@ CREATE TABLE `Factura` (
     `ID` INTEGER NOT NULL AUTO_INCREMENT,
     `Fecha` DATETIME(3) NOT NULL,
     `Total` DOUBLE NOT NULL,
-    `Estado` BOOLEAN NOT NULL,
+    `Estado` VARCHAR(191) NOT NULL,
     `UsuarioID` INTEGER NOT NULL,
     `DireccionID` INTEGER NOT NULL,
     `MetodoDePagoID` INTEGER NOT NULL,
