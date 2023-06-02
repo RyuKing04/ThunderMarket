@@ -13,8 +13,8 @@ datasource db {
 model Rol{  
   ID Int @id 
   Descripcion String 
-  Usuario Usuario[]
-}
+  Usuarios RolUsuario[]
+  }
 model Usuario{
   ID Int @id 
   Nombre String 
@@ -22,13 +22,21 @@ model Usuario{
   Email String 
   Password String 
   Empresa String? 
-  RolID Int 
-  Rol Rol @relation(fields: [RolID], references: [ID])
+  Estado Boolean
   Direccion Direccion[]
   MetodoDePago MetodoDePago[]
   Factura Factura[]
-  Comentario Comentario[]
+  Roles RolUsuario[]  
+  ComentarioCliente Comentario[] @relation("UsuarioCliente")
+  ComentarioVendedor Comentario[] @relation("UsuarioVendedor")
   Preguntas Preguntas[]
+}
+model RolUsuario {
+  ID Int @id @default(autoincrement())
+  RolID Int
+  UsuarioID Int
+  Usuario Usuario @relation(fields: [UsuarioID], references: [ID])
+  Rol Rol @relation(fields: [RolID], references: [ID])
 }
 model Direccion{  
     ID Int @id @default(autoincrement())
@@ -77,7 +85,6 @@ model imagen{
   Producto Producto @relation(fields: [ProductoID], references: [ID])
 }
 model FacturaDetalle{
-  ID Int @id @default(autoincrement())
   Cantidad Int
   Subtotal Float
   FacturaID Int
@@ -85,6 +92,7 @@ model FacturaDetalle{
   ProductoID Int
   Producto Producto @relation(fields: [ProductoID], references: [ID])
   Comentario Comentario[]
+  @@id([FacturaID])
 }
 model Factura{
   ID Int @id @default(autoincrement())
@@ -105,10 +113,12 @@ model Comentario{
   CalificacionCliente String
   ComentarioVendedor String
   CalificacionVendedor String
-  UsuarioID Int
-  Usuario Usuario @relation(fields: [UsuarioID], references: [ID]) 
+  UsuarioClienteID Int
+  UsuarioVendedorID Int
+  UsuarioCliente Usuario @relation("UsuarioCliente", fields: [UsuarioClienteID], references: [ID])
+  UsuarioVendedor Usuario @relation("UsuarioVendedor", fields: [UsuarioVendedorID], references: [ID])
   FacturaDetalleID Int
-  FacturaDetalle FacturaDetalle @relation(fields: [FacturaDetalleID], references: [ID])
+  FacturaDetalle FacturaDetalle @relation(fields: [FacturaDetalleID], references: [FacturaID])
 }
 model Preguntas{
   ID Int @id @default(autoincrement())

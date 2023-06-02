@@ -14,7 +14,16 @@ CREATE TABLE `Usuario` (
     `Email` VARCHAR(191) NOT NULL,
     `Password` VARCHAR(191) NOT NULL,
     `Empresa` VARCHAR(191) NULL,
+    `Estado` BOOLEAN NOT NULL,
+
+    PRIMARY KEY (`ID`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `RolUsuario` (
+    `ID` INTEGER NOT NULL AUTO_INCREMENT,
     `RolID` INTEGER NOT NULL,
+    `UsuarioID` INTEGER NOT NULL,
 
     PRIMARY KEY (`ID`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -77,13 +86,12 @@ CREATE TABLE `imagen` (
 
 -- CreateTable
 CREATE TABLE `FacturaDetalle` (
-    `ID` INTEGER NOT NULL AUTO_INCREMENT,
     `Cantidad` INTEGER NOT NULL,
     `Subtotal` DOUBLE NOT NULL,
     `FacturaID` INTEGER NOT NULL,
     `ProductoID` INTEGER NOT NULL,
 
-    PRIMARY KEY (`ID`)
+    PRIMARY KEY (`FacturaID`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
@@ -106,7 +114,8 @@ CREATE TABLE `Comentario` (
     `CalificacionCliente` VARCHAR(191) NOT NULL,
     `ComentarioVendedor` VARCHAR(191) NOT NULL,
     `CalificacionVendedor` VARCHAR(191) NOT NULL,
-    `UsuarioID` INTEGER NOT NULL,
+    `UsuarioClienteID` INTEGER NOT NULL,
+    `UsuarioVendedorID` INTEGER NOT NULL,
     `FacturaDetalleID` INTEGER NOT NULL,
 
     PRIMARY KEY (`ID`)
@@ -132,7 +141,10 @@ CREATE TABLE `Respuesta` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `Usuario` ADD CONSTRAINT `Usuario_RolID_fkey` FOREIGN KEY (`RolID`) REFERENCES `Rol`(`ID`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `RolUsuario` ADD CONSTRAINT `RolUsuario_UsuarioID_fkey` FOREIGN KEY (`UsuarioID`) REFERENCES `Usuario`(`ID`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `RolUsuario` ADD CONSTRAINT `RolUsuario_RolID_fkey` FOREIGN KEY (`RolID`) REFERENCES `Rol`(`ID`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Direccion` ADD CONSTRAINT `Direccion_UsuarioID_fkey` FOREIGN KEY (`UsuarioID`) REFERENCES `Usuario`(`ID`) ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -162,10 +174,13 @@ ALTER TABLE `Factura` ADD CONSTRAINT `Factura_DireccionID_fkey` FOREIGN KEY (`Di
 ALTER TABLE `Factura` ADD CONSTRAINT `Factura_MetodoDePagoID_fkey` FOREIGN KEY (`MetodoDePagoID`) REFERENCES `MetodoDePago`(`ID`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Comentario` ADD CONSTRAINT `Comentario_UsuarioID_fkey` FOREIGN KEY (`UsuarioID`) REFERENCES `Usuario`(`ID`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Comentario` ADD CONSTRAINT `Comentario_UsuarioClienteID_fkey` FOREIGN KEY (`UsuarioClienteID`) REFERENCES `Usuario`(`ID`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Comentario` ADD CONSTRAINT `Comentario_FacturaDetalleID_fkey` FOREIGN KEY (`FacturaDetalleID`) REFERENCES `FacturaDetalle`(`ID`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Comentario` ADD CONSTRAINT `Comentario_UsuarioVendedorID_fkey` FOREIGN KEY (`UsuarioVendedorID`) REFERENCES `Usuario`(`ID`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Comentario` ADD CONSTRAINT `Comentario_FacturaDetalleID_fkey` FOREIGN KEY (`FacturaDetalleID`) REFERENCES `FacturaDetalle`(`FacturaID`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Preguntas` ADD CONSTRAINT `Preguntas_IDRespuesta_fkey` FOREIGN KEY (`IDRespuesta`) REFERENCES `Respuesta`(`ID`) ON DELETE RESTRICT ON UPDATE CASCADE;

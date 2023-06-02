@@ -8,7 +8,7 @@ export const metodoDePago = [
         UsuarioID:2,
     },
     {
-        Nombre: 'Maria Perez',
+        Nombre: 'Maria Gonzalez',
         Tipo:'Tarjeta de debito',
         Proveedor:'Mastercard',
         NumeroDeCuenta:'1234567891234567',

@@ -5,4 +5,13 @@ export const respuesta = [
         {
         Respuesta: 'Tiene un valor de 5 dolares',
         },
+        {
+        Respuesta: 'Si, se puede hacer',
+        },
+        {
+        Respuesta: 'Si, y es original',
+        },
+        {
+        Respuesta: 'Tenemos todas las tallas',
+        },
         ]

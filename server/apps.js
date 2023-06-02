@@ -10,7 +10,7 @@ const prism = new PrismaClient();
 // Acceder a la configuracion del archivo .env
 dotEnv.config();
 // Puero que escucha por defecto 300 o definido .env
-const port = process.env.PORT || 3306;
+const port = process.env.PORT || 3000;
 // Middleware CORS para aceptar llamadas en el servidor
 app.use(cors());
 // Middleware para loggear las llamadas al servidor
