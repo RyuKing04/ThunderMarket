@@ -5,17 +5,9 @@ export const usuario = [
         Apellido : 'Ramirez',
         Email : 'tony9044@hotmail.com',
         Password : '123456',
-        Roles: {
-            create:[
-                {
-                Rol:{
-                    connect:{
-                        ID: 1
-            }
-        }
-    }
-    ]
-},
+       // Roles: {
+         //   connect: [{ID: 1}]
+        //},
         Empresa: null,
         Estado: true,
     },
@@ -25,17 +17,6 @@ export const usuario = [
         Apellido : 'Perez',
         Email : 'juanperez@gmail.com',
         Password: '123456',
-        Roles: {
-            create:[
-                {
-                Rol:{
-                    connect:{
-                        ID: 2
-            }
-        }
-    }
-    ]
-},
         Empresa: null,
         Estado: true,
     },
@@ -45,57 +26,16 @@ export const usuario = [
         Apellido : 'Gonzalez',
         Email : 'mariago@gmail.com',
         Password: '123456',
-        Roles: {
-            create:[
-                {
-                Rol:{
-                    connect:{
-                        ID: 3
-            }
-        }
-    }
-    ]
-},
         Empresa: 'Maria clothes',
         Estado: true,
     },
+   
     {
         ID : 4,
-        Nombre : 'Maria',
-        Apellido : 'Gonzalez',
-        Email : 'mariago@gmail.com',
-        Password: '123456',
-        Roles: {
-            create:[
-                {
-                Rol:{
-                    connect:{
-                        ID: 2
-            }
-        }
-    }
-    ]
-},
-        Empresa: null,
-        Estado: true,
-    },
-    {
-        ID : 5,
         Nombre : 'Daniel',
         Apellido : 'Morales',
         Email : 'DaMorales@gmail.com',
         Password: '123456',
-        Roles: {
-            create:[
-                {
-                Rol:{
-                    connect:{
-                        ID: 2
-            }
-        }
-    }
-    ]
-},
         Empresa: null,
         Estado: true,
     },
@@ -104,18 +44,7 @@ export const usuario = [
         Nombre : 'Tyanne',
         Apellido : 'Hills',
         Email : 'TyHills@gmail.com',
-        Password: '123456',
-        Roles: {
-            create:[
-                {
-                Rol:{
-                    connect:{
-                        ID: 3
-            }
-        }
-    }
-    ]
-},
+        Password: '123456',      
         Empresa: 'Tyanne Clothes',
         Estado: true,
     },

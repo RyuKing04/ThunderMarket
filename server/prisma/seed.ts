@@ -10,17 +10,16 @@ import { comentario } from './seeds/comentario';
 import { factura } from './seeds/factura';
 import { respuesta } from './seeds/respuesta';
 import { preguntas } from './seeds/preguntas';
+import { rolUsuario } from './seeds/rolUsuario';
 const prisma = new PrismaClient();
 
 async function main() {
     await prisma.categoria.createMany({
         data: categoria
 });
-
     await prisma.producto.createMany({
         data: producto
 });
-
     await prisma.usuario.createMany({
         data: usuario
 });
@@ -47,6 +46,9 @@ await prisma.respuesta.createMany({
 });
 await prisma.preguntas.createMany({
     data: preguntas
+});
+await prisma.rolUsuario.createMany({
+    data: rolUsuario
 });
 }
 main()

@@ -21,11 +21,10 @@ CREATE TABLE `Usuario` (
 
 -- CreateTable
 CREATE TABLE `RolUsuario` (
-    `ID` INTEGER NOT NULL AUTO_INCREMENT,
     `RolID` INTEGER NOT NULL,
     `UsuarioID` INTEGER NOT NULL,
 
-    PRIMARY KEY (`ID`)
+    PRIMARY KEY (`RolID`, `UsuarioID`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
