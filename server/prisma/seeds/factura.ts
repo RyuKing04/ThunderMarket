@@ -12,6 +12,7 @@ export const factura = [
         Subtotal: 2000,
         FacturaID: 1,
         ProductoID: 1,
+        
       },
     },
   },

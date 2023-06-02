@@ -94,6 +94,7 @@ model imagen {
 }
 
 model FacturaDetalle {
+  ID         Int          @id @default(autoincrement())
   Cantidad   Int
   Subtotal   Float
   FacturaID  Int
@@ -101,8 +102,6 @@ model FacturaDetalle {
   ProductoID Int
   Producto   Producto     @relation(fields: [ProductoID], references: [ID])
   Comentario Comentario[]
-
-  @@id([FacturaID])
 }
 
 model Factura {
@@ -130,7 +129,7 @@ model Comentario {
   UsuarioCliente       Usuario        @relation("UsuarioCliente", fields: [UsuarioClienteID], references: [ID])
   UsuarioVendedor      Usuario        @relation("UsuarioVendedor", fields: [UsuarioVendedorID], references: [ID])
   FacturaDetalleID     Int
-  FacturaDetalle       FacturaDetalle @relation(fields: [FacturaDetalleID], references: [FacturaID])
+  FacturaDetalle       FacturaDetalle @relation(fields: [FacturaDetalleID], references: [ID])
 }
 
 model Preguntas {

@@ -85,12 +85,13 @@ CREATE TABLE `imagen` (
 
 -- CreateTable
 CREATE TABLE `FacturaDetalle` (
+    `ID` INTEGER NOT NULL AUTO_INCREMENT,
     `Cantidad` INTEGER NOT NULL,
     `Subtotal` DOUBLE NOT NULL,
     `FacturaID` INTEGER NOT NULL,
     `ProductoID` INTEGER NOT NULL,
 
-    PRIMARY KEY (`FacturaID`)
+    PRIMARY KEY (`ID`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
@@ -179,7 +180,7 @@ ALTER TABLE `Comentario` ADD CONSTRAINT `Comentario_UsuarioClienteID_fkey` FOREI
 ALTER TABLE `Comentario` ADD CONSTRAINT `Comentario_UsuarioVendedorID_fkey` FOREIGN KEY (`UsuarioVendedorID`) REFERENCES `Usuario`(`ID`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Comentario` ADD CONSTRAINT `Comentario_FacturaDetalleID_fkey` FOREIGN KEY (`FacturaDetalleID`) REFERENCES `FacturaDetalle`(`FacturaID`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Comentario` ADD CONSTRAINT `Comentario_FacturaDetalleID_fkey` FOREIGN KEY (`FacturaDetalleID`) REFERENCES `FacturaDetalle`(`ID`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Preguntas` ADD CONSTRAINT `Preguntas_IDRespuesta_fkey` FOREIGN KEY (`IDRespuesta`) REFERENCES `Respuesta`(`ID`) ON DELETE RESTRICT ON UPDATE CASCADE;

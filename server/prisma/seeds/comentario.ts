@@ -17,5 +17,13 @@ export const comentario = [
         UsuarioVendedorID   : 6,
         FacturaDetalleID    : 2,
         },
-        
+        {
+        ComentarioCliente   : 'Excelente producto',
+        CalificacionCliente: 'Bueno',
+        ComentarioVendedor  : 'Gracias por su compra',
+        CalificacionVendedor: 'Bueno',
+        UsuarioClienteID    : 4,
+        UsuarioVendedorID   : 6,
+        FacturaDetalleID    : 3,
+        },
 ]
