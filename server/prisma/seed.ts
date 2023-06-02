@@ -11,6 +11,8 @@ import { factura } from "./seeds/factura";
 import { respuesta } from "./seeds/respuesta";
 import { preguntas } from "./seeds/preguntas";
 import { rolUsuario } from "./seeds/rolUsuario";
+import { facturaDetalle } from "./seeds/facturaDetalle";
+
 const prisma = new PrismaClient();
 
 async function main() {
@@ -35,11 +37,11 @@ async function main() {
   await prisma.imagen.createMany({
     data: imagen,
   });
-  await prisma.comentario.createMany({
-    data: comentario,
-  });
   await prisma.factura.createMany({
     data: factura,
+  });
+  await prisma.facturaDetalle.createMany({
+    data: facturaDetalle,
   });
   await prisma.respuesta.createMany({
     data: respuesta,
@@ -49,6 +51,9 @@ async function main() {
   });
   await prisma.rolUsuario.createMany({
     data: rolUsuario,
+  });
+  await prisma.comentario.createMany({
+    data: comentario,
   });
 }
 main()
