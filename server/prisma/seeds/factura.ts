@@ -23,5 +23,13 @@ export const factura = [
     DireccionID: 3,
     MetodoDePagoID: 5,
   },
-  // Otras facturas...
+  {
+    Fecha: new Date("2023-10-25T06:00:00.000Z"),
+    Total: 20000,
+    Estado: "Pagado",
+    UsuarioID: 5,
+    DireccionID: 3,
+    MetodoDePagoID: 5,
+  },
 ];
+

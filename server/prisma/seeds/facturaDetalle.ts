@@ -17,4 +17,16 @@ export const facturaDetalle = [
         FacturaID: 3,
         ProductoID: 2,
     },
+    {
+        Cantidad: 3,
+        Subtotal: 2000,
+        FacturaID: 4,
+        ProductoID: 2,
+    },
+    {
+        Cantidad: 4,
+        Subtotal: 2000,
+        FacturaID: 4,
+        ProductoID: 3,
+    },
 ];
