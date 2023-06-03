@@ -12,6 +12,7 @@ import { respuesta } from "./seeds/respuesta";
 import { preguntas } from "./seeds/preguntas";
 import { rolUsuario } from "./seeds/rolUsuario";
 import { facturaDetalle } from "./seeds/facturaDetalle";
+
 const prisma = new PrismaClient();
 
 async function main() {
