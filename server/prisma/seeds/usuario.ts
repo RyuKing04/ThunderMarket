@@ -5,9 +5,6 @@ export const usuario = [
         Apellido : 'Ramirez',
         Email : 'tony9044@hotmail.com',
         Password : '123456',
-       // Roles: {
-         //   connect: [{ID: 1}]
-        //},
         Empresa: null,
         Estado: true,
     },
@@ -39,6 +36,15 @@ export const usuario = [
         Empresa: null,
         Estado: true,
     },
+    {
+        ID: 5,
+        Nombre: "NombreUsuario",
+        Apellido: "ApellidoUsuario",
+        Email: "correo@usuario.com",
+        Password: "contraseña",
+        Empresa: null,
+        Estado: true,
+      },
     {
         ID : 6,
         Nombre : 'Tyanne',
