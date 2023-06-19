@@ -1,6 +1,6 @@
 export const usuario = [
   {
-    ID: 1,
+    id: 1,
     Nombre: "Antonio",
     Apellido: "Ramirez",
     Email: "tony9044@hotmail.com",
@@ -9,7 +9,7 @@ export const usuario = [
     Estado: true,
   },
   {
-    ID: 2,
+    id: 2,
     Nombre: "Juan",
     Apellido: "Perez",
     Email: "juanperez@gmail.com",
@@ -18,7 +18,7 @@ export const usuario = [
     Estado: true,
   },
   {
-    ID: 3,
+    id: 3,
     Nombre: "Maria",
     Apellido: "Gonzalez",
     Email: "mariago@gmail.com",
@@ -28,7 +28,7 @@ export const usuario = [
   },
 
   {
-    ID: 4,
+    id: 4,
     Nombre: "Daniel",
     Apellido: "Morales",
     Email: "DaMorales@gmail.com",
@@ -37,7 +37,7 @@ export const usuario = [
     Estado: true,
   },
   {
-    ID: 5,
+    id: 5,
     Nombre: "NombreUsuario",
     Apellido: "ApellidoUsuario",
     Email: "correo@usuario.com",
@@ -46,7 +46,7 @@ export const usuario = [
     Estado: true,
   },
   {
-    ID: 6,
+    id: 6,
     Nombre: "Tyanne",
     Apellido: "Hills",
     Email: "TyHills@gmail.com",

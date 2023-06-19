@@ -11,13 +11,13 @@ datasource db {
 }
 
 model Rol {
-  ID          Int          @id
+  id          Int          @id
   Descripcion String
   Usuarios    RolUsuario[]
 }
 
 model Usuario {
-  ID                 Int            @id
+  id                Int            @id
   Nombre             String
   Apellido           String
   Email              String
@@ -36,14 +36,14 @@ model Usuario {
 model RolUsuario {
   RolID     Int
   UsuarioID Int
-  Usuario   Usuario @relation(fields: [UsuarioID], references: [ID])
-  Rol       Rol     @relation(fields: [RolID], references: [ID])
+  Usuario   Usuario @relation(fields: [UsuarioID], references: [id])
+  Rol       Rol     @relation(fields: [RolID], references: [id])
 
   @@id([RolID, UsuarioID])
 }
 
 model Direccion {
-  ID           Int       @id @default(autoincrement())
+  id           Int       @id @default(autoincrement())
   Provincia    String
   Canton       String
   Distrito     String
@@ -51,100 +51,101 @@ model Direccion {
   Direccion    String
   telefono     String
   UsuarioID    Int
-  Usuario      Usuario   @relation(fields: [UsuarioID], references: [ID])
+  Usuario      Usuario   @relation(fields: [UsuarioID], references: [id])
   Factura      Factura[]
 }
 
 model MetodoDePago {
-  ID             Int       @id @default(autoincrement())
+  id             Int       @id @default(autoincrement())
   Nombre         String
   Tipo           String
   Proveedor      String
   NumeroDeCuenta String
   Expira         DateTime
   UsuarioID      Int
-  Usuario        Usuario   @relation(fields: [UsuarioID], references: [ID])
+  Usuario        Usuario   @relation(fields: [UsuarioID], references: [id])
   Factura        Factura[]
 }
 
 model Producto {
-  ID             Int              @id @default(autoincrement())
+  id             Int              @id @default(autoincrement())
   Nombre         String
   Precio         Float
   Cantidad       Int
   Estado         Boolean
   CategoriaID    Int
-  Categoria      Categoria        @relation(fields: [CategoriaID], references: [ID])
+  Categoria      Categoria        @relation(fields: [CategoriaID], references: [id])
   imagen         imagen[]
   FacturaDetalle FacturaDetalle[]
   Preguntas      Preguntas[]
 }
 
 model Categoria {
-  ID          Int        @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   Descripcion String
   Producto    Producto[]
 }
 
 model imagen {
-  ID         Int      @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   imagen     String
   ProductoID Int
-  Producto   Producto @relation(fields: [ProductoID], references: [ID])
+  Producto   Producto @relation(fields: [ProductoID], references: [id])
 }
 
 model FacturaDetalle {
-  ID         Int          @id @default(autoincrement())
+  id        Int          @id @default(autoincrement())
   Cantidad   Int
   Subtotal   Float
+  Estado     String
   FacturaID  Int
-  Factura    Factura      @relation(fields: [FacturaID], references: [ID])
+  Factura    Factura      @relation(fields: [FacturaID], references: [id])
   ProductoID Int
-  Producto   Producto     @relation(fields: [ProductoID], references: [ID])
+  Producto   Producto     @relation(fields: [ProductoID], references: [id])
   Comentario Comentario[]
 }
 
 model Factura {
-  ID             Int              @id @default(autoincrement())
+  id             Int              @id @default(autoincrement())
   Fecha          DateTime
   Total          Float
   Estado         String
   UsuarioID      Int
-  Usuario        Usuario          @relation(fields: [UsuarioID], references: [ID])
+  Usuario        Usuario          @relation(fields: [UsuarioID], references: [id])
   FacturaDetalle FacturaDetalle[]
   DireccionID    Int
-  Direccion      Direccion        @relation(fields: [DireccionID], references: [ID])
+  Direccion      Direccion        @relation(fields: [DireccionID], references: [id])
   MetodoDePagoID Int
-  MetodoDePago   MetodoDePago     @relation(fields: [MetodoDePagoID], references: [ID])
+  MetodoDePago   MetodoDePago     @relation(fields: [MetodoDePagoID], references: [id])
 }
 
 model Comentario {
-  ID                   Int            @id @default(autoincrement())
+  id                  Int            @id @default(autoincrement())
   ComentarioCliente    String
   CalificacionCliente  String
   ComentarioVendedor   String
   CalificacionVendedor String
   UsuarioClienteID     Int
   UsuarioVendedorID    Int
-  UsuarioCliente       Usuario        @relation("UsuarioCliente", fields: [UsuarioClienteID], references: [ID])
-  UsuarioVendedor      Usuario        @relation("UsuarioVendedor", fields: [UsuarioVendedorID], references: [ID])
+  UsuarioCliente       Usuario        @relation("UsuarioCliente", fields: [UsuarioClienteID], references: [id])
+  UsuarioVendedor      Usuario        @relation("UsuarioVendedor", fields: [UsuarioVendedorID], references: [id])
   FacturaDetalleID     Int
-  FacturaDetalle       FacturaDetalle @relation(fields: [FacturaDetalleID], references: [ID])
+  FacturaDetalle       FacturaDetalle @relation(fields: [FacturaDetalleID], references: [id])
 }
 
 model Preguntas {
-  ID          Int       @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   Pregunta    String
   IDRespuesta Int
-  Respuesta   Respuesta @relation(fields: [IDRespuesta], references: [ID])
+  Respuesta   Respuesta @relation(fields: [IDRespuesta], references: [id])
   UsuarioID   Int
-  Usuario     Usuario   @relation(fields: [UsuarioID], references: [ID])
+  Usuario     Usuario   @relation(fields: [UsuarioID], references: [id])
   ProductoID  Int
-  Producto    Producto  @relation(fields: [ProductoID], references: [ID])
+  Producto    Producto  @relation(fields: [ProductoID], references: [id])
 }
 
 model Respuesta {
-  ID        Int         @id @default(autoincrement())
+  id        Int         @id @default(autoincrement())
   Respuesta String
   Preguntas Preguntas[]
 }
