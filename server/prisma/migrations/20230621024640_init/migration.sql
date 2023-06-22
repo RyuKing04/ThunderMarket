@@ -62,13 +62,14 @@ CREATE TABLE `Producto` (
     `Cantidad` INTEGER NOT NULL,
     `Estado` BOOLEAN NOT NULL,
     `CategoriaID` INTEGER NOT NULL,
+    `UsuarioID` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `Categoria` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `id` INTEGER NOT NULL,
     `Descripcion` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
@@ -155,6 +156,9 @@ ALTER TABLE `MetodoDePago` ADD CONSTRAINT `MetodoDePago_UsuarioID_fkey` FOREIGN 
 
 -- AddForeignKey
 ALTER TABLE `Producto` ADD CONSTRAINT `Producto_CategoriaID_fkey` FOREIGN KEY (`CategoriaID`) REFERENCES `Categoria`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Producto` ADD CONSTRAINT `Producto_UsuarioID_fkey` FOREIGN KEY (`UsuarioID`) REFERENCES `Usuario`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `imagen` ADD CONSTRAINT `imagen_ProductoID_fkey` FOREIGN KEY (`ProductoID`) REFERENCES `Producto`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

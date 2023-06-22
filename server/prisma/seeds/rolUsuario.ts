@@ -4,9 +4,10 @@ export const rolUsuario = [
     UsuarioID: 1,
   },
   {
-    RolID: 2,
+    RolID: 3,
     UsuarioID: 2,
   },
+  
   {
     RolID: 3,
     UsuarioID: 3,

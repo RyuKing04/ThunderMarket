@@ -17,7 +17,7 @@ model Rol {
 }
 
 model Usuario {
-  id                Int            @id
+  id                  Int            @id
   Nombre             String
   Apellido           String
   Email              String
@@ -31,6 +31,7 @@ model Usuario {
   ComentarioCliente  Comentario[]   @relation("UsuarioCliente")
   ComentarioVendedor Comentario[]   @relation("UsuarioVendedor")
   Preguntas          Preguntas[]
+  Producto           Producto[]
 }
 
 model RolUsuario {
@@ -75,13 +76,16 @@ model Producto {
   Estado         Boolean
   CategoriaID    Int
   Categoria      Categoria        @relation(fields: [CategoriaID], references: [id])
+  UsuarioID      Int
+  Usuario        Usuario          @relation(fields: [UsuarioID], references: [id])
   imagen         imagen[]
   FacturaDetalle FacturaDetalle[]
   Preguntas      Preguntas[]
+  
 }
 
 model Categoria {
-  id          Int        @id @default(autoincrement())
+  id          Int        @id 
   Descripcion String
   Producto    Producto[]
 }

@@ -16,17 +16,14 @@ import { facturaDetalle } from "./seeds/facturaDetalle";
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.categoria.createMany({
-    data: categoria,
-  });
-  await prisma.producto.createMany({
-    data: producto,
+  await prisma.rol.createMany({
+    data: rol,
   });
   await prisma.usuario.createMany({
     data: usuario,
   });
-  await prisma.rol.createMany({
-    data: rol,
+  await prisma.rolUsuario.createMany({
+    data: rolUsuario,
   });
   await prisma.direccion.createMany({
     data: direccion,
@@ -34,14 +31,23 @@ async function main() {
   await prisma.metodoDePago.createMany({
     data: metodoDePago,
   });
+  await prisma.categoria.createMany({
+    data: categoria,
+  });
+  await prisma.producto.createMany({
+    data: producto,
+  });
   await prisma.imagen.createMany({
     data: imagen,
   });
-  await prisma.factura.createMany({
+   await prisma.factura.createMany({
     data: factura,
   });
   await prisma.facturaDetalle.createMany({
     data: facturaDetalle,
+  });
+  await prisma.comentario.createMany({
+    data: comentario,
   });
   await prisma.respuesta.createMany({
     data: respuesta,
@@ -49,12 +55,7 @@ async function main() {
   await prisma.preguntas.createMany({
     data: preguntas,
   });
-  await prisma.rolUsuario.createMany({
-    data: rolUsuario,
-  });
-  await prisma.comentario.createMany({
-    data: comentario,
-  });
+  
 }
 main()
   .then(async () => {

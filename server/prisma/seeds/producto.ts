@@ -5,6 +5,7 @@ export const producto = [
     Cantidad: 10,
     Estado: true,
     CategoriaID: 1,
+    UsuarioID:2,
   },
   {
     Nombre: "Pantalon Supreme",
@@ -12,6 +13,7 @@ export const producto = [
     Cantidad: 10,
     Estado: true,
     CategoriaID: 2,
+    UsuarioID:2,
   },
   {
     Nombre: "Tenis Nike Air Max",
@@ -19,6 +21,7 @@ export const producto = [
     Cantidad: 10,
     Estado: false,
     CategoriaID: 3,
+    UsuarioID:2,
   },
   {
     Nombre: "Sweter Supreme",
@@ -26,6 +29,7 @@ export const producto = [
     Cantidad: 10,
     Estado: true,
     CategoriaID: 4,
+    UsuarioID:2,
   },
   {
     Nombre: "Camiseta Jordan",
@@ -33,6 +37,7 @@ export const producto = [
     Cantidad: 10,
     Estado: true,
     CategoriaID: 1,
+    UsuarioID:3,
   },
   {
     Nombre: "Pantalon Jordan",
@@ -40,6 +45,7 @@ export const producto = [
     Cantidad: 10,
     Estado: true,
     CategoriaID: 2,
+    UsuarioID:3,
   },
   {
     Nombre: "Tenis Jordan",
@@ -47,6 +53,7 @@ export const producto = [
     Cantidad: 10,
     Estado: true,
     CategoriaID: 3,
+    UsuarioID:3,   
   },
   {
     Nombre: "Sweter Jordan",
@@ -54,6 +61,7 @@ export const producto = [
     Cantidad: 10,
     Estado: true,
     CategoriaID: 4,
+    UsuarioID:3,
   },
   {
     Nombre: "Camiseta Adidas",
@@ -61,6 +69,7 @@ export const producto = [
     Cantidad: 10,
     Estado: true,
     CategoriaID: 1,
+    UsuarioID:6,
   },
   {
     Nombre: "Pantalon Adidas",
@@ -68,6 +77,7 @@ export const producto = [
     Cantidad: 10,
     Estado: true,
     CategoriaID: 2,
+    UsuarioID:6,
   },
   {
     Nombre: "Tenis Adidas",
@@ -75,6 +85,7 @@ export const producto = [
     Cantidad: 10,
     Estado: true,
     CategoriaID: 3,
+    UsuarioID:6,
   },
   {
     Nombre: "Sweter Adidas",
@@ -82,5 +93,6 @@ export const producto = [
     Cantidad: 10,
     Estado: true,
     CategoriaID: 4,
+    UsuarioID:6,
   },
 ];

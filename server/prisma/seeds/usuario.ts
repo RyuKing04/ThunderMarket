@@ -14,7 +14,7 @@ export const usuario = [
     Apellido: "Perez",
     Email: "juanperez@gmail.com",
     Password: "123456",
-    Empresa: null,
+    Empresa: "Juan clothes",
     Estado: true,
   },
   {
