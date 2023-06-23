@@ -105,7 +105,7 @@ model FacturaDetalle {
   FacturaID  Int
   Factura    Factura      @relation(fields: [FacturaID], references: [id])
   ProductoID Int
-  Producto   Producto     @relation(fields: [ProductoID], references: [id])
+  producto   Producto     @relation(fields: [ProductoID], references: [id])
   Comentario Comentario[]
 }
 
@@ -116,7 +116,7 @@ model Factura {
   Estado         String
   UsuarioID      Int
   Usuario        Usuario          @relation(fields: [UsuarioID], references: [id])
-  FacturaDetalle FacturaDetalle[]
+  facturaDetalle FacturaDetalle[]
   DireccionID    Int
   Direccion      Direccion        @relation(fields: [DireccionID], references: [id])
   MetodoDePagoID Int

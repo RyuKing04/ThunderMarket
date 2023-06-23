@@ -10,6 +10,7 @@ import { HomeModule } from './home/home.module';
 import { UserModule } from './user/user.module';
 import { ProductoModule } from './producto/producto.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -21,9 +22,11 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     // Modulos
     CoreModule,
     ShareModule,
+    //todos los demas modulos 
     HomeModule,
     UserModule,
     ProductoModule,

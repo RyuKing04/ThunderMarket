@@ -8,6 +8,7 @@ const app = express();
 const prism = new PrismaClient();
 //---Archivos de rutas---
 const productoRoutes = require('./routes/productoRoutes');
+const facturaRoutes = require('./routes/facturaRoutes');
 // Acceder a la configuracion del archivo .env
 dotEnv.config();
 // Puero que escucha por defecto 300 o definido .env
@@ -25,6 +26,8 @@ extended: true,
 );
 //---- Definir rutas ----
 app.use('/productos/', productoRoutes);
+app.use('/facturas/', facturaRoutes);
+
 // Servidor
 app.listen(port, () => { 
 console.log(`http://localhost:${port}`);

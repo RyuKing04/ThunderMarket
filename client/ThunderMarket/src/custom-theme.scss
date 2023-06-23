@@ -1,35 +1,123 @@
 
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
+// Import the default Angular Material stylesheets
 @use '@angular/material' as mat;
-// Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
+
 @include mat.core();
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$ThunderMarket-primary: mat.define-palette(mat.$indigo-palette);
-$ThunderMarket-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$my-primary-color:(
+ 
+50 : #e8eaf6,
+100 : #c5cbe9,
+200 : #9fa8da,
+300 : #7985cb,
+400 : #5c6bc0,
+500 : #3f51b5,
+600 : #394aae,
+700 : #3140a5,
+800 : #29379d,
+900 : #1b278d,
+A100 : #c6cbff,
+A200 : #939dff,
+A400 : #606eff,
+A700 : #4757ff,
+contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+),
+);
+$my-accent-color:(
+  50 : #fffde7,
+  100 : #fff9c4,
+  200 : #fff59d,
+  300 : #fff176,
+  400 : #ffee58,
+  500 : #ffeb3b,
+  600 : #ffe935,
+  700 : #ffe52d,
+  800 : #ffe226,
+  900 : #ffdd19,
+  A100 : #ffffff,
+  A200 : #fffffd,
+  A400 : #fff7ca,
+  A700 : #fff2b1,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #000000,
+      600 : #000000,
+      700 : #000000,
+      800 : #000000,
+      900 : #000000,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  ),
+);
+$my-warn-color:(
+  50 : #fae6e6,
+  100 : #f2c1c1,
+  200 : #e99797,
+  300 : #e06d6d,
+  400 : #da4e4e,
+  500 : #d32f2f,
+  600 : #ce2a2a,
+  700 : #c82323,
+  800 : #c21d1d,
+  900 : #b71212,
+  A100 : #ffe7e7,
+  A200 : #ffb4b4,
+  A400 : #ff8181,
+  A700 : #ff6868,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  ),
+);
+//PALETA DE COLORES
+$my-primary: mat.define-palette($my-primary-color);
+$my-accent: mat.define-palette($my-accent-color);
+$my-warn: mat.define-palette($my-warn-color);
 
-// The warn palette is optional (defaults to red).
-$ThunderMarket-warn: mat.define-palette(mat.$red-palette);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$ThunderMarket-theme: mat.define-light-theme((
+//tema propio
+$my-theme: mat.define-light-theme((
   color: (
-    primary: $ThunderMarket-primary,
-    accent: $ThunderMarket-accent,
-    warn: $ThunderMarket-warn,
-  )
+    primary: $my-primary,
+    accent: $my-accent,
+    warn: $my-warn
+  ),
+  typography: mat.define-typography-config(),
+ density: 0,
 ));
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include mat.all-component-themes($ThunderMarket-theme);
 
+@include mat.all-component-themes($my-theme);

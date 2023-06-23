@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { InicioComponent } from './inicio/inicio.component';
 import { AcercaDeComponent } from './acerca-de/acerca-de.component';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AcercaDeComponent } from './acerca-de/acerca-de.component';
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    MatCardModule,
   ]
 })
 export class HomeModule { }
