@@ -1,0 +1,18 @@
+<mat-card class="dashboard-card" *ngIf="datos"  >
+    <mat-card-header>
+      <mat-card-title>
+        {{datos.nombre }}
+       
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="dashboard-card-content">
+      <p><b>Nombre: </b>{{datos.Nombre}}</p>
+      <p><b>Estado: </b>{{datos.Estado}}</p>
+      <p><b>Cantidad: </b>{{datos.Cantidad}}</p>
+      <p><b>Preguntas: </b>{{datos.Preguntas.Pregunta}}</p>
+      <p><b>Vendedor:</b>{{datos.UsuarioID.Nombre}} </p>
+      <p><b>Precio: </b>{{datos.Precio| currency:'USD'}}</p>
+      <img src="https://cdn.shopify.com/s/files/1/0116/2438/2528/products/air-jordan-4-retro-fire-red-2020-dc7770-160_4_i1ckry_1800x1800_1_700x700.jpg?v=1627827408" alt="">
+      
+    </mat-card-content>
+  </mat-card>
