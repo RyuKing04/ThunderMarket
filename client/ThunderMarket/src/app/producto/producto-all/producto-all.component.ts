@@ -19,7 +19,7 @@ export class ProductoAllComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   //@ViewChild(MatTable) table!: MatTable<ProductoAllItem>;
-  dataSource: new MatTableDataSource<any>();
+  dataSource= new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['Nombre', 'Precio','acciones' ];
@@ -35,14 +35,14 @@ export class ProductoAllComponent implements AfterViewInit {
   }
 
   listaProductos(){
-this.gService.list('productos')
+this.gService.list('productos/')
 .pipe(takeUntil(this.destroy$))
 .subscribe((data:any)=>{
   console.log(data);
   this.datos=data;
-  this.dataSource= new MatTableDataSource(this.datos);
-  this.dataSource.sort= this.sort;
-  this.dataSource.paginator= this.paginator;
+  this.dataSource = new MatTableDataSource(this.datos);
+  this.dataSource.sort = this.sort;
+  this.dataSource.paginator = this.paginator; 
 
 });
   }
