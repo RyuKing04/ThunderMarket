@@ -10,13 +10,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ProductoIndexComponent } from './producto-index/producto-index.component';
-import { ProductoDetalleComponent } from './producto-detalle/producto-detalle.component';  
+import { ProductoDetalleComponent } from './producto-detalle/producto-detalle.component';
+import { ProductoAllComponent } from './producto-all/producto-all.component';  
 
 @NgModule({
   declarations: [
     
     ProductoIndexComponent,
-    ProductoDetalleComponent
+    ProductoDetalleComponent,
+    ProductoAllComponent
   ],
   imports: [
     CommonModule,

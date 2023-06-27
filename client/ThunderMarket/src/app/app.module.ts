@@ -11,6 +11,7 @@ import { UserModule } from './user/user.module';
 import { ProductoModule } from './producto/producto.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { PedidosModule } from './pedidos/pedidos.module';
 
 
 @NgModule({
@@ -30,8 +31,10 @@ import { ToastrModule } from 'ngx-toastr';
     HomeModule,
     UserModule,
     ProductoModule,
+    PedidosModule,
     // Debe ser el ultimo
-    AppRoutingModule
+    AppRoutingModule,
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

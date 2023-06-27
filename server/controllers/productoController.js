@@ -16,8 +16,13 @@ module.exports.getById = async (request, response, next) => {
     const productos = await prisma.producto.findUnique({
         where: {
             id:id
-        }
-    });
+        },
+        include: {
+            Usuario: true,
+            Preguntas: true,
+            Categoria: true,
+    },
+});
     response.json(productos);
 };
 //Obtener un producto por el vendedor
