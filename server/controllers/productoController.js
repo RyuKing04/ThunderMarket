@@ -12,7 +12,7 @@ module.exports.get = async (request, response, next) => {
 };
 //Obtener un producto por id
 module.exports.getById = async (request, response, next) => {
-    let id = parseInt(request.params.id);
+    let id = 2
     const productos = await prisma.producto.findUnique({
         where: {
             id:id
