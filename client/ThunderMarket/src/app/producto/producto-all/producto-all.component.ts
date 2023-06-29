@@ -1,58 +1,53 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatTable, MatTableDataSource} from '@angular/material/table';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Subject, takeUntil } from 'rxjs';  
+import { Subject, takeUntil } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductoAllDataSource, ProductoAllItem } from './producto-all-datasource';
+import {
+  ProductoAllDataSource,
+  ProductoAllItem,
+} from './producto-all-datasource';
 import { GenericService } from 'src/app/share/generic.service';
 
 @Component({
   selector: 'app-producto-all',
   templateUrl: './producto-all.component.html',
-  styleUrls: ['./producto-all.component.css']
+  styleUrls: ['./producto-all.component.css'],
 })
 export class ProductoAllComponent implements AfterViewInit {
-  datos:any;
-  destroy$:Subject<boolean>=new Subject<boolean>();
+  datos: any;
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   //@ViewChild(MatTable) table!: MatTable<ProductoAllItem>;
-  dataSource= new MatTableDataSource<any>();
+  dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['Nombre', 'Precio','Acciones' ];
+  displayedColumns = ['Nombre', 'Precio', 'Acciones'];
 
-  constructor(private router:Router, 
-    private route:ActivatedRoute, 
-    private gService:GenericService) {
-
-  }
+  constructor(private gService: GenericService) {}
 
   ngAfterViewInit(): void {
-  this.listaProductos();
+    this.listaProductos();
   }
 
-  listaProductos(){
-this.gService.list('productos/')
-.pipe(takeUntil(this.destroy$))
-.subscribe((data:any)=>{
-  console.log(data);
-  this.datos=data;
-  this.dataSource = new MatTableDataSource(this.datos);
-  this.dataSource.sort = this.sort;
-  this.dataSource.paginator = this.paginator; 
+  listaProductos() {
+    this.gService
+      .list('productos/vendor/')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: any) => {
+        console.log(data);
+        if (Array.isArray(data)) {
+          this.dataSource.data = data; 
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+        }
+      });
+  }
 
-});
-  }
-  detalle(id:number){
-    this.router.navigate(['/productos',id],
-    {
-      relativeTo:this.route
-    })
-  }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
