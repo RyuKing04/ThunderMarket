@@ -17,14 +17,15 @@
       <button mat-menu-item [routerLink]="['/acerca-de']" routerLinkActive="mat-raised-button">
         Acerca de
       </button>
-      <button mat-menu-item [routerLink]="['/acerca-de']" [matMenuTriggerFor]="menu2"
-        routerLinkActive="mat-raised-button">
-        Mantenimientos
-      </button>
+      <button mat-menu-item [routerLink]="'/productos'" [routerLinkActive]="'mat-raised-button'">Productos</button>
+      <button mat-menu-item  [matMenuTriggerFor]="menu2"
+      routerLinkActive="mat-raised-button">
+      Mantenimientos
+    </button>
   
       <mat-menu #menu2="matMenu">
-        <button mat-menu-item [routerLink]="['/']" routerLinkActive="mat-raised-button">
-          Pedidos
+        <button mat-menu-item [routerLink]="['/productos/all']" routerLinkActive="mat-raised-button">
+          Productos
         </button>
       </mat-menu>
     </mat-menu>

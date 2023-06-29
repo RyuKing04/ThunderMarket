@@ -22,7 +22,7 @@ export class ProductoAllComponent implements AfterViewInit {
   dataSource= new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['Nombre', 'Precio','acciones' ];
+  displayedColumns = ['Nombre', 'Precio','Acciones' ];
 
   constructor(private router:Router, 
     private route:ActivatedRoute, 
@@ -47,10 +47,10 @@ this.gService.list('productos/')
 });
   }
   detalle(id:number){
-    this.router.navigate(['/productos',id])
+    this.router.navigate(['/productos',id],
     {
-      relativeTO:this.route
-    }
+      relativeTo:this.route
+    })
   }
   ngOnDestroy(){
     this.destroy$.next(true);
