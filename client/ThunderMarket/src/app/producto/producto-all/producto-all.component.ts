@@ -34,17 +34,18 @@ export class ProductoAllComponent implements AfterViewInit {
   this.listaProductos();
   }
 
-  listaProductos(){
-this.gService.list('productos/')
-.pipe(takeUntil(this.destroy$))
-.subscribe((data:any)=>{
-  console.log(data);
-  this.datos=data;
-  this.dataSource = new MatTableDataSource(this.datos);
-  this.dataSource.sort = this.sort;
-  this.dataSource.paginator = this.paginator; 
-
-});
+  listaProductos() {
+    this.gService
+      .list('productos/usuario/:id')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: any) => {
+        console.log(data);
+        if (Array.isArray(data)) {
+          this.dataSource.data = data; 
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+        }
+      });
   }
   detalle(id:number){
     this.router.navigate(['/productos',id],
