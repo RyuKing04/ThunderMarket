@@ -1,37 +1,38 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatTable, MatTableDataSource} from '@angular/material/table';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Subject, takeUntil } from 'rxjs';  
+import { Subject, takeUntil } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductoAllDataSource, ProductoAllItem } from './producto-all-datasource';
+import { ProductoAllDataSource,ProductoAllItem,} from './producto-all-datasource';
 import { GenericService } from 'src/app/share/generic.service';
 
 @Component({
   selector: 'app-producto-all',
   templateUrl: './producto-all.component.html',
-  styleUrls: ['./producto-all.component.css']
+  styleUrls: ['./producto-all.component.css'],
 })
 export class ProductoAllComponent implements AfterViewInit {
-  datos:any;
-  destroy$:Subject<boolean>=new Subject<boolean>();
+  datos: any;
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   //@ViewChild(MatTable) table!: MatTable<ProductoAllItem>;
-  dataSource= new MatTableDataSource<any>();
+  dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['Nombre', 'Precio','Acciones' ];
+  displayedColumns = ['Nombre', 'Precio', 'Acciones'];
 
-  constructor(private router:Router, 
-    private route:ActivatedRoute, 
+ 
+  constructor(private router:Router,
+    private route:ActivatedRoute,
     private gService:GenericService) {
-
+    
   }
 
   ngAfterViewInit(): void {
-  this.listaProductos();
+    this.listaProductos();
   }
 
   listaProductos() {
