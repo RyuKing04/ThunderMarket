@@ -24,14 +24,14 @@ export const facturaDetalle = [
         Cantidad: 3,
         Subtotal: 2000,
         FacturaID: 4,
-        ProductoID: 2,
+        ProductoID: 5,
         Estado: "Pendiente",
     },
     {
         Cantidad: 4,
         Subtotal: 2000,
         FacturaID: 4,
-        ProductoID: 3,
+        ProductoID: 6,
         Estado: "Pendiente",
     },
 ];

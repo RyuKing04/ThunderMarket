@@ -22,7 +22,7 @@ export class PedidosUsuarioComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = [ 'Cantidad','Estado de pago', 'Envio'];
+  displayedColumns = [ 'Producto','Subtotal', 'Estado','Cantidad', 'Acciones'];
 
   constructor(private router:Router,
     private route:ActivatedRoute,
@@ -45,6 +45,12 @@ export class PedidosUsuarioComponent implements AfterViewInit {
           this.dataSource.paginator = this.paginator;
         }
       });
+  }
+  detalle(id:number){
+    this.router.navigate(['/facturas',id],
+    {
+      relativeTo:this.route
+    })
   }
   ngOnDestroy(){
     this.destroy$.next(true);

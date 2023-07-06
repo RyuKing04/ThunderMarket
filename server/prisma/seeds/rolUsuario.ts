@@ -20,6 +20,9 @@ export const rolUsuario = [
     RolID: 2,
     UsuarioID: 4,
   },
+  { RolID:2,
+  UsuarioID:5, 
+},
   {
     RolID: 3,
     UsuarioID: 6,

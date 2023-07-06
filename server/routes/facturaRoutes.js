@@ -9,6 +9,6 @@ router.get('/:id', facturaController.getById);
 
 router.get('/usuario/:id', facturaController.getByiDUsuario);
 
-router.get('/producto/usuario/:id', facturaController.getByIdVendedor);
+router.get('/vendedor/:id', facturaController.getByIdVendedor);
 
 module.exports=router;

@@ -71,7 +71,7 @@ model MetodoDePago {
 model Producto {
   id             Int              @id @default(autoincrement())
   Nombre         String
-  Precio         Float
+  Precio         Decimal             @db.Decimal(10, 2)
   Cantidad       Int
   Estado         Boolean
   CategoriaID    Int
@@ -100,7 +100,7 @@ model imagen {
 model FacturaDetalle {
   id        Int          @id @default(autoincrement())
   Cantidad   Int
-  Subtotal   Float
+  Subtotal   Decimal             @db.Decimal(10, 2)
   Estado     String
   FacturaID  Int
   Factura    Factura      @relation(fields: [FacturaID], references: [id])
@@ -112,7 +112,7 @@ model FacturaDetalle {
 model Factura {
   id             Int              @id @default(autoincrement())
   Fecha          DateTime
-  Total          Float
+  Total          Decimal             @db.Decimal(10, 2)
   Estado         String
   UsuarioID      Int
   Usuario        Usuario          @relation(fields: [UsuarioID], references: [id])
