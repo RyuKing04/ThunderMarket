@@ -6,7 +6,11 @@ module.exports.get = async (request, response, next) => {
         orderBy: {
             ///ordenar por nombre
             Nombre: 'asc'
-        }
+        },
+        include: {
+            Usuario: true,
+            Categoria: true,
+        },
     });
     response.json(productos);
 };
@@ -35,7 +39,10 @@ module.exports.getProductoVendedor = async (request, response, next) => {
         orderBy: {
             ///ordenar por nombre
             Nombre: 'asc'
-        }
+        },
+        include: {
+            Categoria: true,
+        },
     });
     response.json(productos);
 }

@@ -20,7 +20,13 @@ module.exports.getById = async (request, response, next) => {
         },
         include:
         {
-            facturaDetalle:true
+            MetodoDePago:true,
+            Direccion:true,
+            facturaDetalle:{
+                include: {
+                    producto: true
+                }
+            }
         }
     });
     response.json(facturas);

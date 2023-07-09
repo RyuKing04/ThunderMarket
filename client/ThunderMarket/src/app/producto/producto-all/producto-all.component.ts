@@ -22,7 +22,7 @@ export class ProductoAllComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['Nombre', 'Precio', 'Acciones'];
+  displayedColumns = ['Nombre', 'Precio', 'Estado','Categoria','Acciones'];
 
  
   constructor(private router:Router,
