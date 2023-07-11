@@ -65,4 +65,8 @@ export const imagen = [
     ProductoID: 12,
   },
 
+  {
+    imagen: "https://www.sportpaleis.nl/img/nike-tech-fleece-crew-sweater_1500x1500_117341.jpg",
+    ProductoID: 1,
+  },
 ];

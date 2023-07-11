@@ -6,10 +6,16 @@
           <mat-card-subtitle>Categoria:{{datos.Categoria.Descripcion}}
           </mat-card-subtitle> 
         </mat-card-header>
-        <div *ngIf="datos.imagen">
-          <div *ngFor="let img of datos.imagen">
-            <img [src]="img.imagen" alt="Imagen de producto" >
-          </div>
+        <div>
+          <img [src]="imagenActual" alt="Imagen de producto">
+        </div>
+        <div>
+          <button mat-icon-button (click)="mostrarImagenAnterior()">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </button>
+          <button mat-icon-button (click)="mostrarSiguienteImagen()">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
         </div>
         <mat-card-content>
           
