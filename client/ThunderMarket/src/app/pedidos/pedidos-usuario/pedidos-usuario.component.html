@@ -6,15 +6,15 @@
     <div class="mat-elevation-z8" *ngIf="dataSource">
       <table mat-table [dataSource]="dataSource" class="full-width-table" matSort aria-label="Elements">
         <!-- Columna nombre -->
-       <ng-container matColumnDef="Producto">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Producto</th>
-          <td mat-cell *matCellDef="let row">{{ row.producto.Nombre }}</td>
+       <ng-container matColumnDef="Fecha">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+          <td mat-cell *matCellDef="let row">{{ row.Fecha }}</td>
        </ng-container>
 
         <!-- Columna precio -->
-        <ng-container matColumnDef="Subtotal">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Subtotal</th>
-          <td mat-cell *matCellDef="let row">{{ row.Subtotal }}</td>
+        <ng-container matColumnDef="Total">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+          <td mat-cell *matCellDef="let row">{{ row.Total }}</td>
         </ng-container>
 
         <ng-container matColumnDef="Estado">
@@ -22,10 +22,6 @@
           <td mat-cell *matCellDef="let row">{{ row.Estado }}</td>
         </ng-container>
         
-        <ng-container matColumnDef="Cantidad">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad</th>
-          <td mat-cell *matCellDef="let row">{{ row.Cantidad }}</td>
-        </ng-container>
         <!-- Columna acciones -->
         <ng-container matColumnDef="Acciones">
           <th mat-header-cell *matHeaderCellDef>Acciones</th>

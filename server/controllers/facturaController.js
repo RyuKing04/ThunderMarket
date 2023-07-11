@@ -33,16 +33,14 @@ module.exports.getById = async (request, response, next) => {
 }
 module.exports.getByiDUsuario=async (request, response, next) => {
     let idUsuario = 5;
-    const facturas = await prisma.facturaDetalle.findMany({
+    const facturas = await prisma.factura.findMany({
         where: {
-            Factura : {
-            UsuarioID: idUsuario
-            }
+            
+            UsuarioID: idUsuario 
         },
         include:
         {
-            Factura:true,
-            producto:true,
+            facturaDetalle:true, 
             
         }
     });

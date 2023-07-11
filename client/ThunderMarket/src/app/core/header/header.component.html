@@ -18,6 +18,8 @@
         Acerca de
       </button>
       <button mat-menu-item [routerLink]="'/productos'" [routerLinkActive]="'mat-raised-button'">Productos</button>
+      <button mat-menu-item [routerLink]="'/pedidos/usuario'" [routerLinkActive]="'mat-raised-button'">Pedidos</button>
+
       <button mat-menu-item  [matMenuTriggerFor]="menu2"
       routerLinkActive="mat-raised-button">
       Mantenimientos
@@ -26,6 +28,9 @@
       <mat-menu #menu2="matMenu">
         <button mat-menu-item [routerLink]="['/productos/all']" routerLinkActive="mat-raised-button">
           Productos
+        </button>
+        <button mat-menu-item [routerLink]="['/pedidos/all']" routerLinkActive="mat-raised-button">
+          Pedidos
         </button>
       </mat-menu>
     </mat-menu>

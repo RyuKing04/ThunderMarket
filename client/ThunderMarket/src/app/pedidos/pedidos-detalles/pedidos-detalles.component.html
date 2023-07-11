@@ -1,14 +1,17 @@
 <mat-card class="dashboard-card" *ngIf="datos"  >
     <mat-card-header>
       <mat-card-title>
-        {{datos.facturaDetalle[0].producto.Nombre }}
-       
+       <h1>Factura</h1>
       </mat-card-title>
     </mat-card-header>
     <mat-card-content class="dashboard-card-content">
       
       <p><b>Fecha De compra: </b>{{datos.Fecha  }}</p>
-      <p><b>Cantidad: </b>{{datos.facturaDetalle[0].Cantidad}}</p>
+      <div *ngFor="let detalle of datos.facturaDetalle">
+        <p><b>Producto: </b>{{ detalle.producto.Nombre }}</p>
+        <p><b>Cantidad: </b>{{ detalle.Cantidad }}</p>
+        <!-- Agregar más propiedades de los detalles de factura aquí -->
+      </div>
       <p><b>Direccion: </b>{{datos.Direccion.Direccion}}</p>
       <p><b>Metodo de Pago:</b>{{datos.MetodoDePago.Tipo}}</p>
       <p><b>Total: </b>{{datos.Total| currency:'USD'}}</p> 

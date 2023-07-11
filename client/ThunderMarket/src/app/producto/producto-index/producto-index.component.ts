@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { GenericService } from 'src/app/share/generic.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-producto-index',
@@ -12,7 +14,7 @@ export class ProductoIndexComponent {
   destroy$:Subject<boolean>=new Subject<boolean>();
 
   constructor(private gService:GenericService,
-      
+    private router: Router
     ){
     this.listaProductos(); 
   }
@@ -26,6 +28,7 @@ export class ProductoIndexComponent {
     
   }
   detalleProductos(id:number){
+    this.router.navigate(['/productos', id]);
 
   }
 }

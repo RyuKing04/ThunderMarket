@@ -1,0 +1,25 @@
+.dashboard-card{
+    align-items: center;
+}
+mat-card-title{
+    /* pon el titulo a la izquierda */
+    text-align: left;
+
+}
+.dashboard-card{
+    /* tamaño de la tarjeta */
+    width: 100%;
+    height: 100%;
+    /* centrar la tarjeta */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img{
+    /* tamaño de la imagen */
+    width: 30%;
+    height: 30%;
+    /* centrar la imagen */
+    object-fit: contain;
+}

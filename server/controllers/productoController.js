@@ -23,8 +23,14 @@ module.exports.getById = async (request, response, next) => {
         },
         include: {
             Usuario: true,
-            Preguntas: true,
             Categoria: true,
+            imagen: true,
+            Preguntas:{
+                include:{
+                    Respuesta:true,
+                },
+            },
+            
     },
 });
     response.json(productos);
