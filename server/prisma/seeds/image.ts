@@ -49,7 +49,7 @@ export const imagen = [
 
   {
     imagen:
-"https://th.bing.com/th/id/OIP.DriTRXV7sLzPKJjUlVuIYwHaHa?pid=ImgDet&rs=1",
+"https://th.bing.com/th/id/OIP.lbqyNJnRp5okxPc1eBnO6AHaHa?pid=ImgDet&rs=1",
     ProductoID: 10,
   },
 
@@ -69,4 +69,71 @@ export const imagen = [
     imagen: "https://www.sportpaleis.nl/img/nike-tech-fleece-crew-sweater_1500x1500_117341.jpg",
     ProductoID: 1,
   },
+  {
+    imagen:
+    "https://centralsurf.vteximg.com.br/arquivos/ids/261023-1000-1000/Camiseta-Nike-Sb-Logo.jpg?v=636954516939330000",
+    ProductoID: 1,
+  },
+  {
+    imagen: 
+    "https://cdn1.jolicloset.com/img4/full/2018/05/69935-1.jpg",
+    ProductoID: 2,
+  },
+  {
+    imagen:
+    "https://http2.mlstatic.com/tenis-nike-air-max-90-premium-mesh-gs-infrared-dama-o-jnr-D_NQ_NP_506305-MLM20862227669_082016-F.jpg",
+    ProductoID: 3,
+  },
+  {
+    imagen:
+    "https://www.innvictus.com/medias/tenis-nike-air-max-90-in-CD0881-100-1.png?context=bWFzdGVyfGltYWdlc3wyNDg5NDF8aW1hZ2UvcG5nfGltYWdlcy9oYzEvaGE1Lzk2ODE1Mjc1NzA0NjIucG5nfDA3ZjJiOTdiMzViMGEzOTgzMjk4ZWQwODkyYTgxY2Q1M2U0YjE4NTkxMGNhYzFmMGRiOGU0N2UyYTlmYTg4YTk",
+    ProductoID: 3,
+  },
+  {
+    imagen:
+    "https://stockx.imgix.net/products/streetwear/Supreme-Chest-Stripe-Raglan-Sweater-Red.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&q=90&dpr=2&trim=color&updated_at=1540471244",
+    ProductoID: 4,
+  },
+  {
+    imagen:
+    "https://th.bing.com/th/id/OIP._04JVlkCOgZtMlKl7_4upwHaHa?pid=ImgDet&rs=1",
+    ProductoID: 5,
+  },
+  {
+    imagen:
+    "https://th.bing.com/th/id/R.3f9c83c7b340fd4e231d900afa575b31?rik=0IQlK2YX8C91Cg&pid=ImgRaw&r=0",
+    ProductoID: 5,
+  },
+  {
+    imagen:
+    "https://th.bing.com/th/id/OIP.F9_7aYWsGvkG6uAIz78UXwHaHa?pid=ImgDet&rs=1",
+    ProductoID: 6,
+  },
+  {
+    imagen:
+    "https://th.bing.com/th/id/R.609c0e555af5d4de19f305ecf19e1732?rik=PdjnqKE5yGKnVg&pid=ImgRaw&r=0",
+    ProductoID: 7,
+  },
+  {
+    imagen:
+    "https://www.innvictus.com/medias/tenis-air-jordan-1-low-light-smoke-grey-in-553558-030-4.png?context=bWFzdGVyfGltYWdlc3wyNDQ1ODF8aW1hZ2UvcG5nfGltYWdlcy9oM2UvaGMwLzk3NjE2NjQ1OTgwNDYucG5nfDljMzdjNzI1ZGE5MDA0MDNmYzhmZTU2MzMzN2IyNjkyMzQwZjQ3YTlmNzAwMmNhMjA4YmM2OTY2N2E4ZDA2NTI",
+    ProductoID: 7,
+  },
+  {
+    imagen:
+    "https://cintee.s3.us-east-2.amazonaws.com/jordan-air-sweater.png"
+    ,
+    ProductoID: 8,
+  },
+  {
+    imagen:
+    "https://th.bing.com/th/id/R.97fe466b1462b44e410cfab425d32bf3?rik=JRtxB00wQbDCCw&pid=ImgRaw&r=0",
+    ProductoID: 10,
+  },
+  {
+    imagen:
+    "https://d12uoqa0c8grue.cloudfront.net/2197123_1166400566-w640-h640-zhinochi-black-white_1113x835.jpg",
+    ProductoID: 11,
+  },
+  
 ];

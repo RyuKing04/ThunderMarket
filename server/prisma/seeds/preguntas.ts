@@ -29,5 +29,16 @@ export const preguntas = [
     ProductoID: 3,
     UsuarioID: 5,
   },
-  
+  {
+    Pregunta: "¿Como pago?",
+    IDRespuesta: null,
+    ProductoID: 4,
+    UsuarioID: 2,
+  },
+  {
+    Pregunta: "¿Que tallas manejan?",
+    IDRespuesta: null,
+    ProductoID: 1,
+    UsuarioID: 2,
+  },
 ];
