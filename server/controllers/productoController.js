@@ -53,3 +53,44 @@ module.exports.getProductoVendedor = async (request, response, next) => {
     response.json(productos);
 }
 
+//crear producto
+module.exports.create = async (request, response, next) => {
+    let producto = request.body;
+    const newProductos = await prisma.producto.create({
+        data: {
+            Nombre: producto.Nombre,
+            Precio: producto.Precio,
+            Cantidad: producto.Cantidad,
+            Estado: producto.Estado,
+            Categoria:{
+                connect:producto.Descripcion,
+            },
+            imagen:{
+                connect:producto.imagen,
+        }
+        }
+    });
+    response.json(newProductos);
+}
+//actualizar producto
+module.exports.update = async (request, response, next) => {
+    let id = parseInt(request.params.id);
+    let producto = request.body;
+    const updateProductos = await prisma.producto.update({
+        where: {
+            id: id
+        },
+        data: {
+            Nombre: producto.Nombre,
+            Precio: producto.Precio,
+            Cantidad: producto.Cantidad,
+            Estado: producto.Estado,
+            Categoria:{
+                connect:producto.Descripcion,
+            }
+        }
+    });
+    response.json(updateProductos);
+}
+
+
