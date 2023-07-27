@@ -1,6 +1,5 @@
-<mat-grid-list cols="2" rowHeight="2:1">
-  <mat-grid-tile>
-    <mat-card class="dashboard-card" *ngIf="datos">
+<div class="container">
+  <mat-card class="dashboard-card" *ngIf="datos">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title> {{datos.Nombre }}</mat-card-title>
@@ -21,17 +20,31 @@
     <mat-card-content>
     </mat-card-content>
   </mat-card>
-</mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card class="dashboard-card" *ngIf="datos" >
+  <mat-card class="info">
+    <mat-card-header>
+      <mat-card-title>Información del vendedor</mat-card-title>
+      <mat-card-subtitle><p><b>Empresa:</b>{{datos.Usuario.Empresa}}</p><p><b>Estado: </b>{{datos.Estado ? 'Disponible' : 'No disponible' }}</p>
+      <p><b>Cantidad: </b>{{datos.Cantidad}}</p>
+      <p><b>Vendedor:</b>{{datos.Usuario.Nombre}} {{datos.Usuario.Apellido}}</p></mat-card-subtitle>
+     
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button>Comprar</button>
+      <button mat-button>Compartir</button>
+    </mat-card-actions>
+  </mat-card>
+    <mat-card *ngIf="datos">
       <mat-card-content>
-        <p><b>Estado: </b>{{datos.Estado ? 'Disponible' : 'No disponible' }}</p>
-        <p><b>Cantidad: </b>{{datos.Cantidad}}</p>
-        <p><b>Vendedor:</b>{{datos.Usuario.Nombre}} {{datos.Usuario.Apellido}}</p>
-        <mat-divider></mat-divider>
-      </mat-card-content>
+        <p><b>Preguntas predeterminadas:</b></p>
+        <ul *ngIf="datos.Preguntas">
+          <li *ngFor="let pregunta of datos.Preguntas">
+            {{ pregunta.Pregunta }}
+    
+            <!-- Mostrar respuesta correspondiente -->
+            <p>{{ pregunta.Respuesta.Respuesta }}</p>
+          </li>
+        </ul>
+    </mat-card-content>
     </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>3</mat-grid-tile>
-  <mat-grid-tile>4</mat-grid-tile>
-</mat-grid-list>
+   </div> 
+ 

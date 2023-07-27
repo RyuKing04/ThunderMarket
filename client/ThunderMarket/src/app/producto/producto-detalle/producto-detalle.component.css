@@ -1,50 +1,35 @@
-.dashboard-card{
-    align-items: center;
-}
+
 mat-card-title{
     /* pon el titulo a la izquierda */
     text-align: left;
-
 }
-.dashboard-card{
-    /* tamaño de la tarjeta */
-   
-    /* centrar la tarjeta */ max-width: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-   
 
-}
 
 img{
     /* tamaño de la imagen */
     width: 80%;
-    height: 100%;
+    height: 80%;
     /* centrar la imagen */
     object-fit: contain;
 }
 
-  mat-card{
-    /* tamaño de la tarjeta al mat-grid */
-    width: 100%;
-    height: 100%;
-    /* centrar la tarjeta */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
 
-  }
-  mat-card-content{
-        /* acomodar el contenido como el mat-card */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: auto;
-        flex-direction: column;
-  }
-  mat-grid-list{
-    
-  }
+.dashboard-card {
+  flex: 0 1 48%;
+  margin-bottom: 20px;
+}
+
+.info {
+  flex: 0 1 48%;
+}
+
+.middle-card {
+  flex: 0 1 100%;
+  text-align: center;
+}

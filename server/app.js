@@ -10,6 +10,7 @@ const prism = new PrismaClient();
 const productoRoutes = require('./routes/productoRoutes');
 const facturaRoutes = require('./routes/facturaRoutes');
 const usuarioRoutes = require('./routes/usuarioRoutes');
+const preguntasRoutes = require('./routes/preguntasRoutes');
 // Acceder a la configuracion del archivo .env
 dotEnv.config();
 // Puero que escucha por defecto 300 o definido .env
@@ -29,6 +30,7 @@ extended: true,
 app.use('/productos/', productoRoutes);
 app.use('/facturas/', facturaRoutes);
 app.use('/usuarios/', usuarioRoutes);
+app.use('/preguntas/', preguntasRoutes);
 
 // Servidor
 app.listen(port, () => { 

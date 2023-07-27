@@ -32,6 +32,7 @@ model Usuario {
   ComentarioVendedor Comentario[]   @relation("UsuarioVendedor")
   Preguntas          Preguntas[]
   Producto           Producto[]
+  Respuesta          Respuesta[]
 }
 
 model RolUsuario {
@@ -152,4 +153,6 @@ model Respuesta {
   id        Int         @id @default(autoincrement())
   Respuesta String?
   Preguntas Preguntas[]
+  UsuarioID Int
+  Usuario   Usuario     @relation(fields: [UsuarioID], references: [id])
 }

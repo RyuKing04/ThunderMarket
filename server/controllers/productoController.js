@@ -62,12 +62,15 @@ module.exports.create = async (request, response, next) => {
             Precio: producto.Precio,
             Cantidad: producto.Cantidad,
             Estado: producto.Estado,
-            Categoria:{
-                connect:producto.Descripcion,
+            Categoria: {
+                connect: { id: producto.Categoria.CategoriaID }, // Acceder a la propiedad CategoriaID
             },
-            imagen:{
-                connect:producto.imagen,
-        }
+            //imagen: {
+              //  connect: { id: producto.imagen.imagenID }, // Si es que tienes un ID para la imagen
+            //},
+            Usuario: {
+                connect: { id: producto.Usuario.UsuarioID }, // Acceder a la propiedad UsuarioID
+            },
         }
     });
     response.json(newProductos);
@@ -87,7 +90,13 @@ module.exports.update = async (request, response, next) => {
             Estado: producto.Estado,
             Categoria:{
                 connect:producto.Descripcion,
-            }
+            },
+            imagen:{
+                connect:producto.imagen,
+            },
+            Usuario:{
+                connect:producto.UsuarioID,
+            },
         }
     });
     response.json(updateProductos);

@@ -138,6 +138,7 @@ CREATE TABLE `Preguntas` (
 CREATE TABLE `Respuesta` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `Respuesta` VARCHAR(191) NULL,
+    `UsuarioID` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -195,3 +196,6 @@ ALTER TABLE `Preguntas` ADD CONSTRAINT `Preguntas_UsuarioID_fkey` FOREIGN KEY (`
 
 -- AddForeignKey
 ALTER TABLE `Preguntas` ADD CONSTRAINT `Preguntas_ProductoID_fkey` FOREIGN KEY (`ProductoID`) REFERENCES `Producto`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Respuesta` ADD CONSTRAINT `Respuesta_UsuarioID_fkey` FOREIGN KEY (`UsuarioID`) REFERENCES `Usuario`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
