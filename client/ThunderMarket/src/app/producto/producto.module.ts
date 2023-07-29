@@ -9,6 +9,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { ProductoIndexComponent } from './producto-index/producto-index.component';
 import { ProductoDetalleComponent } from './producto-detalle/producto-detalle.component';
@@ -32,6 +36,12 @@ import { ProductoAllComponent } from './producto-all/producto-all.component';
     MatPaginatorModule,
     MatSortModule,
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    
   ],
 })
 export class ProductoModule {}

@@ -1,56 +1,56 @@
 export const usuario = [
   {
-    id: 1,
+    
     Nombre: "Antonio",
     Apellido: "Ramirez",
     Email: "tony9044@hotmail.com",
-    Password: "123456",
+    password: "123456",
     Empresa: null,
     Estado: true,
   },
   {
-    id: 2,
+    
     Nombre: "Juan",
     Apellido: "Perez",
     Email: "juanperez@gmail.com",
-    Password: "123456",
+    password: "123456",
     Empresa: "Juan clothes",
     Estado: true,
   },
   {
-    id: 3,
+    
     Nombre: "Maria",
     Apellido: "Gonzalez",
     Email: "mariago@gmail.com",
-    Password: "123456",
+    password: "123456",
     Empresa: "Maria clothes",
     Estado: true,
   },
 
   {
-    id: 4,
+    
     Nombre: "Daniel",
     Apellido: "Morales",
     Email: "DaMorales@gmail.com",
-    Password: "123456",
+    password: "123456",
     Empresa: null,
     Estado: true,
   },
   {
-    id: 5,
+    
     Nombre: "NombreUsuario",
     Apellido: "ApellidoUsuario",
     Email: "correo@usuario.com",
-    Password: "contraseña",
+    password: "contraseña",
     Empresa: null,
     Estado: true,
   },
   {
-    id: 6,
+    
     Nombre: "Tyanne",
     Apellido: "Hills",
     Email: "TyHills@gmail.com",
-    Password: "123456",
+    password: "123456",
     Empresa: "Tyanne Clothes",
     Estado: true,
   },

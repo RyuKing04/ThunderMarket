@@ -6,9 +6,11 @@ mat-card-title{
 
 
 img{
-    /* tamaño de la imagen */
-    width: 80%;
-    height: 80%;
+    /* tamaño de la imagen más pequeña   */
+    width: 20%;
+    height: 20%;
+
+    
     /* centrar la imagen */
     object-fit: contain;
 }
@@ -30,6 +32,10 @@ img{
 }
 
 .middle-card {
+  flex: 0 1 100%;
+  text-align: center;
+}
+.preguntas{
   flex: 0 1 100%;
   text-align: center;
 }

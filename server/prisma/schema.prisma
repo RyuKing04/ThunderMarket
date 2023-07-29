@@ -17,13 +17,13 @@ model Rol {
 }
 
 model Usuario {
-  id                  Int            @id
+  id                  Int            @id @default(autoincrement())
   Nombre             String
   Apellido           String
-  Email              String
-  Password           String
+  Email              String           @unique
+  password           String
   Empresa            String?
-  Estado             Boolean
+  Estado             Boolean         @default(true)
   Direccion          Direccion[]
   MetodoDePago       MetodoDePago[]
   Factura            Factura[]

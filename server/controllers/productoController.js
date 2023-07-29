@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const upload= require('../controllers/upload');
 //Obtener listado de productos
 module.exports.get = async (request, response, next) => {
     const productos = await prisma.producto.findMany({
@@ -65,9 +66,13 @@ module.exports.create = async (request, response, next) => {
             Categoria: {
                 connect: { id: producto.Categoria.CategoriaID }, // Acceder a la propiedad CategoriaID
             },
-            //imagen: {
-              //  connect: { id: producto.imagen.imagenID }, // Si es que tienes un ID para la imagen
-            //},
+            imagen: {
+                create: imagenes.map((imagen) => ({
+                    imagen: imagen.filename,}))
+                },
+                include: {
+                    imagen: true,
+                },
             Usuario: {
                 connect: { id: producto.Usuario.UsuarioID }, // Acceder a la propiedad UsuarioID
             },
@@ -91,9 +96,9 @@ module.exports.update = async (request, response, next) => {
             Categoria:{
                 connect:producto.Descripcion,
             },
-            imagen:{
-                connect:producto.imagen,
-            },
+           //imagen: {
+              //  connect: { id: producto.imagen.imagenID }, // Si es que tienes un ID para la imagen
+            //},
             Usuario:{
                 connect:producto.UsuarioID,
             },

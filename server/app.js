@@ -11,6 +11,8 @@ const productoRoutes = require('./routes/productoRoutes');
 const facturaRoutes = require('./routes/facturaRoutes');
 const usuarioRoutes = require('./routes/usuarioRoutes');
 const preguntasRoutes = require('./routes/preguntasRoutes');
+const respuestaRoutes = require('./routes/respuestaRoutes');
+
 // Acceder a la configuracion del archivo .env
 dotEnv.config();
 // Puero que escucha por defecto 300 o definido .env
@@ -31,7 +33,7 @@ app.use('/productos/', productoRoutes);
 app.use('/facturas/', facturaRoutes);
 app.use('/usuarios/', usuarioRoutes);
 app.use('/preguntas/', preguntasRoutes);
-
+app.use('/respuestas/', respuestaRoutes);
 // Servidor
 app.listen(port, () => { 
 console.log(`http://localhost:${port}`);
