@@ -56,30 +56,56 @@ module.exports.getProductoVendedor = async (request, response, next) => {
 
 //crear producto
 module.exports.create = async (request, response, next) => {
-    let producto = request.body;
-    const newProductos = await prisma.producto.create({
-        data: {
-            Nombre: producto.Nombre,
-            Precio: producto.Precio,
-            Cantidad: producto.Cantidad,
-            Estado: producto.Estado,
-            Categoria: {
-                connect: { id: producto.Categoria.CategoriaID }, // Acceder a la propiedad CategoriaID
+    try {
+        let producto = request.body;
+        const imagenes = request.files;
+
+        // Convertir Precio a un número decimal
+        const Precio = parseFloat(producto.Precio);
+        // Convertir Cantidad a un número entero
+        const Cantidad = parseInt(producto.Cantidad);
+        // Convertir Estado a un booleano
+        const Estado = producto.Estado === 'true';
+
+        const newProducto = await prisma.producto.create({
+            data: {
+                Nombre: producto.Nombre,
+                Precio: Precio,
+                Cantidad: Cantidad,
+                Estado: Estado,
+                Categoria: {
+                    connect: { id:parseInt( producto.Categoria) }
+                  },
+                  Usuario: {
+                    connect: { id: parseInt(producto.Usuario) }
+                  },
             },
-            imagen: {
-                create: imagenes.map((imagen) => ({
-                    imagen: imagen.filename,}))
-                },
-                include: {
-                    imagen: true,
-                },
-            Usuario: {
-                connect: { id: producto.Usuario.UsuarioID }, // Acceder a la propiedad UsuarioID
+            include: {
+                imagen: true,
             },
+        });
+
+        if (imagenes && imagenes.length > 0) {
+            const imagenesData = imagenes.map((imagen) => ({
+                imagen: imagen.filename,
+                ProductoID: newProducto.id,
+            }));
+
+            await prisma.imagen.createMany({
+                data: imagenesData,
+            });
         }
-    });
-    response.json(newProductos);
-}
+
+        response.json(newProducto);
+    } catch (error) {
+        console.error(error);
+        response.status(500).json({ error: 'Error al crear el producto.' });
+    }
+};
+
+
+
+
 //actualizar producto
 module.exports.update = async (request, response, next) => {
     let id = parseInt(request.params.id);
