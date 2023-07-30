@@ -50,11 +50,11 @@
       </button>
       <!--Menu usuario-->
       <mat-menu #menu3="matMenu">
-        <a mat-menu-item *ngIf="!(isAutenticated)">
+        <a mat-menu-item *ngIf="!(isAutenticated)" (click)="login()">
           <mat-icon>person_add</mat-icon>
           <span>Login</span>
         </a>
-        <a mat-menu-item *ngIf="isAutenticated">
+        <a mat-menu-item *ngIf="isAutenticated" (click)="logout()">
           <mat-icon>person_remove</mat-icon>
           <span>Logout</span>
         </a>

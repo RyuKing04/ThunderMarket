@@ -40,20 +40,6 @@
       <button mat-button>Compartir</button>
     </mat-card-actions>
   </mat-card>
-
- <!-- Agregar el formulario para ingresar preguntas y respuestas -->
-<form [formGroup]="PreguntasyRespuestasForm" (ngSubmit)="crearPreguntayRespuesta()">
-  <mat-form-field>
-    <input matInput placeholder="Pregunta" formControlName="pregunta">
-    <mat-error *ngIf="errorHandling('pregunta', 'required')">La pregunta es obligatoria</mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Respuesta" formControlName="respuesta">
-    <mat-error *ngIf="errorHandling('respuesta', 'required')">La respuesta es obligatoria</mat-error>
-  </mat-form-field>
-  <button mat-button type="submit">Agregar Pregunta</button>
-</form>
-
 <!-- Mostrar la lista de preguntas y respuestas -->
 <mat-card *ngIf="datos" class="preguntas">
   <mat-card-content>
