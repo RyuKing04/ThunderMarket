@@ -62,6 +62,7 @@ CREATE TABLE `Producto` (
     `Precio` DECIMAL(10, 2) NOT NULL,
     `Cantidad` INTEGER NOT NULL,
     `Estado` BOOLEAN NOT NULL,
+    `publicar` BOOLEAN NOT NULL DEFAULT true,
     `CategoriaID` INTEGER NOT NULL,
     `UsuarioID` INTEGER NOT NULL,
 

@@ -14,15 +14,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
+import { MatRadioModule } from '@angular/material/radio';
 import { ProductoIndexComponent } from './producto-index/producto-index.component';
 import { ProductoDetalleComponent } from './producto-detalle/producto-detalle.component';
 import { ProductoAllComponent } from './producto-all/producto-all.component';
+import { ProductoFormComponent } from './producto-form/producto-form.component';
 
 @NgModule({
   declarations: [
     ProductoIndexComponent,
     ProductoDetalleComponent,
     ProductoAllComponent,
+    ProductoFormComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +44,7 @@ import { ProductoAllComponent } from './producto-all/producto-all.component';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    MatRadioModule,
     
   ],
 })

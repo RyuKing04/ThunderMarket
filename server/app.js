@@ -12,6 +12,7 @@ const facturaRoutes = require('./routes/facturaRoutes');
 const usuarioRoutes = require('./routes/usuarioRoutes');
 const preguntasRoutes = require('./routes/preguntasRoutes');
 const respuestaRoutes = require('./routes/respuestaRoutes');
+const categoriaRoutes = require('./routes/categoriaRoutes');
 
 // Acceder a la configuracion del archivo .env
 dotEnv.config();
@@ -34,6 +35,7 @@ app.use('/facturas/', facturaRoutes);
 app.use('/usuarios/', usuarioRoutes);
 app.use('/preguntas/', preguntasRoutes);
 app.use('/respuestas/', respuestaRoutes);
+app.use('/categorias/', categoriaRoutes);
 // Servidor
 app.listen(port, () => { 
 console.log(`http://localhost:${port}`);

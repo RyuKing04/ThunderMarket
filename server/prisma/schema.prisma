@@ -74,7 +74,8 @@ model Producto {
   Nombre         String
   Precio         Decimal             @db.Decimal(10, 2)
   Cantidad       Int
-  Estado         Boolean
+  Estado         Boolean              
+  publicar       Boolean             @default(true)
   CategoriaID    Int
   Categoria      Categoria        @relation(fields: [CategoriaID], references: [id])
   UsuarioID      Int

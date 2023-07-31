@@ -1,0 +1,93 @@
+<form [formGroup]="productoForm" (ngSubmit)="isCreate ? crearProducto(): actualizarProducto()"  novalidate >
+  <input type="hidden" formControlName="id" />
+  <input type="hidden" formControlName="UsuarioID" />
+  <mat-card class="shipping-card"> 
+    <mat-card-header>
+      <mat-card-title>{{titleForm}} Producto</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput formControlName="Nombre" maxlength="20" placeholder="Nombre" >
+            <mat-hint align="end"> / 20</mat-hint>
+            <mat-error *ngIf="errorHandling('Nombre','required')">
+              Nombre es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Precio" formControlName="Precio">
+            <mat-error *ngIf="errorHandling('Precio','required')">
+              Precio es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+  <div class="col">
+    <mat-label>Estado</mat-label>
+    <mat-radio-group formControlName="Estado">
+      <mat-radio-button [value]="true">Disponible</mat-radio-button>
+      <mat-radio-button [value]="false">No Disponible</mat-radio-button>
+    </mat-radio-group>
+  </div>
+</div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Cantidad" formControlName="Cantidad">
+            <mat-error *ngIf="errorHandling('Cantidad','required')">
+              Cantidad es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      
+      <div class="row">
+  <div class="col" *ngIf="categoriaList">
+    <mat-form-field class="full-width">
+      <mat-label>Categorias</mat-label>
+      <mat-select formControlName="Categorias" placeholder="Selecciona una categoría">
+        <mat-option *ngFor="let c of categoriaList" [value]="c.id">{{ c.Descripcion }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="errorHandling('Categorias', 'required')">Categoría es <strong>requerida</strong></mat-error>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <input type="file" formControlName="myFile" accept="image/*" (change)="onFileChange($event)" multiple>
+    Seleccione hasta 5 imágenes
+    <mat-error *ngIf="errorHandling('myFile', 'required')">Imagen es <strong>requerida</strong></mat-error>
+    <mat-error *ngIf="countSelectedImages() > 5">No puedes seleccionar más de 5 imágenes</mat-error>
+  </div>
+</div>
+
+<div class="row" *ngIf="productoForm.get('myFile').value && productoForm.get('myFile').value.length > 0">
+  <div class="col">
+    <strong>Archivos seleccionados:</strong>
+    <ul>
+      <li *ngFor="let file of productoForm.get('myFile').value">{{ file.name }}</li>
+    </ul>
+  </div>
+</div>
+
+      <div class="row">
+        <div class="col">
+          <mat-label>Publicar</mat-label>
+          <mat-radio-group formControlName="publicar">
+            <mat-radio-button [value]="true">Sí</mat-radio-button>
+            <mat-radio-button [value]="false">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Guardar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
