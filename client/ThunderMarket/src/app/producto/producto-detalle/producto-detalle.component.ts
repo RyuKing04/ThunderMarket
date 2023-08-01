@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
@@ -19,6 +19,7 @@ export class ProductoDetalleComponent {
   indiceImagen: number;
   constructor( private gService: GenericService,
     private route:ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder) {
       this.indiceImagen = 0;
     this.imagenActual = '';
@@ -37,7 +38,10 @@ export class ProductoDetalleComponent {
     });
    
   }
-  
+  crearPregunta(id:number){
+    this.router.navigate(['/preguntas',id])
+
+  }
   mostrarImagenAnterior() {
     if (this.indiceImagen > 0) {
       this.indiceImagen--;

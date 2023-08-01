@@ -41,17 +41,48 @@
     </mat-card-actions>
   </mat-card>
   <!-- Mostrar la lista de preguntas y respuestas -->
+  <!-- <a 
+      mat-fab
+      matTooltip="Crear Pregunta"
+      aria-label="Crear Pregunta"
+      color="accent"
+      (click)="crearPregunta(datos.id)"
+
+    >Crear Pregunta
+  </a> -->
   <mat-card *ngIf="datos" class="preguntas">
     <mat-card-content>
+      <button
+        mat-button
+        matTooltip="Crear Pregunta"
+        aria-label="Crear Pregunta"
+        color="primary"
+        (click)="crearPregunta(datos.id)"
+      >
+        Crear Pregunta
+      </button>
+
       <p><b>Preguntas y Respuestas:</b></p>
-      <ul *ngIf="datos.Preguntas">
-        <li *ngFor="let pregunta of datos.Preguntas">
+      <div class="row" *ngIf="datos.Preguntas">
+        <div *ngFor="let pregunta of datos.Preguntas">
           {{ pregunta.Pregunta }}
-          <!-- Mostrar respuesta correspondiente -->
-          <p>{{ pregunta.Respuesta.Respuesta }}</p>
-        </li>
-      </ul>
+
+          <div class="col">
+            <!-- Verificar si existe una respuesta antes de mostrarla -->
+            <p *ngIf="pregunta.Respuesta">
+              {{ pregunta.Respuesta.Respuesta }}
+            </p>
+            <!-- Mostrar un mensaje si no hay respuesta -->
+            <p *ngIf="!pregunta.Respuesta">
+              Aún no hay respuesta para esta pregunta.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <mat-icon>add</mat-icon>
     </mat-card-content>
   </mat-card>
+
   <!-- Formulario para realizar una pregunta -->
 </div>

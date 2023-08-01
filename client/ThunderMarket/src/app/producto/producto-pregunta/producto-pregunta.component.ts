@@ -14,7 +14,7 @@ export class ProductoPreguntaComponent implements OnInit {
   //Titulo
   titleForm: string = 'Crear';
   //Lista de categorias
-  productoList: any;
+  productoID: Number;
   //Producto a actualizar
   preguntaInfo: any;
   currentUser: any;
@@ -29,6 +29,7 @@ export class ProductoPreguntaComponent implements OnInit {
   idPregunta: number = 0;
   //Sí es crear
   isCreate: boolean = true;
+
   constructor(
     private fb: FormBuilder,
     private gService: GenericService,
@@ -37,17 +38,19 @@ export class ProductoPreguntaComponent implements OnInit {
     private authService: AuthenticationService
   ) {
     this.formularioReactive();
-    this.listaProductos();
+    this.productoID = +this.activeRouter.snapshot.paramMap.get('id');
+    // this.listaProductos();
     this.idUsuario= this.authService.UsuarioID;
     console.log(this.idUsuario);
+    console.log(this.productoID);
   }
   ngOnInit(): void {
     //Verificar si se envio un id por parametro para crear formulario para actualizar
     this.activeRouter.params.subscribe((params: Params) => {
       this.idPregunta = params['id'];
       if (this.idPregunta != undefined) {
-        this.isCreate = false;
-        this.titleForm = 'Actualizar';
+        this.isCreate = true;
+        this.titleForm = 'Crear';
         //Obtener videojuego a actualizar del API
         this.gService
           .get('preguntas', this.idPregunta)
@@ -75,30 +78,34 @@ export class ProductoPreguntaComponent implements OnInit {
         null,
         Validators.compose([Validators.required, Validators.minLength(3)]),
       ],
-      Producto: [null, Validators.required],
-      Usuario: [null, Validators.required],
+      ProductoID: [null, Validators.required],
+      UsuarioID: [null, Validators.required],
       
     });
   }
-  listaProductos() {
-    this.productoList = null;
-    this.gService
-      .list('productos')
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((data: any) => {
-        // console.log(data);
-        this.productoList = data;
-      });
-  }
-  public errorHandling = (control: string, error: string) => {
-    return this.preguntaForm.controls[control].hasError(error);
-  };
+  // listaProductos() {
+  //   this.productoList = null;
+  //   this.gService
+  //     .list('productos')
+  //     .pipe(takeUntil(this.destroy$))
+  //     .subscribe((data: any) => {
+  //       // console.log(data);
+  //       this.productoList = data;
+  //     });
+  // }
+  // public errorHandling = (control: string, error: string) => {
+  //   return this.preguntaForm.controls[control].hasError(error);
+  // };
 
+updatePregunta(): void {}
 
   crearPregunta(): void {
     //Establecer submit verdaderot
     this.submitted = true;
+    console.log(this.productoID);
     this.preguntaForm.patchValue({ UsuarioID: this.idUsuario });
+    
+    this.preguntaForm.patchValue({ ProductoID: this.productoID });
     console.log(this.preguntaForm);
 
     //Verificar validación
@@ -113,17 +120,22 @@ export class ProductoPreguntaComponent implements OnInit {
 
     console.log(formData);
     //Asignar valor al formulario
-    console.log(this.preguntaForm.value);
+    console.log(this.preguntaForm);
     //Accion API create enviando toda la informacion del formulario
     this.gService
-      .create('preguntas', formData)
+      .create('preguntas', formValue)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: any) => {
         //Obtener respuesta
         this.respPregunta = data;
-        this.router.navigate(['/productos/usuario',this.idUsuario]);
+        console.log(data);
+        this.router.navigate(['/productos',this.productoID]);
       });
+    
   }
+  public errorHandling = (control: string, error: string) => {
+    return this.preguntaForm.controls[control].hasError(error);
+  };
   //Actualizar producto
   onReset() {
     this.submitted = false;

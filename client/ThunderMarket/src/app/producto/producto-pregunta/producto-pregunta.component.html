@@ -1,10 +1,10 @@
-<form [formGroup]="productoForm" (ngSubmit)="isCreate ? crearPregunta()"  novalidate >
+<form [formGroup]="preguntaForm" (ngSubmit)="isCreate ? crearPregunta(): updatePregunta"  novalidate >
     <input type="hidden" formControlName="id" />
-    <input type="hidden" formControlName="Usuario" />
-    <input type="hidden" formControlName="Producto" />
+    <input type="hidden" formControlName="UsuarioID" />
+    <input type="hidden" formControlName="ProductoID" />
     <mat-card class="shipping-card"> 
       <mat-card-header>
-        <mat-card-title>{{titleForm}} Producto</mat-card-title>
+        <mat-card-title>{{titleForm}} Pregunta</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <div class="row">

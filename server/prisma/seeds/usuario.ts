@@ -54,4 +54,6 @@ export const usuario = [
     Empresa: "Tyanne Clothes",
     Estado: true,
   },
+  
+
 ];

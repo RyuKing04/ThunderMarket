@@ -4,13 +4,14 @@ import { ProductoIndexComponent } from './producto-index/producto-index.componen
 import { ProductoDetalleComponent } from './producto-detalle/producto-detalle.component';
 import { ProductoAllComponent } from './producto-all/producto-all.component';
 import { ProductoFormComponent } from './producto-form/producto-form.component';
-
+import { ProductoPreguntaComponent } from './producto-pregunta/producto-pregunta.component';
 
 const routes: Routes = [
 {path:'productos',component:ProductoIndexComponent},
 {path:'productos/usuario/:id', component: ProductoAllComponent},
 {path:'productos/create', component: ProductoFormComponent },
 {path:'productos/:id', component: ProductoDetalleComponent},
+{path:'preguntas/:id', component: ProductoPreguntaComponent},
 
 ];
 
