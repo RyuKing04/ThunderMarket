@@ -13,6 +13,10 @@ export class HeaderComponent implements OnInit {
   isAutenticated: boolean;
   currentUser: any;
   qtyItems: Number = 0;
+  UsuarioID: number;
+  Admin: boolean;
+  Cliente: boolean;
+  Vendedor: boolean;
 
   constructor(
     private cartService: CartService,
@@ -20,16 +24,22 @@ export class HeaderComponent implements OnInit {
     private authService: AuthenticationService
   ) {
     this.qtyItems = this.cartService.quantityItems();
-
+    this.Vendedor = this.authService.Vendedor;
+    this.Admin = this.authService.Admin;
+    this.Cliente = this.authService.Cliente;
+    console.log(this.Vendedor);
     //afecta donde de se pone la lógica (construtor o OnInit) solo si se tiene que cargar una parte de la pagina
   }
 
   ngOnInit(): void {
+
     //valores de prueba
     this.authService.currentUser.subscribe((x) => (this.currentUser = x));
     this.authService.isAuthenticated.subscribe(
       (valor) => (this.isAutenticated = valor) 
     );
+    this.UsuarioID = this.authService.UsuarioID;
+    this.currentUser=this.authService.currentUser;
     this.cartService.countItems.subscribe((value) => {
       this.qtyItems = value;
     });
@@ -40,6 +50,15 @@ export class HeaderComponent implements OnInit {
     logout() {
       this.authService.logout();
       this.router.navigate(['usuario/login']);
+    }
+    productosusuario(id:number){
+      this.router.navigate(['/productos/usuario',id])
+    }
+    pedidosusuario(id:number){
+      this.router.navigate(['/pedidos/usuario',id])
+    }
+    pedidosvendedor(id:number){
+      this.router.navigate(['/pedidos/vendedor',id])
     }
   }
 

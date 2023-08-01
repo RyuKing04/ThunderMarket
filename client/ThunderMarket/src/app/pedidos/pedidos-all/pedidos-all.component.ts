@@ -16,6 +16,7 @@ import { GenericService } from 'src/app/share/generic.service';
 export class PedidosAllComponent implements AfterViewInit {
   datos: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
+  id: number;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -28,15 +29,18 @@ export class PedidosAllComponent implements AfterViewInit {
   constructor(private router:Router,
     private route:ActivatedRoute,
     private gService:GenericService) {
-   
+      let id = this.route.snapshot.paramMap.get('id');
+      this.id = +id;
+      if (!isNaN(Number(this.id))) {
+        this.listaPedidos(Number(this.id));
+       
+      }
   }
 
-  ngAfterViewInit(): void {
-    this.listaPedidos();
-  }
-  listaPedidos() {
+  ngAfterViewInit(): void { }
+  listaPedidos(id:number) {
     this.gService
-      .list('facturas/vendedor/:id')
+      .get('facturas/vendedor',id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: any) => {
         console.log(data);

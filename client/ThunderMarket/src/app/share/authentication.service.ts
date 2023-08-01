@@ -18,6 +18,10 @@ export class AuthenticationService {
   public currentUser: Observable<any>;
   //Booleano para estado de usuario autenticado
   private authenticated = new BehaviorSubject<boolean>(false);
+  UsuarioID:number;
+  Admin:boolean;
+  Cliente:boolean;
+  Vendedor:boolean;
   //Inyectar cliente HTTP para las solicitudes al API
 
 
@@ -28,6 +32,13 @@ export class AuthenticationService {
     );
     //Establecer un observable para acceder a los datos del usuario
     this.currentUser = this.currentUserSubject.asObservable();
+    this.currentUser.subscribe((data) => {
+      this.UsuarioID = data.user.id
+      
+    })
+    console.log(this.currentUser)
+      console.log(this.Vendedor)
+      this.roles();
   }
   //Obtener el valor del usuario actual
   public get currentUserValue(): any {
@@ -80,5 +91,26 @@ export class AuthenticationService {
     }
     return false;
   }
- 
+  roles() {
+    if (this.currentUserValue != null) {
+      this.currentUser.subscribe((data) => {
+        for (let i = 0; i < data.user.Roles.length; i++) {
+          switch (data.user.Roles[i].RolID) {
+            case 1:
+              this.Admin = true;
+              break;
+            case 2:
+              this.Cliente = true;
+              break;
+            case 3:
+              this.Vendedor = true;
+              break;
+            default:
+              2;
+              break;
+          }
+        }
+      });
+    }
+  }
 }

@@ -38,7 +38,7 @@ module.exports.getById = async (request, response, next) => {
 };
 //Obtener un producto por el vendedor
 module.exports.getProductoVendedor = async (request, response, next) => {
-  let idVendedor = 3;
+  let idVendedor =parseInt(request.params.id); 
   const productos = await prisma.producto.findMany({
     where: {
       UsuarioID: idVendedor,

@@ -32,7 +32,7 @@ module.exports.getById = async (request, response, next) => {
     response.json(facturas);
 }
 module.exports.getByiDUsuario=async (request, response, next) => {
-    let idUsuario = 5;
+    let idUsuario =parseInt(request.params.id);
     const facturas = await prisma.factura.findMany({
         where: {
             
@@ -48,7 +48,7 @@ module.exports.getByiDUsuario=async (request, response, next) => {
 }
 
 module.exports.getByIdVendedor=async (request, response, next) => {
-    let id= 3;
+    let id= parseInt(request.params.id);
     const facturas = await prisma.facturaDetalle.findMany({
          where: {
             producto: {

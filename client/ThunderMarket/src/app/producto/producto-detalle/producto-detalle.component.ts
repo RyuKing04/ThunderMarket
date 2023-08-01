@@ -38,8 +38,6 @@ export class ProductoDetalleComponent {
    
   }
   
-
-
   mostrarImagenAnterior() {
     if (this.indiceImagen > 0) {
       this.indiceImagen--;

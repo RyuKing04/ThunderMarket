@@ -6,8 +6,8 @@ import { PedidosUsuarioComponent } from './pedidos-usuario/pedidos-usuario.compo
 
 const routes: Routes = [
   
-  {path:'pedidos/all',component:PedidosAllComponent},
-  {path:'pedidos/usuario',component:PedidosUsuarioComponent},
+  {path:'pedidos/vendedor/:id',component:PedidosAllComponent},
+  {path:'pedidos/usuario/:id',component:PedidosUsuarioComponent},
   {path:'pedidos/:id',component:PedidosDetallesComponent},
 
 ];

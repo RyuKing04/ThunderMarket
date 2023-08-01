@@ -40,17 +40,18 @@
       <button mat-button>Compartir</button>
     </mat-card-actions>
   </mat-card>
-<!-- Mostrar la lista de preguntas y respuestas -->
-<mat-card *ngIf="datos" class="preguntas">
-  <mat-card-content>
-    <p><b>Preguntas predeterminadas:</b></p>
-    <ul *ngIf="datos.Preguntas">
-      <li *ngFor="let pregunta of datos.Preguntas">
-        {{ pregunta.Pregunta }}
-        <!-- Mostrar respuesta correspondiente -->
-        <p>{{ pregunta.Respuesta.Respuesta }}</p>
-      </li>
-    </ul>
-  </mat-card-content>
-</mat-card>
+  <!-- Mostrar la lista de preguntas y respuestas -->
+  <mat-card *ngIf="datos" class="preguntas">
+    <mat-card-content>
+      <p><b>Preguntas y Respuestas:</b></p>
+      <ul *ngIf="datos.Preguntas">
+        <li *ngFor="let pregunta of datos.Preguntas">
+          {{ pregunta.Pregunta }}
+          <!-- Mostrar respuesta correspondiente -->
+          <p>{{ pregunta.Respuesta.Respuesta }}</p>
+        </li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
+  <!-- Formulario para realizar una pregunta -->
 </div>

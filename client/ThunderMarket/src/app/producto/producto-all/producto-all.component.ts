@@ -15,7 +15,7 @@ import { GenericService } from 'src/app/share/generic.service';
 export class ProductoAllComponent implements AfterViewInit {
   datos: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
-
+  id: number;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   //@ViewChild(MatTable) table!: MatTable<ProductoAllItem>;
@@ -28,16 +28,19 @@ export class ProductoAllComponent implements AfterViewInit {
   constructor(private router:Router,
     private route:ActivatedRoute,
     private gService:GenericService) {
-    
+      let id = this.route.snapshot.paramMap.get('id');
+      this.id = +id;
+      if (!isNaN(Number(this.id))) {
+        this.listaProductos(Number(this.id));
+       
+      }
   }
 
-  ngAfterViewInit(): void {
-    this.listaProductos();
-  }
-
-  listaProductos() {
+  ngAfterViewInit(): void {    
+   }
+  listaProductos(id:number) {
     this.gService
-      .list('productos/usuario/:id')
+      .get('productos/usuario', id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: any) => {
         console.log(data);

@@ -8,7 +8,7 @@ import { ProductoFormComponent } from './producto-form/producto-form.component';
 
 const routes: Routes = [
 {path:'productos',component:ProductoIndexComponent},
-{path:'productos/all', component: ProductoAllComponent},
+{path:'productos/usuario/:id', component: ProductoAllComponent},
 {path:'productos/create', component: ProductoFormComponent },
 {path:'productos/:id', component: ProductoDetalleComponent},
 

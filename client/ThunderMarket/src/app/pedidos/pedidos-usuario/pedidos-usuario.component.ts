@@ -18,6 +18,7 @@ import { Subject, takeUntil } from 'rxjs';
 export class PedidosUsuarioComponent implements AfterViewInit {
   datos: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
+  id: number;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -32,15 +33,19 @@ export class PedidosUsuarioComponent implements AfterViewInit {
     private gService:GenericService,
     private datePipe: DatePipe
     ) {
-    
+      let id = this.route.snapshot.paramMap.get('id');
+      this.id = +id;
+      if (!isNaN(Number(this.id))) {
+        this.listaPedidos(Number(this.id));
+       
+      }
   }
 
   ngAfterViewInit(): void {
-    this.listaPedidos();
   }
-  listaPedidos() {
+  listaPedidos(id:number) {
     this.gService
-    .list('facturas/usuario/:id')
+    .get('facturas/usuario',id)
     .pipe(takeUntil(this.destroy$))
     .subscribe((data: any) => {
       console.log(data);
