@@ -102,27 +102,50 @@ module.exports.create = async (request, response, next) => {
 
 //actualizar producto
 module.exports.update = async (request, response, next) => {
+  try{
   let id = parseInt(request.params.id);
   let producto = request.body;
+  const imagenes = request.files;
+
+  // Convertir Precio a un número decimal
+  const Precio = parseFloat(producto.Precio);
+  // Convertir Cantidad a un número entero
+  const Cantidad = parseInt(producto.Cantidad);
+  // Convertir Estado a un booleano
+  const Estado = producto.Estado = true;
+
   const updateProductos = await prisma.producto.update({
     where: {
       id: id,
     },
     data: {
       Nombre: producto.Nombre,
-      Precio: producto.Precio,
-      Cantidad: producto.Cantidad,
-      Estado: producto.Estado,
-      Categoria: {
-        connect: producto.Descripcion,
-      },
-      //imagen: {
-      //  connect: { id: producto.imagen.imagenID }, // Si es que tienes un ID para la imagen
-      //},
-      Usuario: {
-        connect: producto.UsuarioID,
-      },
+      Precio: Precio,
+      Cantidad: Cantidad,
+      Estado: Estado,
+      publicar: JSON.parse(producto.publicar),
+      CategoriaID: parseInt(producto.Categorias),
+      UsuarioID: parseInt(producto.UsuarioID),
+    },
+    include: {
+      imagen: true,
     },
   });
+
+  if (imagenes && imagenes.length > 0) {
+    const imagenesData = imagenes.map((imagen) => ({
+      imagen: imagen.filename,
+      ProductoID: newProducto.id,
+    }));
+
+    await prisma.imagen.createMany({
+      data: imagenesData,
+    });
+  }
+
   response.json(updateProductos);
+} catch (error) {
+  console.error(error);
+  response.status(500).json({ error: "Error al crear el producto." });
+}
 };

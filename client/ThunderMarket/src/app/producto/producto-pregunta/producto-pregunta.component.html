@@ -1,1 +1,28 @@
-<p>producto-pregunta works!</p>
+<form [formGroup]="productoForm" (ngSubmit)="isCreate ? crearPregunta()"  novalidate >
+    <input type="hidden" formControlName="id" />
+    <input type="hidden" formControlName="Usuario" />
+    <input type="hidden" formControlName="Producto" />
+    <mat-card class="shipping-card"> 
+      <mat-card-header>
+        <mat-card-title>{{titleForm}} Producto</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput formControlName="Pregunta" maxlength="20" placeholder="Pregunta" >
+              <mat-hint align="end"> / 20</mat-hint>
+              <mat-error *ngIf="errorHandling('Pregunta','required')">
+                Pregunta es <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

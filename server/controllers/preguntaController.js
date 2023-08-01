@@ -1,6 +1,9 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+
+
+
 //Crear pregunta
 module.exports.create = async (request, response, next) => {
     let pregunta = request.body;
