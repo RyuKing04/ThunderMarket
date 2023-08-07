@@ -142,8 +142,7 @@ model Comentario {
 model Preguntas {
   id          Int       @id @default(autoincrement())
   Pregunta    String
-  IDRespuesta Int?
-  Respuesta   Respuesta? @relation(fields: [IDRespuesta], references: [id])
+  Respuesta   Respuesta []
   UsuarioID   Int
   Usuario     Usuario   @relation(fields: [UsuarioID], references: [id])
   ProductoID  Int
@@ -153,7 +152,8 @@ model Preguntas {
 model Respuesta {
   id        Int         @id @default(autoincrement())
   Respuesta String?
-  Preguntas Preguntas[]
+  IDPregunta Int?
+  Preguntas Preguntas?  @relation(fields: [IDPregunta], references: [id])
   UsuarioID Int
   Usuario   Usuario     @relation(fields: [UsuarioID], references: [id])
 }

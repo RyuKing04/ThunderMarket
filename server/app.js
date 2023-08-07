@@ -36,6 +36,7 @@ app.use('/usuarios/', usuarioRoutes);
 app.use('/preguntas/', preguntasRoutes);
 app.use('/respuestas/', respuestaRoutes);
 app.use('/categorias/', categoriaRoutes);
+app.use('/uploads/', express.static('uploads'));
 // Servidor
 app.listen(port, () => { 
 console.log(`http://localhost:${port}`);

@@ -21,6 +21,7 @@ import { ProductoAllComponent } from './producto-all/producto-all.component';
 import { ProductoFormComponent } from './producto-form/producto-form.component';
 import { ProductoPreguntaComponent } from './producto-pregunta/producto-pregunta.component';
 import { ProductoRespuestaComponent } from './producto-respuesta/producto-respuesta.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ProductoRespuestaComponent } from './producto-respuesta/producto-respue
     MatSelectModule,
     MatInputModule,
     MatRadioModule,
+    CarouselModule.forRoot(),
     
   ],
 })

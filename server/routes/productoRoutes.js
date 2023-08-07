@@ -16,6 +16,7 @@ const productoController = require('../controllers/productoController');
 
 router.get('/', productoController.get);
 router.post('/', upload.array('myFile', 5), productoController.create);
+router.put('/:id',  upload.array('myFile', 5), productoController.update);
 router.get('/:id', productoController.getById);
 router.get('/usuario/:id', productoController.getProductoVendedor);
 

@@ -6,8 +6,8 @@ module.exports.createRespuesta = async (request, response, next) => {
     const newRespuesta = await prisma.respuesta.create({
         data: {
             Respuesta: respuesta.Respuesta,
-            UsuarioID: pregunta.UsuarioID,
-            PreguntasID: pregunta.PreguntasID,
+            UsuarioID: respuesta.UsuarioID,
+            IDPregunta: respuesta.IDPregunta,
 
     },
     });

@@ -34,6 +34,7 @@ module.exports.getById = async (request, response, next) => {
       },
     },
   });
+  
   response.json(productos);
 };
 //Obtener un producto por el vendedor
@@ -76,15 +77,13 @@ module.exports.create = async (request, response, next) => {
         publicar: JSON.parse(producto.publicar),
         CategoriaID: parseInt(producto.Categorias),
         UsuarioID: parseInt(producto.UsuarioID),
-      },
-      include: {
-        imagen: true,
+        
       },
     });
 
     if (imagenes && imagenes.length > 0) {
       const imagenesData = imagenes.map((imagen) => ({
-        imagen: imagen.filename,
+        imagen:"http://localhost:3000/"+ imagen.destination + "/" + imagen.filename,
         ProductoID: newProducto.id,
       }));
 
@@ -103,7 +102,7 @@ module.exports.create = async (request, response, next) => {
 //actualizar producto
 module.exports.update = async (request, response, next) => {
   try{
-  let id = parseInt(request.params.id);
+  let id = parseInt(request.body.id);
   let producto = request.body;
   const imagenes = request.files;
 
@@ -114,9 +113,9 @@ module.exports.update = async (request, response, next) => {
   // Convertir Estado a un booleano
   const Estado = producto.Estado = true;
 
-  const updateProductos = await prisma.producto.update({
+  const updateProducto = await prisma.producto.update({
     where: {
-      id: id,
+      id: parseInt(id),
     },
     data: {
       Nombre: producto.Nombre,
@@ -132,18 +131,18 @@ module.exports.update = async (request, response, next) => {
     },
   });
 
-  if (imagenes && imagenes.length > 0) {
-    const imagenesData = imagenes.map((imagen) => ({
-      imagen: imagen.filename,
-      ProductoID: newProducto.id,
-    }));
+if (imagenes && imagenes.length > 0) {
+      const imagenesData = imagenes.map((imagen) => ({
+        imagen:"http://localhost:3000/"+ imagen.destination + "/" + imagen.filename,
+        ProductoID: updateProducto.id,
+      }));
 
     await prisma.imagen.createMany({
       data: imagenesData,
     });
   }
 
-  response.json(updateProductos);
+  response.json(updateProducto);
 } catch (error) {
   console.error(error);
   response.status(500).json({ error: "Error al crear el producto." });

@@ -49,12 +49,13 @@ async function main() {
   await prisma.comentario.createMany({
     data: comentario,
   });
+   await prisma.preguntas.createMany({
+    data: preguntas,
+  });
   await prisma.respuesta.createMany({
     data: respuesta,
   });
-  await prisma.preguntas.createMany({
-    data: preguntas,
-  });
+ 
   
 }
 main()

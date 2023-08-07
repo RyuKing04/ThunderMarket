@@ -56,6 +56,7 @@ export class ProductoFormComponent implements OnInit {
           .pipe(takeUntil(this.destroy$))
           .subscribe((data: any) => {
             this.productoInfo = data;
+            console.log(data);
             //Establecer los valores en cada una de las entradas del formulario
             this.productoForm.setValue({
               id: this.productoInfo.id,
@@ -65,7 +66,7 @@ export class ProductoFormComponent implements OnInit {
               Categorias: this.productoInfo.CategoriaID,
               UsuarioID: this.productoInfo.UsuarioID,
               Estado: this.productoInfo.Estado,
-              myfile: null,
+              myFile: "",
               publicar: this.productoInfo.publicar,
             });
           });
@@ -152,7 +153,54 @@ export class ProductoFormComponent implements OnInit {
       });
   }
   //Actualizar producto
-  actualizarProducto(): void {}
+  actualizarProducto(): void {
+    
+    this.submitted = true;
+    this.productoForm.patchValue({ UsuarioID: this.idUsuario });
+    console.log(this.productoForm);
+
+    //Verificar validación
+    if (this.productoForm.invalid) {
+      return;
+    }
+
+    const formData = new FormData();
+    const formValue = this.productoForm.value;
+
+    // Agregar los datos al FormData
+    Object.keys(formValue).forEach((key) => {
+      const value = formValue[key];
+
+      if (key === 'myFile') {
+        // If the key is 'myFile', it contains an array of files, so we need to handle it differently
+        const files: File[] = value as File[];
+        for (const file of files) {
+          formData.append('myFile', file, file.name);
+        }
+      } else if (key === 'publicar') {
+        formData.append(key, JSON.stringify(value));
+      } else {
+        // Agregar otros valores al FormData
+        formData.append(key, value);
+      }
+    });
+
+    console.log(formData);
+    //Asignar valor al formulario
+    console.log(this.productoForm.value);
+    //Accion API create enviando toda la informacion del formulario
+    this.gService
+      .update('productos', formData)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: any) => {
+        //Obtener respuesta
+        this.respProducto = data;
+        this.router.navigate(['/productos/usuario',this.idUsuario]);
+      });
+
+
+
+  }
   onReset() {
     this.submitted = false;
     this.productoForm.reset();

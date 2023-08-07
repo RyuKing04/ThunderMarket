@@ -129,7 +129,6 @@ CREATE TABLE `Comentario` (
 CREATE TABLE `Preguntas` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `Pregunta` VARCHAR(191) NOT NULL,
-    `IDRespuesta` INTEGER NULL,
     `UsuarioID` INTEGER NOT NULL,
     `ProductoID` INTEGER NOT NULL,
 
@@ -140,6 +139,7 @@ CREATE TABLE `Preguntas` (
 CREATE TABLE `Respuesta` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `Respuesta` VARCHAR(191) NULL,
+    `IDPregunta` INTEGER NULL,
     `UsuarioID` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
@@ -191,13 +191,13 @@ ALTER TABLE `Comentario` ADD CONSTRAINT `Comentario_UsuarioVendedorID_fkey` FORE
 ALTER TABLE `Comentario` ADD CONSTRAINT `Comentario_FacturaDetalleID_fkey` FOREIGN KEY (`FacturaDetalleID`) REFERENCES `FacturaDetalle`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Preguntas` ADD CONSTRAINT `Preguntas_IDRespuesta_fkey` FOREIGN KEY (`IDRespuesta`) REFERENCES `Respuesta`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE `Preguntas` ADD CONSTRAINT `Preguntas_UsuarioID_fkey` FOREIGN KEY (`UsuarioID`) REFERENCES `Usuario`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Preguntas` ADD CONSTRAINT `Preguntas_ProductoID_fkey` FOREIGN KEY (`ProductoID`) REFERENCES `Producto`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Respuesta` ADD CONSTRAINT `Respuesta_IDPregunta_fkey` FOREIGN KEY (`IDPregunta`) REFERENCES `Preguntas`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Respuesta` ADD CONSTRAINT `Respuesta_UsuarioID_fkey` FOREIGN KEY (`UsuarioID`) REFERENCES `Usuario`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
