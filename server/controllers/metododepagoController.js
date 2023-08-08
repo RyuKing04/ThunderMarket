@@ -30,17 +30,13 @@ module.exports.getMetodoDePagoById = async (request, response, next) => {
 module.exports.create = async (request, response, next) => {
     let metodoDePago = request.body;
     
-    // Convertir la fecha de Expira a un string en el formato "YYYY-MM-DD HH:mm:ss"
-    const fechaExpiracion = new Date(metodoDePago.Expira);
-    const fechaExpiracionString = fechaExpiracion.toISOString().slice(0, 19).replace('T', ' ');
-  
     const metododepago = await prisma.metodoDePago.create({
       data: {
         Nombre: metodoDePago.Nombre,
         Tipo: metodoDePago.Tipo,
         Proveedor: metodoDePago.Proveedor,
         NumeroDeCuenta: metodoDePago.NumeroDeCuenta,
-        Expira: fechaExpiracionString,
+        Expira: metodoDePago.Expira,
         UsuarioID: metodoDePago.UsuarioID,
       },    
     });

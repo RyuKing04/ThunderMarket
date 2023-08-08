@@ -4,7 +4,7 @@ export const metodoDePago = [
     Tipo: "Tarjeta de debito",
     Proveedor: "Mastercard",
     NumeroDeCuenta: "1234567891234567",
-    Expira: new Date("2023/12/31"),
+    Expira: "12/32",
     UsuarioID: 1,
   },
   {
@@ -12,7 +12,7 @@ export const metodoDePago = [
     Tipo: "Tarjeta de credito",
     Proveedor: "Visa",
     NumeroDeCuenta: "1234567891234567",
-    Expira: new Date("2023/12/31"),
+    Expira: "12/23",
     UsuarioID: 2,
   },
   {
@@ -20,7 +20,7 @@ export const metodoDePago = [
     Tipo: "Tarjeta de debito",
     Proveedor: "Mastercard",
     NumeroDeCuenta: "1234567891234567",
-    Expira: new Date("2023/12/31"),
+    Expira: "12/25",
     UsuarioID: 3,
   },
   {
@@ -28,7 +28,7 @@ export const metodoDePago = [
     Tipo: "Tarjeta de credito",
     Proveedor: "Visa",
     NumeroDeCuenta: "1234567891234567",
-    Expira: new Date("2023/12/31"),
+    Expira: "12/27",
     UsuarioID: 4,
   },
   {
@@ -36,7 +36,7 @@ export const metodoDePago = [
     Tipo: "Tarjeta de debito",
     Proveedor: "Mastercard",
     NumeroDeCuenta: "1234567891234567",
-    Expira: new Date("2023/12/31"),
+    Expira: "12/29",
     UsuarioID: 6,
   },
 ];

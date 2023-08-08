@@ -49,7 +49,7 @@ CREATE TABLE `MetodoDePago` (
     `Tipo` VARCHAR(191) NOT NULL,
     `Proveedor` VARCHAR(191) NOT NULL,
     `NumeroDeCuenta` VARCHAR(191) NOT NULL,
-    `Expira` DATETIME(3) NOT NULL,
+    `Expira` VARCHAR(191) NOT NULL,
     `UsuarioID` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)

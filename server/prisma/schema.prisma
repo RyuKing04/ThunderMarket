@@ -17,13 +17,13 @@ model Rol {
 }
 
 model Usuario {
-  id                  Int            @id @default(autoincrement())
+  id                 Int            @id @default(autoincrement())
   Nombre             String
   Apellido           String
-  Email              String           @unique
+  Email              String         @unique
   password           String
   Empresa            String?
-  Estado             Boolean         @default(true)
+  Estado             Boolean        @default(true)
   Direccion          Direccion[]
   MetodoDePago       MetodoDePago[]
   Factura            Factura[]
@@ -63,7 +63,7 @@ model MetodoDePago {
   Tipo           String
   Proveedor      String
   NumeroDeCuenta String
-  Expira         DateTime
+  Expira         String
   UsuarioID      Int
   Usuario        Usuario   @relation(fields: [UsuarioID], references: [id])
   Factura        Factura[]
@@ -72,10 +72,10 @@ model MetodoDePago {
 model Producto {
   id             Int              @id @default(autoincrement())
   Nombre         String
-  Precio         Decimal             @db.Decimal(10, 2)
+  Precio         Decimal          @db.Decimal(10, 2)
   Cantidad       Int
-  Estado         Boolean              
-  publicar       Boolean             @default(true)
+  Estado         Boolean
+  publicar       Boolean          @default(true)
   CategoriaID    Int
   Categoria      Categoria        @relation(fields: [CategoriaID], references: [id])
   UsuarioID      Int
@@ -83,11 +83,10 @@ model Producto {
   imagen         imagen[]
   FacturaDetalle FacturaDetalle[]
   Preguntas      Preguntas[]
-  
 }
 
 model Categoria {
-  id          Int        @id 
+  id          Int        @id
   Descripcion String
   Producto    Producto[]
 }
@@ -100,9 +99,9 @@ model imagen {
 }
 
 model FacturaDetalle {
-  id        Int          @id @default(autoincrement())
+  id         Int          @id @default(autoincrement())
   Cantidad   Int
-  Subtotal   Decimal             @db.Decimal(10, 2)
+  Subtotal   Decimal      @db.Decimal(10, 2)
   Estado     String
   FacturaID  Int
   Factura    Factura      @relation(fields: [FacturaID], references: [id])
@@ -114,7 +113,7 @@ model FacturaDetalle {
 model Factura {
   id             Int              @id @default(autoincrement())
   Fecha          DateTime
-  Total          Decimal             @db.Decimal(10, 2)
+  Total          Decimal          @db.Decimal(10, 2)
   Estado         String
   UsuarioID      Int
   Usuario        Usuario          @relation(fields: [UsuarioID], references: [id])
@@ -126,7 +125,7 @@ model Factura {
 }
 
 model Comentario {
-  id                  Int            @id @default(autoincrement())
+  id                   Int            @id @default(autoincrement())
   ComentarioCliente    String
   CalificacionCliente  String
   ComentarioVendedor   String
@@ -140,20 +139,20 @@ model Comentario {
 }
 
 model Preguntas {
-  id          Int       @id @default(autoincrement())
-  Pregunta    String
-  Respuesta   Respuesta []
-  UsuarioID   Int
-  Usuario     Usuario   @relation(fields: [UsuarioID], references: [id])
-  ProductoID  Int
-  Producto    Producto  @relation(fields: [ProductoID], references: [id])
+  id         Int         @id @default(autoincrement())
+  Pregunta   String
+  Respuesta  Respuesta[]
+  UsuarioID  Int
+  Usuario    Usuario     @relation(fields: [UsuarioID], references: [id])
+  ProductoID Int
+  Producto   Producto    @relation(fields: [ProductoID], references: [id])
 }
 
 model Respuesta {
-  id        Int         @id @default(autoincrement())
-  Respuesta String?
+  id         Int        @id @default(autoincrement())
+  Respuesta  String?
   IDPregunta Int?
-  Preguntas Preguntas?  @relation(fields: [IDPregunta], references: [id])
-  UsuarioID Int
-  Usuario   Usuario     @relation(fields: [UsuarioID], references: [id])
+  Preguntas  Preguntas? @relation(fields: [IDPregunta], references: [id])
+  UsuarioID  Int
+  Usuario    Usuario    @relation(fields: [UsuarioID], references: [id])
 }

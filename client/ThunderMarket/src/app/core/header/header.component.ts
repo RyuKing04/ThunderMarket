@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
       (valor) => (this.isAutenticated = valor) 
     );
     this.UsuarioID = this.authService.UsuarioID;
-    this.currentUser=this.authService.currentUser;
+    console.log(this.currentUser)
     this.cartService.countItems.subscribe((value) => {
       this.qtyItems = value;
     });

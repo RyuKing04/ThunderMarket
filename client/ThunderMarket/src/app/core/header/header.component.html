@@ -20,7 +20,7 @@
       <button mat-menu-item [routerLink]="'/productos'" [routerLinkActive]="'mat-raised-button'">Productos</button>
       <button mat-menu-item (click)="pedidosusuario(UsuarioID)"  *ngIf="Cliente || Admin" [routerLinkActive]="'mat-raised-button'">Pedidos</button>
 
-      <button mat-menu-item  [matMenuTriggerFor]="menu2"
+      <button mat-menu-item *ngIf="Vendedor || Admin" [matMenuTriggerFor]="menu2"
       routerLinkActive="mat-raised-button">
       Mantenimientos
     </button>
@@ -44,9 +44,10 @@
         <mat-icon>shopping_cart</mat-icon>
       </button>
       <!--Usuario-->
-      <span class="mat-caption" *ngIf="isAutenticated">{{currentUser.email}}</span>
-      <button mat-icon-button [matMenuTriggerFor]="menu3">
+     
+      <button mat-icon-button [matMenuTriggerFor]="menu3"> 
         <mat-icon [ngStyle]="{'color': isAutenticated ? 'white': '#9E9E9E' }">person</mat-icon>
+        <span class="mat-caption" *ngIf="isAutenticated">{{currentUser.user.Nombre}}</span>
       </button>
       <!--Menu usuario-->
       <mat-menu #menu3="matMenu">
@@ -57,6 +58,7 @@
         <a mat-menu-item *ngIf="isAutenticated" (click)="logout()">
           <mat-icon>person_remove</mat-icon>
           <span>Logout</span>
+          
         </a>
       </mat-menu>
     </div>
