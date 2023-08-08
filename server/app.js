@@ -14,6 +14,7 @@ const preguntasRoutes = require('./routes/preguntasRoutes');
 const respuestaRoutes = require('./routes/respuestaRoutes');
 const categoriaRoutes = require('./routes/categoriaRoutes');
 const rolesRoutes = require('./routes/rolesRoutes');
+const metododepagoRoutes = require('./routes/metododepagoRoutes');
 // Acceder a la configuracion del archivo .env
 dotEnv.config();
 // Puero que escucha por defecto 300 o definido .env
@@ -38,6 +39,7 @@ app.use('/respuestas/', respuestaRoutes);
 app.use('/categorias/', categoriaRoutes);
 app.use('/roles/', rolesRoutes);
 app.use('/uploads/', express.static('uploads'));
+app.use('/metododepago/', metododepagoRoutes);
 // Servidor
 app.listen(port, () => { 
 console.log(`http://localhost:${port}`);

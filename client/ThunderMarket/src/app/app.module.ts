@@ -12,6 +12,8 @@ import { ProductoModule } from './producto/producto.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { PedidosModule } from './pedidos/pedidos.module';
+import { DireccionesModule } from './direcciones/direcciones.module';
+import { MetodopagoModule } from './metodopago/metodopago.module';
 
 
 @NgModule({
@@ -34,6 +36,8 @@ import { PedidosModule } from './pedidos/pedidos.module';
     PedidosModule,
     // Debe ser el ultimo
     AppRoutingModule,
+    DireccionesModule,
+    MetodopagoModule,
    
   ],
   providers: [],
