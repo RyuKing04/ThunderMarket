@@ -47,24 +47,37 @@ export class UserCreateComponent implements OnInit {
   
 }
 submitForm() {
-  this.makeSubmit=true;
-  //Validación
-  if(this.formCreate.invalid){
-   return;
-   console.log();
+  this.makeSubmit = true;
+  // Validación
+  if (this.formCreate.invalid) {
+    return;
   }
   console.log(this.formCreate.value);
-  this.authService.createUser(this.formCreate.value)
-  .subscribe((respuesta:any)=>{
-    this.Usuario=respuesta;
-    this.router.navigate(['/usuarios/login'],{
-      //Mostrar un mensaje
-      queryParams:{register:'true'},
 
-      
-    })
+  // Obtener los roles seleccionados
+  const selectedRoles = this.formCreate.value.Roles;
+  
+  // Comprobar si se han seleccionado al menos un rol
+  if (!selectedRoles || selectedRoles.length === 0) {
+    // Mostrar un mensaje de error si no se ha seleccionado ningún rol
+    console.log('Debe seleccionar al menos un rol');
+    return;
+  }
+
+  // Enviar los roles seleccionados al backend
+  this.authService.createUser({
+    ...this.formCreate.value,
+    selectedRoles: selectedRoles // Asegurarse de enviar los roles seleccionados al backend
   })
+  .subscribe((respuesta: any) => {
+    this.Usuario = respuesta;
+    this.router.navigate(['/usuarios/login'], {
+      // Mostrar un mensaje
+      queryParams: { register: 'true' }
+    });
+  });
 }
+
 onReset() {
   this.formCreate.reset();
 }
