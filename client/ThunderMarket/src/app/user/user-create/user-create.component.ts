@@ -27,18 +27,21 @@ export class UserCreateComponent implements OnInit {
     private gService: GenericService, 
     private router: Router,
     private authService: AuthenticationService,
-  ) {
+  ) {  
     this.reactiveForm();
    }
-  ngOnInit(): void { }
+  ngOnInit(): void {
+
+  
+   }
    reactiveForm() {
     this.formCreate = this.fb.group({
       Nombre: ['', [Validators.required]],
       Apellido: ['', [Validators.required]],
       Email: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      role: ['', [Validators.required]],
-      Empresa:['']
+      Roles: ['', [Validators.required]],
+      Empresa:['',],
     });
     this.getRoles();
   
@@ -48,14 +51,17 @@ submitForm() {
   //Validación
   if(this.formCreate.invalid){
    return;
+   console.log();
   }
   console.log(this.formCreate.value);
   this.authService.createUser(this.formCreate.value)
   .subscribe((respuesta:any)=>{
     this.Usuario=respuesta;
-    this.router.navigate(['/usuario/login'],{
+    this.router.navigate(['/usuarios/login'],{
       //Mostrar un mensaje
       queryParams:{register:'true'},
+
+      
     })
   })
 }
@@ -64,14 +70,15 @@ onReset() {
 }
 getRoles() {
   this.gService
-    .list('rol')
+    .list('roles')
     .pipe(takeUntil(this.destroy$))
     .subscribe((data: any) => {
       this.roles = data;
-      this.filteredRoles = this.roles.filter((rol: any) => rol.descripcion !== 'Administrador');
-      console.log(this.filteredRoles);
+      this.formCreate.get('Roles').setValue(this.roles.data); // Agregar esta línea para configurar los roles en el formulario.
+      console.log(this.roles);
     });
 }
+
 public errorHandling = (control: string, error: string) => {
   return (
     this.formCreate.controls[control].hasError(error) &&

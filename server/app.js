@@ -13,7 +13,7 @@ const usuarioRoutes = require('./routes/usuarioRoutes');
 const preguntasRoutes = require('./routes/preguntasRoutes');
 const respuestaRoutes = require('./routes/respuestaRoutes');
 const categoriaRoutes = require('./routes/categoriaRoutes');
-
+const rolesRoutes = require('./routes/rolesRoutes');
 // Acceder a la configuracion del archivo .env
 dotEnv.config();
 // Puero que escucha por defecto 300 o definido .env
@@ -36,6 +36,7 @@ app.use('/usuarios/', usuarioRoutes);
 app.use('/preguntas/', preguntasRoutes);
 app.use('/respuestas/', respuestaRoutes);
 app.use('/categorias/', categoriaRoutes);
+app.use('/roles/', rolesRoutes);
 app.use('/uploads/', express.static('uploads'));
 // Servidor
 app.listen(port, () => { 

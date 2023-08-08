@@ -10,7 +10,7 @@ module.exports.register = async (request, response, next) => {
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(userData.password, salt);
 
-  const selectedRoleIds = userData.selectedRoles; // Arreglo de los identificadores de los roles seleccionados por el usuario
+  const selectedRoleIds = userData.selectedRoles || []; // Asegurarse de que selectedRoleIds sea un arreglo
 
   try {
     // Crear el usuario con sus roles asociados
@@ -20,6 +20,7 @@ module.exports.register = async (request, response, next) => {
         Apellido: userData.Apellido,
         Email: userData.Email,
         password: hashPassword,
+        Empresa: userData.Empresa,
         Roles: {
           create: selectedRoleIds.map((roleId) => ({
             Rol: {
@@ -29,20 +30,11 @@ module.exports.register = async (request, response, next) => {
             },
           })),
         },
-        Direccion: {
-          create: {
-            Provincia: userData.Direccion.Provincia,
-            Canton: userData.Direccion.Canton,
-            Distrito: userData.Direccion.Distrito,
-            CodigoPostal: userData.Direccion.CodigoPostal,
-            Direccion: userData.Direccion.Direccion,
-            telefono: userData.Direccion.telefono,
-          },
-        },
       },
       include: {
         Roles: true,
         Direccion: true,
+        MetodoDePago: true,
       },
     });
 
@@ -57,6 +49,7 @@ module.exports.register = async (request, response, next) => {
     response.status(500).json({ error: 'Ha ocurrido un error al crear el usuario.' });
   }
 };
+
 
 
 

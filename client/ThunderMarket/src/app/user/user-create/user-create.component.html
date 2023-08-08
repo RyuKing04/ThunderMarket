@@ -8,7 +8,7 @@
           <div class="col">
             <mat-form-field class="full-width">
               <mat-label>Nombre</mat-label>
-              <input matInput type="text" placeholder="Nombre usuario" formControlName="Nombre" />
+              <input matInput type="text" placeholder="Nombre" formControlName="Nombre" />
              <mat-error *ngIf="errorHandling('Nombre', 'required')">
                 Nombre es <strong>requerido</strong>
               </mat-error>
@@ -20,7 +20,7 @@
             <div class="col">
               <mat-form-field class="full-width">
                 <mat-label>Apellido</mat-label>
-                <input matInput type="text" placeholder="Apellido usuario" formControlName="Apellido" />
+                <input matInput type="text" placeholder="Apellido" formControlName="Apellido" />
                <mat-error *ngIf="errorHandling('Apellido', 'required')">
                   Nombre es <strong>requerido</strong>
                 </mat-error>
@@ -32,7 +32,7 @@
           <div class="col">
             <mat-form-field class="full-width">
               <mat-label>Email</mat-label>
-              <input matInput type="text" placeholder="Email usuario" formControlName="Email" />
+              <input matInput type="text" placeholder="Email" formControlName="Email" />
              <mat-error *ngIf="errorHandling('Email', 'required')">
                 Email es <strong>requerido</strong>
               </mat-error>
@@ -44,7 +44,7 @@
           <div class="col">
             <mat-form-field class="full-width">
               <mat-label>Empresa</mat-label>
-              <input matInput type="text" placeholder="Empresa usuario" formControlName="Empresa" />
+              <input matInput type="text" placeholder="Empresa" formControlName="Empresa" />
             </mat-form-field>
           </div>
         </div>
@@ -53,7 +53,7 @@
           <div class="col">
             <mat-form-field class="full-width">
               <mat-label>Password</mat-label>
-              <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password usuario" formControlName="password" />
+              <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" formControlName="password" />
               <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
@@ -64,18 +64,15 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col">
-            <mat-form-field  class="full-width">
-              <mat-label>Rol</mat-label>
-                <mat-select placeholder="Rol" formControlName="role">
-                  <mat-option *ngFor="let rol of filteredRoles" [value]="rol.id">
-                    {{ rol.descripcion }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-          </div>
-        </div>
+        <mat-form-field class="full-width">
+          <mat-label>Rol</mat-label>
+          <mat-select placeholder="Rol" formControlName="Roles" multiple>
+            <mat-option *ngFor="let r of roles.data" [value]="r.id">{{ r.Descripcion }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="errorHandling('Roles', 'required')">Rol es <strong>requerido</strong></mat-error>
+        </mat-form-field>
+        
+
 
       </mat-card-content>
       <mat-card-actions>
