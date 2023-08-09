@@ -6,6 +6,7 @@ import { ProductoIndexComponent } from './producto/producto-index/producto-index
 import { PedidosAllComponent } from './pedidos/pedidos-all/pedidos-all.component';
 import { PedidosUsuarioDataSource } from './pedidos/pedidos-usuario/pedidos-usuario-datasource';
 import { PedidosUsuarioComponent } from './pedidos/pedidos-usuario/pedidos-usuario.component';
+import { MetodopagoAllComponent } from './metodopago/metodopago-all/metodopago-all.component';
 
 const routes: Routes = [
   { path:'inicio',component: InicioComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path:'**',component:PageNotFoundComponent},
   { path:'productos', component:ProductoIndexComponent},
   {path:'pedidos', component:PedidosUsuarioComponent},
+  {path:'metododepago',component:MetodopagoAllComponent}
 ];
 
 @NgModule({

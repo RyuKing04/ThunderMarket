@@ -1,0 +1,80 @@
+<form [formGroup]="productoForm" (ngSubmit)="isCreate ? crearProducto(): actualizarProducto()"  novalidate >
+    <input type="hidden" formControlName="id" />
+    <input type="hidden" formControlName="UsuarioID" />
+    <mat-card class="shipping-card"> 
+      <mat-card-header>
+        <mat-card-title>{{titleForm}} Producto</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput formControlName="Nombre" maxlength="20" placeholder="Nombre" >
+              <mat-hint align="end"> / 20</mat-hint>
+              <mat-error *ngIf="errorHandling('Nombre','required')">
+                Nombre es <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Tipo</mat-label>
+                <mat-select formControlName="Tipo" placeholder="Selecciona un tipo">
+                  <mat-option value="Debito">Débito</mat-option>
+                  <mat-option value="Credito">Crédito</mat-option>
+                </mat-select>
+                <mat-error *ngIf="errorHandling('Tipo','required')">
+                  El tipo es <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+   
+            <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Proveedor</mat-label>
+                  <mat-select formControlName="Proveedor" placeholder="Selecciona un proveedor">
+                    <mat-option value="MasterCard">MasterCard</mat-option>
+                    <mat-option value="Visa">Visa</mat-option>
+                    <mat-option value="American Express">American Express</mat-option>
+                    <mat-option value="Discover Card">Discoverd Card</mat-option>
+                    <!-- Agrega más opciones según sea necesario -->
+                  </mat-select>
+                  <mat-error *ngIf="errorHandling('Proveedor','required')">
+                    El proveedor es <strong>requerido</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+        
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="NumeroDeCuenta" formControlName="NumeroDeCuenta">
+                  <mat-error *ngIf="errorHandling('NumeroDeCuenta','required')">
+                    Numero de cuenta es <strong>requerido</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="col">
+                <mat-form-field class="full-width">
+                  <input matInput placeholder="Expira" formControlName="Expira">
+                  <mat-error *ngIf="errorHandling('Expira','required')">
+                    Expira<strong>requerido</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+  
+  
+   
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

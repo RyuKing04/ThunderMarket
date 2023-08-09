@@ -34,6 +34,8 @@ import { MetodopagoModule } from './metodopago/metodopago.module';
     UserModule,
     ProductoModule,
     PedidosModule,
+    DireccionesModule,
+    MetodopagoModule,
     // Debe ser el ultimo
     AppRoutingModule,
     DireccionesModule,

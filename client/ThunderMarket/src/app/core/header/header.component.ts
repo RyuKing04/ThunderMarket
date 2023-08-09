@@ -60,5 +60,9 @@ export class HeaderComponent implements OnInit {
     pedidosvendedor(id:number){
       this.router.navigate(['/pedidos/vendedor',id])
     }
+    metodopagousuario(id:number){
+      this.router.navigate(['/metodopago/usuario',id])
+    }
+    
   }
 
