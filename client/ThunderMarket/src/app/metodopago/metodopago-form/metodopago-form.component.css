@@ -1,0 +1,19 @@
+/* Estilos para el formulario de producto */
+mat-card {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .row {
+    margin-bottom: 20px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .mat-radio-button {
+    margin-right: 10px;
+  }
+  

@@ -56,7 +56,7 @@ export class MetodopagoAllComponent implements AfterViewInit {
     })
   }
   crearMetodoDePago(){
-    this.router.navigate(['/metododepago'],
+    this.router.navigate(['/metodopago/create'],
     {relativeTo:this.route})
 
   }

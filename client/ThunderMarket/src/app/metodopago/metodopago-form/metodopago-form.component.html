@@ -1,9 +1,9 @@
-<form [formGroup]="productoForm" (ngSubmit)="isCreate ? crearProducto(): actualizarProducto()"  novalidate >
+<form [formGroup]="metodoForm" (ngSubmit)="isCreate ? crearMetodoDePago(): actualizarMetodoDePago()"  novalidate >
     <input type="hidden" formControlName="id" />
     <input type="hidden" formControlName="UsuarioID" />
     <mat-card class="shipping-card"> 
       <mat-card-header>
-        <mat-card-title>{{titleForm}} Producto</mat-card-title>
+        <mat-card-title>{{titleForm}} Metodo de pagos</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <div class="row">
@@ -22,7 +22,7 @@
             <div class="col">
               <mat-form-field class="full-width">
                 <mat-label>Tipo</mat-label>
-                <mat-select formControlName="Tipo" placeholder="Selecciona un tipo">
+                <mat-select formControlName="Tipo" placeholder="Tipo">
                   <mat-option value="Debito">Débito</mat-option>
                   <mat-option value="Credito">Crédito</mat-option>
                 </mat-select>
@@ -36,7 +36,7 @@
             <div class="col">
                 <mat-form-field class="full-width">
                   <mat-label>Proveedor</mat-label>
-                  <mat-select formControlName="Proveedor" placeholder="Selecciona un proveedor">
+                  <mat-select formControlName="Proveedor" placeholder="Proveedor">
                     <mat-option value="MasterCard">MasterCard</mat-option>
                     <mat-option value="Visa">Visa</mat-option>
                     <mat-option value="American Express">American Express</mat-option>
@@ -51,13 +51,13 @@
         
               <div class="col">
                 <mat-form-field class="full-width">
-                  <input matInput placeholder="NumeroDeCuenta" formControlName="NumeroDeCuenta">
+                  <input matInput placeholder="Numero De Cuenta" formControlName="NumeroDeCuenta">
                   <mat-error *ngIf="errorHandling('NumeroDeCuenta','required')">
                     Numero de cuenta es <strong>requerido</strong>
                   </mat-error>
                 </mat-form-field>
               </div>
-            </div>
+           
 
             <div class="col">
                 <mat-form-field class="full-width">
@@ -67,7 +67,7 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-            </div>
+            
   
   
    
