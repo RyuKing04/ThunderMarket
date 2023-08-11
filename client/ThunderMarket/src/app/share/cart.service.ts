@@ -18,7 +18,7 @@ export class CartService {
   constructor() {
     //Obtener los datos de la variable orden guardada en el localStorage
     this.cart = new BehaviorSubject<any>(
-      JSON.parse(localStorage.getItem('orden'))
+      JSON.parse(localStorage.getItem('detalleFactura'))
     );
 
     //Establecer un observable para los datos del carrito

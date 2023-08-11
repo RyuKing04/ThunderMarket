@@ -50,9 +50,6 @@ module.exports.register = async (request, response, next) => {
   }
 };
 
-
-
-
 module.exports.login = async (request, response, next) => {
   let userReq = request.body;
   // Buscar el usuario según el email dado
@@ -102,4 +99,51 @@ module.exports.login = async (request, response, next) => {
   }
 };
 
+///Obtener todos los usuarios
+
+module.exports.getAll = async (request, response, next) => {
+  const usuario = await prisma.usuario.findMany({
+    select: {
+      id: true,
+      Nombre: true,
+      Apellido: true,
+      Email: true,
+      Empresa: true,
+      Estado: true,
+      Roles: {
+        select: {
+          Rol:true,
+        },
+      },
+    },
+  });
+  response.json(usuario);
+};
+
+module.exports.cambiarEstado = async (request, response, next) => {
+  let id = parseInt(request.params.id);
+
+  const usuarioViejo = await prisma.usuario.findUnique({
+    where: { id: id },
+  });
+
+  try {
+    const nuevoUsuario = await prisma.usuario.update({
+      where: {
+        id: id,
+      },
+      data: {
+        Estado: usuarioViejo.Estado ? false : true,
+      },
+    });
+
+    response.json(nuevoUsuario);
+  } catch (error) {
+    response.status(500).json({
+      status: false,
+      message: "Error: " + error,
+      data: error,
+    });
+  }
+};
 
