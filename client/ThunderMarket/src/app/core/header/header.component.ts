@@ -63,6 +63,9 @@ export class HeaderComponent implements OnInit {
     metodopagousuario(id:number){
       this.router.navigate(['/metodopago/usuario',id])
     }
+    direccionesusuario(id:number){
+      this.router.navigate(['/direcciones/usuario',id])
+    }
     
   }
 

@@ -1,0 +1,89 @@
+<form [formGroup]="direccionForm" (ngSubmit)="isCreate ? crearDirecciones(): actualizarDirecciones()"  novalidate >
+    <input type="hidden" formControlName="id" />
+    <input type="hidden" formControlName="UsuarioID" />
+    <mat-card class="shipping-card">
+        <mat-card-header>
+          <mat-card-title>{{ titleForm }} Direcciones</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Provincia</mat-label>
+                <mat-select formControlName="Provincia" placeholder="Provincia">
+                  <mat-option *ngFor="let p of Provincias" [value]="p.id" (onSelectionChange)="getCantones(p.id)" >{{ p.nombre }}  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="errorHandling('Provincia','required')">La provincia es <strong>requerida</strong></mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Canton</mat-label>
+                <mat-select formControlName="Canton" placeholder="Canton">
+                    <mat-option *ngFor="let c of Cantones" [value]="c.id" (onSelectionChange)="getDistritos(c.id, c.provinceId)">
+                      {{ c.nombre }}
+                    </mat-option>
+                  </mat-select>
+                <mat-error *ngIf="errorHandling('Canton','required')">El cantón es <strong>requerido</strong></mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Distrito</mat-label>
+                <mat-select formControlName="Distrito" placeholder="Distrito">
+                  <mat-option *ngFor="let d of Distritos" [value]="d.nombre">{{ d.nombre }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="errorHandling('Distrito','required')">El distrito es <strong>requerido</strong></mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput formControlName="CodigoPostal" maxlength="20" placeholder="Codigo Postal" >
+                <mat-hint align="end"> / 20</mat-hint>
+                <mat-error *ngIf="errorHandling('CodigoPostal','required')">
+                  Codigo postal es <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput formControlName="Direccion" maxlength="150" placeholder="Direccion" >
+                <mat-hint align="end"> / 150</mat-hint>
+                <mat-error *ngIf="errorHandling('Direccion','required')">
+                  Direccion es <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+   
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput formControlName="telefono" maxlength="8" placeholder="Telefono" >
+                <mat-hint align="end"> / 8</mat-hint>
+                <mat-error *ngIf="errorHandling('telefono','required')">
+                  Teléfono es <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  
