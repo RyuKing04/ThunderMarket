@@ -149,26 +149,30 @@ export class DireccionesFormComponent implements OnInit, OnDestroy {
   }
   
 
- async getDistritos(idCanton, idProvince) {
-  console.log('getDistritos called with', idCanton, idProvince);
+  async getDistritos(idCanton, idProvince) {
+    console.log('getDistritos called with', idCanton, idProvince);
   
-  this.selectedCanton = this.Cantones.find(c => c.id === idCanton)?.nombre;
-  this.selectedProvincia = this.Provincias.find(p => p.id === idProvince)?.nombre;
+    this.selectedCanton = this.Cantones.find(c => c.id === idCanton)?.nombre;
+    this.selectedProvincia = this.Provincias.find(p => p.id === idProvince)?.nombre;
   
-  const districts = await this.locationService.getDistritos(idProvince, idCanton);
-  const districtsArray = Object.entries(districts).map(([id, nombre]) => ({
-    id,
-    nombre,
-  }));
-  this.Distritos = districtsArray;
-
-  // Asignar el valor del primer distrito si está disponible
-  if (this.Distritos.length > 0) {
-    const firstDistrictName = this.Distritos[0].nombre;
-    this.direccionForm.get('Distrito').setValue(firstDistrictName);
-    this.selectedDistrito = firstDistrictName;
+    const districts = await this.locationService.getDistritos(idProvince, idCanton);
+    const districtsArray = Object.entries(districts).map(([id, nombre]) => ({
+      id,
+      nombre,
+    }));
+    this.Distritos = districtsArray;
+  
+    // Mantener el valor actual del selector de distrito si es válido, de lo contrario, seleccionar el primer distrito
+    const currentSelectedDistrict = this.direccionForm.get('Distrito').value;
+    if (!currentSelectedDistrict || !this.Distritos.some(d => d.nombre === currentSelectedDistrict)) {
+      if (this.Distritos.length > 0) {
+        const firstDistrictName = this.Distritos[0].nombre;
+        this.selectedDistrito = firstDistrictName;
+      }
+    } else {
+      this.selectedDistrito = currentSelectedDistrict;
+    }
   }
-}
 
   errorHandling = (control: string, error: string) => {
     return this.direccionForm.controls[control].hasError(error);
