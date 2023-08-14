@@ -5,6 +5,8 @@ const facturaController = require('../controllers/facturaController');
 
 router.get('/', facturaController.get);
 
+router.post('/', facturaController.create)
+
 router.get('/:id', facturaController.getById);
 
 router.get('/usuario/:id', facturaController.getByiDUsuario);

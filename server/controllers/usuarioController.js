@@ -3,6 +3,29 @@ const prisma = new PrismaClient();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+module.exports.getById = async (request, response, next) => {
+  let id = parseInt(request.params.id);
+  try{
+    const usuario = await prisma.usuario.findUnique({
+    where: {
+      id: id,
+    },
+    include: {
+      Roles: true,
+      Direccion: true,
+      MetodoDePago: true,
+    },
+  });
+  response.json(usuario);
+  }
+  catch(error){
+    response.status(500).json({
+      status: false,
+      message: "Error: " + error,
+      data: error,
+    });
+  }
+};
 //Crear un Usuario que pueda escoger dos roles o uno solo, y que tambien pueda el usuario registre la direccion como tengo en el schema
 module.exports.register = async (request, response, next) => {
   const userData = request.body;
