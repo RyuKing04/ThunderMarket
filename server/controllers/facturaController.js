@@ -63,3 +63,10 @@ module.exports.getByIdVendedor=async (request, response, next) => {
     });
     response.json(facturas);
 }
+
+
+//Crear un factura
+module.exports.create = async (request, response, next) => {
+
+    
+}

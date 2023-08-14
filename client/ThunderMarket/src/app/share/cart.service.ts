@@ -18,23 +18,24 @@ export class CartService {
   constructor() {
     //Obtener los datos de la variable orden guardada en el localStorage
     this.cart = new BehaviorSubject<any>(
-      JSON.parse(localStorage.getItem('detalleFactura'))
+      JSON.parse(localStorage.getItem('orden'))
     );
 
     //Establecer un observable para los datos del carrito
     this.currentDataCart$ = this.cart.asObservable();
   }
   saveCart(): void {
-    localStorage.setItem('factura', JSON.stringify(this.cart.getValue()));
+    localStorage.setItem('orden', JSON.stringify(this.cart.getValue()));
   }
   addToCart(producto: any) {
     const newItem = new ItemCart();
     //Armar instancia de ItemCart con los valores respectivos del producto
     //producto.id es cuando viene desde el boton comprar y trae la información del API
     newItem.idItem = producto.id | producto.idItem;
-    newItem.precio = producto.precio;
+    newItem.precio = Number(producto.Precio);
     newItem.cantidad = 1;
     newItem.subtotal = this.calculoSubtotal(newItem);
+
     newItem.product = producto;
     //Obtenemos el valor actual
     let listCart = this.cart.getValue();
@@ -79,6 +80,7 @@ export class CartService {
   }
   //Calcula el subtotal del item del carrito que se indique
   private calculoSubtotal(item: ItemCart) {
+    console.log(item);
     return item.precio * item.cantidad;
   }
   //Elimina un elemento del carrito

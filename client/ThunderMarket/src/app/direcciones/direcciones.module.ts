@@ -16,13 +16,17 @@ import { DireccionesAllComponent } from './direcciones-all/direcciones-all.compo
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
+import {MatDialogModule} from "@angular/material/dialog";
 import { DireccionesFormComponent } from './direcciones-form/direcciones-form.component';
+import { DireccionesDetalleComponent } from './direcciones-detalle/direcciones-detalle.component';
 
 
 @NgModule({
   declarations: [
     DireccionesAllComponent,
-    DireccionesFormComponent
+    DireccionesFormComponent,
+    DireccionesDetalleComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +45,10 @@ import { DireccionesFormComponent } from './direcciones-form/direcciones-form.co
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    MatMenuModule,
+    MatDialogModule
+    
   ]
 })
 export class DireccionesModule { }

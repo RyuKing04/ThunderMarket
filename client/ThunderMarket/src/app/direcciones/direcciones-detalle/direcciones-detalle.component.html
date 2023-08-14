@@ -1,0 +1,15 @@
+<mat-card class="dashboard-card" *ngIf="datos"  >
+    <mat-card-header>
+      <mat-card-title>
+        {{datos.Provincia }}
+       
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="dashboard-card-content">
+      <p><b>Cantón: </b>{{datos.Canton}}</p>
+      <p><b>Precio: </b>{{datos.Distrito}}</p>
+      <p><b>Codigo Postal: </b>{{datos.CodigoPostal}} </p>
+      <p><b>Direccion: </b>{{datos.Direccion}} </p>
+      <p><b>Teléfono: </b>{{datos.telefono}} </p>
+    </mat-card-content>
+  </mat-card>

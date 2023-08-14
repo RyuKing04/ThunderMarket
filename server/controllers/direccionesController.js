@@ -18,9 +18,6 @@ module.exports.getDireccionById = async (request, response, next) => {
             where: {
                 id: id,
             },
-            include: {
-                Usuario: true,
-            },
         });
         response.json(direccion);
         }

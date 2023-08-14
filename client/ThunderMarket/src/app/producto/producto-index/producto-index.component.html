@@ -30,8 +30,10 @@
               matTooltip="Comprar"
               aria-label="Comprar"
               color="accent"
+              (click)="comprar(item.id)"
+
             >
-              <mat-icon class="mat-18">add_shopping_cart</mat-icon>
+            <mat-icon class="mat-18">add_shopping_cart</mat-icon>
             </button>
           </mat-card-actions>
         </mat-card>

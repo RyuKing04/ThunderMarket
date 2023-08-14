@@ -43,9 +43,10 @@
       <!--enlaces de la app-->
       <!--https://fonts.google.com/icons-->
       <!--https://material.angular.io/guide/typography-->
-      <button mat-icon-button>
-        <mat-icon>shopping_cart</mat-icon>
-      </button>
+      <button mat-icon-button matBadgeColor="accent" [matBadge]="qtyItems.toString()" 
+      [routerLink]="'/pedidos'" [routerLinkActive]="'mat-raised-button'"  aria-label="Cantidad">
+    <mat-icon>shopping_cart</mat-icon>
+  </button> |   
       <!--Usuario-->
      
       <button mat-icon-button [matMenuTriggerFor]="menu3"> 
