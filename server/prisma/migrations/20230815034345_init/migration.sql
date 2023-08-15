@@ -91,7 +91,7 @@ CREATE TABLE `FacturaDetalle` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `Cantidad` INTEGER NOT NULL,
     `Subtotal` DECIMAL(10, 2) NOT NULL,
-    `Estado` VARCHAR(191) NOT NULL,
+    `Estado` VARCHAR(191) NULL,
     `FacturaID` INTEGER NOT NULL,
     `ProductoID` INTEGER NOT NULL,
 
@@ -103,7 +103,7 @@ CREATE TABLE `Factura` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `Fecha` DATETIME(3) NOT NULL,
     `Total` DECIMAL(10, 2) NOT NULL,
-    `Estado` VARCHAR(191) NOT NULL,
+    `Estado` VARCHAR(191) NULL,
     `UsuarioID` INTEGER NOT NULL,
     `DireccionID` INTEGER NOT NULL,
     `MetodoDePagoID` INTEGER NOT NULL,

@@ -72,7 +72,8 @@ export class ProductoFormComponent implements OnInit {
           });
       }
     });
-    this.authService.currentUser.subscribe((x) => (this.currentUser = x));
+    this.authService.currentUser.subscribe((x) => 
+    (this.currentUser = x));
     this.idUsuario=this.currentUser.user.id;
   }
   formularioReactive() {

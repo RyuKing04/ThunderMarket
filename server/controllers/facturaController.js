@@ -62,9 +62,9 @@ module.exports.create = async (request, response, next) => {
   try {
     const facturaCreada = await prisma.factura.create({
       data: {
-        Fecha: factura.Fecha,
+        Fecha: new Date(),
         Total: factura.Total,
-        Estado: factura.Estado,
+        Estado: "pendiente",
         UsuarioID: factura.UsuarioID,
         DireccionID: factura.DireccionID,
         MetodoDePagoID: factura.MetodoDePagoID,
@@ -75,6 +75,7 @@ module.exports.create = async (request, response, next) => {
     });
     response.json(facturaCreada);
   } catch (error) {
+    console.log(error);
     response.json(error);
   }
 };

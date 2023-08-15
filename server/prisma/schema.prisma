@@ -102,7 +102,7 @@ model FacturaDetalle {
   id         Int          @id @default(autoincrement())
   Cantidad   Int
   Subtotal   Decimal      @db.Decimal(10, 2)
-  Estado     String
+  Estado     String?
   FacturaID  Int
   Factura    Factura      @relation(fields: [FacturaID], references: [id])
   ProductoID Int
@@ -114,7 +114,7 @@ model Factura {
   id             Int              @id @default(autoincrement())
   Fecha          DateTime
   Total          Decimal          @db.Decimal(10, 2)
-  Estado         String
+  Estado         String?
   UsuarioID      Int
   Usuario        Usuario          @relation(fields: [UsuarioID], references: [id])
   facturaDetalle FacturaDetalle[]
