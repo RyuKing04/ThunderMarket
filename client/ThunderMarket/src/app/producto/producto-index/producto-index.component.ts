@@ -16,7 +16,8 @@ import { NotificacionService, TipoMessage } from 'src/app/share/notificacion.ser
 export class ProductoIndexComponent {
   datos:any;//Respuesta del API
   destroy$:Subject<boolean>=new Subject<boolean>();
-
+filterDatos:any;
+Categoria:any
   constructor(private gService:GenericService,
     private router: Router,
     private dialog:MatDialog,
@@ -24,6 +25,7 @@ export class ProductoIndexComponent {
     private notificacion: NotificacionService
     ){
     this.listaProductos(); 
+    this.listCategoria();
   }
   listaProductos(){
     this.gService.list('productos/')
@@ -31,6 +33,7 @@ export class ProductoIndexComponent {
       .subscribe((data:any)=>{
         console.log(data);
         this.datos=data;
+        this.filterDatos=data;
       });
     
   }
@@ -50,6 +53,49 @@ export class ProductoIndexComponent {
       )
     });
   }
+
+  filterProducto(text:string){
+   if(!text){
+     this.filterDatos=this.datos
+   }else{
+     this.filterDatos=this.datos.filter(
+      Producto=>Producto?.Nombre.toLowerCase().includes(text.toLowerCase())
+      )
+
+   }
+  }
+  filterCategoria(CategoriaID: number) {
+    if (!CategoriaID) {
+      this.filterDatos = this.datos;
+    } else {
+      this.filterDatos = this.datos.filter((p) =>
+        p.Categoria.id === CategoriaID
+      );
+    }
+  }
+  
+  listCategoria() {
+    this.gService
+      .list('categorias/')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: any) => {
+        this.Categoria = data;
+      });
+  }
+
+
+  filterPrecio(orderBy: number) {
+  
+    if (orderBy == 0) {
+      this.filterDatos = this.filterDatos.sort((a, b) => b.Precio - a.Precio);
+    }
+
+    if (orderBy == 1) {
+      this.filterDatos = this.filterDatos.sort((a, b) => a.Precio - b.Precio);
+    }
+  }
+  
+
   detalleProductos(id:number){
     this.router.navigate(['/productos', id]);
 
