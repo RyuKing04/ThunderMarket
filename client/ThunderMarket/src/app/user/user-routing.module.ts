@@ -10,11 +10,14 @@ const routes: Routes = [
     path: 'usuario',
     component: UserIndexComponent,
     children: [ 
+      //{path:'usuarios',component:UserAllComponent},
       { path:'registrar', component:UserCreateComponent},
       {path:'login',component:UserLoginComponent},
-      {path:'usuario/usuarios',component:UserAllComponent}
+      
     ],
+    
   },
+  { path: 'usuarios', component: UserAllComponent },
 ];
 
 @NgModule({

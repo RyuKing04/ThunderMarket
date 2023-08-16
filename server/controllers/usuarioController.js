@@ -101,6 +101,11 @@ module.exports.login = async (request, response, next) => {
       success: false,
       message: 'Credenciales incorrectas',
     });
+  } else if (user.Estado == false) {
+    response.status(401).send({
+      success: false,
+      message: "El usuario no está activo, contacte al administrador",
+    });
   } else {
     const payload = {
       Email: user.Email,

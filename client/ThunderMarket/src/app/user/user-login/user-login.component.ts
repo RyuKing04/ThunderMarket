@@ -71,7 +71,15 @@ export class UserLoginComponent implements OnInit {
       .loginUser(this.formulario.value)
       .subscribe((respuesta: any) => {
         this.router.navigate(['/']);
-      });
+      },
+      (error) => {
+        this.notificacion.mensaje(
+          'Falló la autenticación',
+          error.error.message,
+          TipoMessage.error
+        );
+      }
+      );
   }
   /* Manejar errores de formulario en Angular */
 

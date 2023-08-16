@@ -75,6 +75,7 @@ export class AuthenticationService {
         })
       );
   }
+  
   //Logout de usuario autentificado
   logout() {
     let usuario = this.currentUserSubject.value;

@@ -59,6 +59,7 @@ export class UserAllComponent implements AfterViewInit {
   }
 
   updateUsuario(user: any) {
+console.log(user);
     this.gService
       .update('usuarios/cambiarEstado', user)
       .pipe(takeUntil(this.destroy$))

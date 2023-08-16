@@ -19,7 +19,7 @@
 
         <ng-container matColumnDef="Estado">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
-          <td mat-cell *matCellDef="let row">{{ row.Estado }}</td>
+          <td mat-cell *matCellDef="let row">{{ row.Estado ? 'Activo' : 'Inactivo' }}</td>
         </ng-container>
 
         <!-- Columna acciones -->
@@ -35,6 +35,16 @@
             (click)="detalle(row.id)"
             >
               <mat-icon class="mat-18">info</mat-icon>
+            </button>
+            <button
+            mat-mini-fab
+            color="accent"
+            matTooltip="Cambiar Estado"
+            aria-label="Cambiar Estado"
+            color="primary"
+            (click)="updateUsuario(row)"
+            >
+              <mat-icon class="mat-18">update</mat-icon>
             </button>
           </td>
         </ng-container>
