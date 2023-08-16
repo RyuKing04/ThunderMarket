@@ -20,13 +20,13 @@ import { MatTab } from '@angular/material/tabs';
   styleUrls: ['./user-all.component.css']
 })
 export class UserAllComponent implements AfterViewInit {
-  datos:any
+  datos: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   // @ViewChild(MatTable) table!: MatTable<UserAllItem>;
-  dataSource= new MatTableDataSource<any>();
+  dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['Usuario', 'Empresa', 'Estado', 'Acciones'];
@@ -39,38 +39,38 @@ export class UserAllComponent implements AfterViewInit {
     private sanitizer: DomSanitizer,
     private liveAnnouncer: LiveAnnouncer
   ) {
-    this.getUsuarios
+    this.getUsuarios();  // Agregamos los paréntesis aquí para llamar la función correctamente
   }
 
   ngAfterViewInit(): void {
   }
   
-  getUsuarios(){
-this.gService
-    .getAll('usuario')
-    .pipe(takeUntil(this.destroy$))
-    .subscribe((data: any) => {
-      this.datos = data
-      this.dataSource = new MatTableDataSource(this.datos);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-      console.log(data)
-    }
-    );
-  }
-updateUsuario(user:any){
-  this.gService
-  .update('usuarios/cambiarEstado',user)
-  .pipe(takeUntil(this.destroy$))
-  .subscribe((data: any) => {
-    this.getUsuarios();
-    this.notificacion.mensaje(
-      'Usuario',
-      'Usuario actualizado correctamente',
-      TipoMessage.success
-  );
-    });
+  getUsuarios() {
+    this.gService
+      .getAll('usuarios')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: any) => {
+        this.datos = data;
+        this.dataSource = new MatTableDataSource(this.datos);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        console.log(data);
+      });
   }
 
-detalle(id){}
+  updateUsuario(user: any) {
+    this.gService
+      .update('usuarios/cambiarEstado', user)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: any) => {
+        this.getUsuarios();
+        this.notificacion.mensaje(
+          'Usuario',
+          'Usuario actualizado correctamente',
+          TipoMessage.success
+        );
+      });
+  }
+
+  detalle(id: any) {}
 }
