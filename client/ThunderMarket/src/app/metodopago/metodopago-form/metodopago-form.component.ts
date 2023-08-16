@@ -94,7 +94,7 @@ export class MetodopagoFormComponent implements OnInit, OnDestroy {
       .subscribe((data: any) => {
         this.respMetodoDePago = data;
         console.log(data);
-        this.router.navigate(['/metododepago/usuario', this.idUsuario]);
+        this.router.navigate(['/metodopago/usuario', this.idUsuario]);
       });
   }
 
@@ -106,7 +106,7 @@ export class MetodopagoFormComponent implements OnInit, OnDestroy {
   }
 
   onBack() {
-    this.router.navigate(['/metododepago/usuario', this.idUsuario]);
+    this.router.navigate(['/metodopago/usuario', this.idUsuario]);
   }
 
   ngOnDestroy() {

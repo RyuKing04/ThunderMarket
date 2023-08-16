@@ -35,6 +35,9 @@
         <button mat-menu-item (click)="pedidosvendedor(UsuarioID)"  *ngIf="Vendedor || Admin" routerLinkActive="mat-raised-button">
           Pedidos
         </button>
+        <button mat-menu-item (click)="usuarios(UsuarioID)"  *ngIf="Admin" routerLinkActive="mat-raised-button">
+          Usuarios
+        </button>
       </mat-menu>
     </mat-menu>
     <div class="example-button-container" align="end"></div>

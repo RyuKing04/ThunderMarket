@@ -19,6 +19,10 @@ export class GenericService {
   list(endopoint: string): Observable<any> {
     return this.http.get<any>(this.urlAPI + endopoint);
   }
+//Obtener todos
+  getAll(endopoint: string): Observable<any | any[]> {
+    return this.http.get<any | any[]>(this.urlAPI + endopoint);
+  }
   // Obtener
   get(endopoint: string, filtro: any): Observable<any | any[]> {
     return this.http.get<any | any[]>(this.urlAPI + endopoint + `/${filtro}`);

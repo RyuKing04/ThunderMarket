@@ -67,7 +67,7 @@
         <mat-form-field class="full-width">
           <mat-label>Rol</mat-label>
           <mat-select placeholder="Rol" formControlName="Roles" multiple>
-            <mat-option *ngFor="let r of roles.data" [value]="r.id">{{ r.Descripcion }}</mat-option>
+            <mat-option *ngFor="let r of filteredRoles" [value]="r.id">{{ r.Descripcion }}</mat-option>
           </mat-select>
           <mat-error *ngIf="errorHandling('Roles', 'required')">Rol es <strong>requerido</strong></mat-error>
         </mat-form-field>

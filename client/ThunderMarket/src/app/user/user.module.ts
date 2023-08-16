@@ -16,13 +16,18 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { MatIconModule } from '@angular/material/icon';
 import { LayoutModule } from '@angular/cdk/layout';
 import {MatCardModule} from '@angular/material/card';
+import { UserAllComponent } from './user-all/user-all.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
   declarations: [
     UserCreateComponent,
     UserIndexComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    UserAllComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +42,10 @@ import {MatCardModule} from '@angular/material/card';
     MatDialogModule,
     MatIconModule,
     LayoutModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 export class UserModule { }

@@ -73,7 +73,7 @@ submitForm() {
     this.Usuario = respuesta;
     this.router.navigate(['/usuarios/login'], {
       // Mostrar un mensaje
-      queryParams: { register: 'true' }
+      queryParams: { regist: 'true' }
     });
   });
 }
@@ -81,16 +81,20 @@ submitForm() {
 onReset() {
   this.formCreate.reset();
 }
+
 getRoles() {
   this.gService
     .list('roles')
     .pipe(takeUntil(this.destroy$))
     .subscribe((data: any) => {
       this.roles = data;
-      this.formCreate.get('Roles').setValue(this.roles.data); // Agregar esta línea para configurar los roles en el formulario.
-      console.log(this.roles);
+      // Filtrar los roles para excluir "Administrador"
+      this.filteredRoles = this.roles.data.filter(role => role.Descripcion !== "Administrador");
+      this.formCreate.get('Roles').setValue(this.filteredRoles);
+      console.log(this.filteredRoles);
     });
 }
+
 
 public errorHandling = (control: string, error: string) => {
   return (
