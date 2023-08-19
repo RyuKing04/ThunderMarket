@@ -71,9 +71,9 @@ submitForm() {
   })
   .subscribe((respuesta: any) => {
     this.Usuario = respuesta;
-    this.router.navigate(['/usuarios/login'], {
+    this.router.navigate(['/usuario/login'], {
       // Mostrar un mensaje
-      queryParams: { regist: 'true' }
+      queryParams: { registrar: 'true' }
     });
   });
 }

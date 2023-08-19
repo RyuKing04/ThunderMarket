@@ -1,6 +1,9 @@
 <mat-card class="full-width">
   <!-- Titulo del Card -->
   <mat-card-title>Usuarios </mat-card-title>
+  <button mat-button color="primary" (click)="cambiarFiltroUsuariosActivos()">
+    {{ mostrarUsuariosActivos ? 'Mostrar Inactivos' : 'Mostrar Activos' }}
+  </button>
   <mat-card-content>
     <!-- Table -->
     <div class="mat-elevation-z8" *ngIf="dataSource">

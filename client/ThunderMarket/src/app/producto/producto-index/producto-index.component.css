@@ -16,3 +16,13 @@
     .dashboard-card-content {
     text-align: center;
     }
+    img{
+       /* tamaño de la imagen más pequeña   */
+       width: 40%;
+       height: 40%;
+   
+       
+       /* centrar la imagen */
+       object-fit: contain;
+    }
+    

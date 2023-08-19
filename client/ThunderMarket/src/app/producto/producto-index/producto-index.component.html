@@ -34,13 +34,16 @@
     </mat-form-field>
   </div>
 </mat-card>
+
     <h1 class="mat-h1">Productos</h1>
-    <mat-grid-list [cols]="3" rowHeight="12em" gutterSize="10px">
+    <mat-grid-list [cols]="3" rowHeight="20em" gutterSize="10px">
       <mat-grid-tile *ngFor="let item of filterDatos">
         <mat-card class="dashboard-card">
           <mat-card-header>
             <mat-card-title>{{item.Nombre}} </mat-card-title>
+            <mat-card-subtitle>{{item.Categoria.Descripcion}}</mat-card-subtitle>
           </mat-card-header>
+          <img mat-card-image [src]="item.imagen[0].imagen" >
           <mat-card-content class="dashboard-card-content">
             <div> {{item.Precio | currency:"USD" }}</div>
             <div> {{item.Estado ? 'Disponible' : 'No disponible'  }}</div>

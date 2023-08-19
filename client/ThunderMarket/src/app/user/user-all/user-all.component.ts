@@ -22,7 +22,7 @@ import { MatTab } from '@angular/material/tabs';
 export class UserAllComponent implements AfterViewInit {
   datos: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
-  
+  mostrarUsuariosActivos: boolean = true;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   // @ViewChild(MatTable) table!: MatTable<UserAllItem>;
@@ -51,7 +51,14 @@ export class UserAllComponent implements AfterViewInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: any) => {
         this.datos = data;
-        this.dataSource = new MatTableDataSource(this.datos);
+  
+        // Aplicar el filtro de usuarios activos/inactivos
+        if (this.mostrarUsuariosActivos) {
+          this.dataSource = new MatTableDataSource(this.datos.filter((user: any) => user.Estado));
+        } else {
+          this.dataSource = new MatTableDataSource(this.datos);
+        }
+  
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         console.log(data);
@@ -73,5 +80,10 @@ console.log(user);
       });
   }
 
+  cambiarFiltroUsuariosActivos() {
+    this.mostrarUsuariosActivos = !this.mostrarUsuariosActivos;
+    this.getUsuarios(); // Actualizar la lista de usuarios con el nuevo filtro
+  }
+  
   detalle(id: any) {}
 }

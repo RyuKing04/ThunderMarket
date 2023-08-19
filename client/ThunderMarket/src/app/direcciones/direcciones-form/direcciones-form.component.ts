@@ -150,7 +150,7 @@ export class DireccionesFormComponent implements OnInit, OnDestroy {
   
 
   async getDistritos(idCanton, idProvince) {
-    console.log('getDistritos called with', idCanton, idProvince);
+    console.log('getDistritos llamada', idCanton, idProvince);
   
     this.selectedCanton = this.Cantones.find(c => c.id === idCanton)?.nombre;
     this.selectedProvincia = this.Provincias.find(p => p.id === idProvince)?.nombre;

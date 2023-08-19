@@ -12,6 +12,7 @@ module.exports.get = async (request, response, next) => {
     include: {
       Usuario: true,
       Categoria: true,
+      imagen: true,
     },
   });
   response.json(productos);

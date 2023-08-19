@@ -19,8 +19,8 @@
       </button>
       <button mat-menu-item [routerLink]="'/productos'" [routerLinkActive]="'mat-raised-button'">Productos</button>
       <button mat-menu-item (click)="pedidosusuario(UsuarioID)"  *ngIf="Cliente || Admin" [routerLinkActive]="'mat-raised-button'">Pedidos</button>
-      <button mat-menu-item (click)="metodopagousuario(UsuarioID)"  *ngIf="Cliente || Admin" [routerLinkActive]="'mat-raised-button'">Tarjetas</button>
-      <button mat-menu-item (click)="direccionesusuario(UsuarioID)"  *ngIf="Cliente || Admin" [routerLinkActive]="'mat-raised-button'">Direcciones</button>
+      <button mat-menu-item (click)="metodopagousuario(UsuarioID)"   [routerLinkActive]="'mat-raised-button'">Tarjetas</button>
+      <button mat-menu-item (click)="direccionesusuario(UsuarioID)"  [routerLinkActive]="'mat-raised-button'">Direcciones</button>
 
 
       <button mat-menu-item *ngIf="Vendedor || Admin" [matMenuTriggerFor]="menu2"

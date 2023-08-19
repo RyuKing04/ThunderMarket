@@ -47,7 +47,7 @@ Categoria:any
       //Notificar al usuario
       this.notificacion.mensaje(
         'Orden',
-        'Producto: '+data.producto+ ' agregado a la orden',
+        'Producto: '+data.Nombre+ ' agregado a la orden',
         TipoMessage.success
        
       )
