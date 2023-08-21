@@ -1,12 +1,10 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { PedidosAllDataSource, PedidosAllItem } from './pedidos-all-datasource';
 import { Subject, takeUntil } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GenericService } from 'src/app/share/generic.service';
-
 
 @Component({
   selector: 'app-pedidos-all',
@@ -14,50 +12,62 @@ import { GenericService } from 'src/app/share/generic.service';
   styleUrls: ['./pedidos-all.component.css']
 })
 export class PedidosAllComponent implements AfterViewInit {
-  datos: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
   id: number;
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  //@ViewChild(MatTable) table!: MatTable<PedidosAllItem>;
   dataSource = new MatTableDataSource<any>();
+  displayedColumns = ['Producto', 'Subtotal', 'Estado', 'Cantidad', 'Acciones'];
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = [ 'Producto','Subtotal', 'Estado','Cantidad', 'Acciones'];
-
-  constructor(private router:Router,
-    private route:ActivatedRoute,
-    private gService:GenericService) {
-      let id = this.route.snapshot.paramMap.get('id');
-      this.id = +id;
-      if (!isNaN(Number(this.id))) {
-        this.listaPedidos(Number(this.id));
-       
-      }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private gService: GenericService
+  ) {
+    let id = this.route.snapshot.paramMap.get('id');
+    this.id = +id;
+    if (!isNaN(Number(this.id))) {
+      this.listaPedidos(Number(this.id));
+    }
   }
 
-  ngAfterViewInit(): void { }
-  listaPedidos(id:number) {
+  ngAfterViewInit(): void {}
+
+  listaPedidos(id: number) {
     this.gService
-      .get('facturas/vendedor',id)
+      .get('facturas/vendedor', id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: any) => {
         console.log(data);
         if (Array.isArray(data)) {
-          this.dataSource.data = data; 
-          this.dataSource.sort = this.sort;
-          this.dataSource.paginator = this.paginator;
+          this.dataSource.data = data;
         }
       });
   }
-  detalle(id:number){
-    this.router.navigate(['/facturas',id],
-    {
-      relativeTo:this.route
-    })
+
+  detalle(id: number) {
+    this.router.navigate(['/facturas', id], {
+      relativeTo: this.route
+    });
   }
-  ngOnDestroy(){
+
+  updateEstado(id: number, estado: any) {
+    console.log(id);
+    console.log(estado);
+    let data = {
+      Estado: estado,
+      id: id
+    };
+    this.gService
+      .update('facturas', data)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: any) => {
+        console.log(data);
+        if (data) {
+          this.listaPedidos(this.id);
+        }
+      });
+  }
+
+  ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }

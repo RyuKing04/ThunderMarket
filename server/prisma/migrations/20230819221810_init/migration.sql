@@ -114,10 +114,10 @@ CREATE TABLE `Factura` (
 -- CreateTable
 CREATE TABLE `Comentario` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `ComentarioCliente` VARCHAR(191) NOT NULL,
-    `CalificacionCliente` VARCHAR(191) NOT NULL,
-    `ComentarioVendedor` VARCHAR(191) NOT NULL,
-    `CalificacionVendedor` VARCHAR(191) NOT NULL,
+    `ComentarioCliente` VARCHAR(191) NULL,
+    `CalificacionCliente` INTEGER NULL,
+    `ComentarioVendedor` VARCHAR(191) NULL,
+    `CalificacionVendedor` INTEGER NULL,
     `UsuarioClienteID` INTEGER NOT NULL,
     `UsuarioVendedorID` INTEGER NOT NULL,
     `FacturaDetalleID` INTEGER NOT NULL,

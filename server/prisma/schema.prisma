@@ -126,10 +126,10 @@ model Factura {
 
 model Comentario {
   id                   Int            @id @default(autoincrement())
-  ComentarioCliente    String
-  CalificacionCliente  String
-  ComentarioVendedor   String
-  CalificacionVendedor String
+  ComentarioCliente    String?
+  CalificacionCliente  Int?
+  ComentarioVendedor   String?
+  CalificacionVendedor Int?
   UsuarioClienteID     Int
   UsuarioVendedorID    Int
   UsuarioCliente       Usuario        @relation("UsuarioCliente", fields: [UsuarioClienteID], references: [id])

@@ -9,6 +9,7 @@
       <p><b>Fecha De compra: </b>{{datos.Fecha  }}</p>
       <div *ngFor="let detalle of datos.facturaDetalle">
         <p><b>Producto: </b>{{ detalle.producto.Nombre }}</p>
+        <p><b> Estado:</b>{{detalle.Estado}}</p>
         <p><b>Cantidad: </b>{{ detalle.Cantidad }}</p>
         <!-- Agregar más propiedades de los detalles de factura aquí -->
       </div>

@@ -40,9 +40,21 @@
             >
               <mat-icon class="mat-18">info</mat-icon>
             </button>
+              <select
+                #estado
+                [value]="row.Estado"
+                (change)="
+                updateEstado(row.id, estado.value)
+                "
+              >
+              <option [value]="'Pendiente'"> Pendiente</option>
+                <option [value]="'Enviado'"> Enviado</option>
+                <option [value]="'Entregado'"> Entregado </option>
+              </select>
           </td>
         </ng-container>
-        
+
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
