@@ -1,6 +1,5 @@
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient, Prisma } = require("@prisma/client");
 const prisma = new PrismaClient();
-const cron = require('node-cron');
 //Obtener listado de facturas
 module.exports.get = async (request, response, next) => {
   const facturas = await prisma.factura.findMany({
@@ -128,5 +127,31 @@ const facturaActualizada = await prisma.factura.update({
     response.json(error);
   }
 };
+
+module.exports.getProductosVendidosDelMes = async (request, response, next) => {
+  let mes= +(request.params.mes);
+  const result= await prisma.$queryRaw
+  (Prisma.sql `SELECT p.Nombre, SUM(fd.Cantidad) as CantidadVendida FROM FacturaDetalle fd
+  INNER JOIN Producto p ON fd.ProductoID=p.id
+  INNER JOIN Factura f ON fd.FacturaID=f.id
+  WHERE MONTH(f.Fecha)=${mes}
+  GROUP BY p.Nombre
+  ORDER BY CantidadVendida DESC`);
+  response.json(result);
+};
+
+
+//get productos mas vendido del vendedor
+module.exports.getProductosMasVendidosVendedor=async(request,response,next)=>{
+  let id= +(request.params.id);
+  const result= await prisma.$queryRaw
+  (Prisma.sql `SELECT p.Nombre, SUM(fd.Cantidad) as CantidadVendida FROM FacturaDetalle fd
+  INNER JOIN Producto p ON fd.ProductoID=p.id
+  INNER JOIN Factura f ON fd.FacturaID=f.id
+  WHERE p.UsuarioID=${id}
+  GROUP BY p.Nombre
+  ORDER BY CantidadVendida DESC`);
+  response.json(result);
+}
 
 

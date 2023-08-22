@@ -70,7 +70,18 @@ export class UserLoginComponent implements OnInit {
     this.authService
       .loginUser(this.formulario.value)
       .subscribe((respuesta: any) => {
+        if(this.authService.Admin ){
+          this.router.navigate(['facturas/rGraficoAdmin']);
+        }else if(this.authService.Vendedor){
+          this.router.navigate(['facturas/rGraficoVendedor']);
+        }else if(this.authService.Cliente){
         this.router.navigate(['/']);
+      }
+        this.notificacion.mensaje(
+          'Autenticación exitosa',
+          'Bienvenido',
+          TipoMessage.success
+        );
       },
       (error) => {
         this.notificacion.mensaje(

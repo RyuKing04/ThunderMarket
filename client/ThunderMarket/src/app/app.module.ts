@@ -14,11 +14,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { PedidosModule } from './pedidos/pedidos.module';
 import { DireccionesModule } from './direcciones/direcciones.module';
 import { MetodopagoModule } from './metodopago/metodopago.module';
+import { ComentarioModule } from './comentario/comentario.module';
+import { ReporteModule } from './reporte/reporte.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     // Angular
@@ -36,8 +38,11 @@ import { MetodopagoModule } from './metodopago/metodopago.module';
     PedidosModule,
     DireccionesModule,
     MetodopagoModule, 
+    ComentarioModule,
+    ReporteModule, 
     // Debe ser el ultimo
-    AppRoutingModule, 
+    AppRoutingModule,
+    
    
   ],
   providers: [],

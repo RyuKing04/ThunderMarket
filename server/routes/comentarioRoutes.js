@@ -5,8 +5,9 @@ const comentarioController = require('../controllers/comentarioController');
 
 router.get('/', comentarioController.get);
 
+router.post('/', comentarioController.create);
+
 router.get('/:id', comentarioController.getById);
 
-router.post('/', comentarioController.create);
 
 module.exports=router;

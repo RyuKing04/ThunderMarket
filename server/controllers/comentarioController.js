@@ -33,6 +33,7 @@ module.exports.create = async (request, response, next) => {
             ComentarioVendedor: comentario.ComentarioVendedor,
             UsuarioClienteID: comentario.UsuarioClienteID,
             UsuarioVendedorID: comentario.UsuarioVendedorID,
+            FacturaDetalleID: comentario.FacturaDetalleID,
         },
     });
     response.json(Newcomentario);   

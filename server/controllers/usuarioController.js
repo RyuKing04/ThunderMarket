@@ -26,6 +26,34 @@ module.exports.getById = async (request, response, next) => {
     });
   }
 };
+
+//Obtener usuario por el rol vendedor
+module.exports.getVendedor = async (request, response, next) => {
+  try{
+    const usuario = await prisma.usuario.findMany({
+    where: {
+      Roles: {
+        some: {
+          Rol: "Vendedor",
+        },
+      },
+    },
+    include: {
+      Roles: true,
+      Direccion: true,
+      MetodoDePago: true,
+    },
+  });
+  response.json(usuario);
+  }
+  catch(error){
+    response.status(500).json({
+      status: false,
+      message: "Error: " + error,
+      data: error,
+    });
+  }
+};
 //Crear un Usuario que pueda escoger dos roles o uno solo, y que tambien pueda el usuario registre la direccion como tengo en el schema
 module.exports.register = async (request, response, next) => {
   const userData = request.body;

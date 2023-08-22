@@ -1,0 +1,54 @@
+<form [formGroup]="comentarioForm" (ngSubmit)="isCreate ? crearComentario(): actualizarComentario()"  novalidate >
+    <input type="hidden" formControlName="id" />
+    <input type="hidden" formControlName="UsuarioClienteID" />
+   <input type="hidden" formControlName="FacturaDetalleID"/>
+    <mat-card class="shipping-card"> 
+      <mat-card-header>
+        <mat-card-title>{{titleForm}} Haga su comentario</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput formControlName="ComentarioCliente" maxlength="20" placeholder="Comentario Cliente" >
+              <mat-hint align="end"> / 20</mat-hint>
+              <mat-error *ngIf="errorHandling('Nombre','required')">
+                Nombre es <strong>requerido</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Calificación</mat-label>
+                <mat-select formControlName="CalificacionCliente" placeholder="Selecciona una calificación">
+                  <mat-option *ngFor="let rating of [1, 2, 3, 4, 5]" [value]="rating">{{ rating }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="errorHandling('CalificacionCliente', 'required')">La calificación es <strong>requerida</strong></mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        
+          <div class="row">
+            <div class="col" *ngIf="VendedorList">
+              <mat-form-field class="full-width">
+                <mat-label>Vendedores</mat-label>
+                <mat-select formControlName="usuarioID" placeholder="Selecciona un vendedor">
+                  <mat-option *ngFor="let vendedor of VendedorList" [value]="vendedor.id">{{ vendedor.Nombre }} {{ vendedor.Apellido }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="errorHandling('usuarioID', 'required')">Vendedor es <strong>requerido</strong></mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+  
+  
+    
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

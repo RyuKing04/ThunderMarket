@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HomeRoutingModule } from './home-routing.module';
-import { InicioComponent } from './inicio/inicio.component';
-import { AcercaDeComponent } from './acerca-de/acerca-de.component';
+import { ReporteRoutingModule } from './reporte-routing.module';
+import { ReporteVendedorComponent } from './reporte-vendedor/reporte-vendedor.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button'; 
@@ -12,15 +11,17 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { ReporteAdminComponent } from './reporte-admin/reporte-admin.component';
+
 
 @NgModule({
   declarations: [
-    InicioComponent,
-    AcercaDeComponent
+    ReporteVendedorComponent,
+    ReporteAdminComponent
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule,
+    ReporteRoutingModule,
     MatCardModule,
     MatTableModule,
     MatButtonModule,
@@ -30,8 +31,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     FormsModule,
     ReactiveFormsModule,
     MatGridListModule
-    
 
   ]
 })
-export class HomeModule { }
+export class ReporteModule { }
