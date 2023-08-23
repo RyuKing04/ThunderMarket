@@ -17,7 +17,8 @@ router.get('/vendedor/:id', facturaController.getByIdVendedor);
 
 router.get("/Producto/:mes", facturaController.getProductosVendidosDelMes)
 
-router.get("/Producto/:mes/:id", facturaController.getProductosMasVendidosVendedor)
+//ruta para este getProductosMasVendidosVendedo
+router.get("/Producto/:id", facturaController.getProductosMasVendidosVendedor)
 
 
 module.exports=router;

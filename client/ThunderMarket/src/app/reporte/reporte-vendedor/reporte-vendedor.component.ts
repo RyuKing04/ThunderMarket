@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import Chart from 'chart.js/auto';
+import { Component, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { GenericService } from 'src/app/share/generic.service';
+import { AuthenticationService } from 'src/app/share/authentication.service';
 
 @Component({
   selector: 'app-reporte-vendedor',
@@ -9,99 +9,44 @@ import { GenericService } from 'src/app/share/generic.service';
   styleUrls: ['./reporte-vendedor.component.css']
 })
 export class ReporteVendedorComponent implements OnInit {
-  canvas: any;
-  //Contexto del Canvas
-  ctx: any;
-  //Elemento html del Canvas
-  @ViewChild('graficoCanvas') graficoCanvas!: { nativeElement: any };
-  //Establecer gráfico
-  grafico: any;
-  //Datos para mostrar en el gráfico
-  datos: any;
-  //Lista de meses para filtrar el gráfico
-  mesList:any;
-  Rol:any;
-  //Mes actual
-  filtro= new Date().getMonth();
   destroy$: Subject<boolean> = new Subject<boolean>();
+  productosDataSource: any[] = [];
+  displayedColumns: string[] = ['nombre', 'cantidadVendida'];
+  currentUser: any;
+  idUsuario: number;
+  datos: any[] = [];
+
   constructor(
-    private gService: GenericService
+    private gService: GenericService,
+    private authService: AuthenticationService
   ) {
-    this.listaMeses();
+    this.idUsuario = this.authService.UsuarioID;
   }
-  listaMeses(){
-    this.mesList = [
-      { Value: 1, Text: 'Enero' },
-      { Value: 2, Text: 'Febrero' },
-      { Value: 3, Text: 'Marzo' },
-      { Value: 4, Text: 'Abril' },
-      { Value: 5, Text: 'Mayo' },
-      { Value: 6, Text: 'Junio' },
-      { Value: 7, Text: 'Julio' },
-      { Value: 8, Text: 'Agosto' },
-      { Value: 9, Text: 'Septiembre' },
-      { Value: 10, Text: 'Octubre' },
-      { Value: 11, Text: 'Noviembre' },
-      { Value: 12, Text: 'Diciembre' }
-  ]
+
+  ngOnInit(): void {
+    this.cargarProductosMasVendidos();
   }
-  ngAfterViewInit(): void {
-    this.inicioGrafico(this.filtro);
-  }
-  ngOnInit(): void {}
-  inicioGrafico(newValue:any){
-   this.filtro=newValue;
-   if(this.filtro){
-    //Obtener datos del API
+
+  cargarProductosMasVendidos() {
+    console.log(this.idUsuario)
+
     this.gService
-      .get('facturas/Producto',this.filtro)
+      .get('facturas/Producto', 8)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((data:any)=>{
-        this.datos=data;
-        this.graficoBrowser();
-      })
-   }
+      .subscribe(
+        (data: any) => {
+          console.log('Datos recibidos:', data); // Verifica los datos en la consola
+          this.datos = data;
+          this.productosDataSource = data;
+        },
+        error => {
+          console.error('Error al cargar productos:', error); // Verifica si hay errores
+        }
+      );
   }
-  //Configurar y crear gráfico
-  graficoBrowser(): void {
-    this.canvas=this.graficoCanvas.nativeElement;
-    this.ctx = this.canvas.getContext('2d');
-    //Si existe destruir el Canvas para mostrar el grafico
-    if(this.grafico){
-     this.grafico.destroy();
-    }
-    this.grafico= new Chart(this.ctx,{
-     type:'pie',
-     data:{
-       //Etiquetas debe ser un array
-       labels: this.datos.map(x => x.Nombre),
-       datasets:[
-         {
-           backgroundColor: [
-             'rgba(255, 99, 132, 0.2)',
-             'rgba(255, 159, 64, 0.2)',
-             'rgba(255, 205, 86, 0.2)',
-             'rgba(75, 192, 192, 0.2)',
-             'rgba(54, 162, 235, 0.2)',
-             'rgba(153, 102, 255, 0.2)',  
-             'rgba(201, 203, 207, 0.2)'
-         ],
-         //Datos del grafico, debe ser un array
-         data: this.datos.map(x => x.CantidadVendida)
-         },
-       ]
-     },
-         options:{
-           responsive:false,
-           maintainAspectRatio: false,
-         },
-       
-    });
-   }
-   
+
   ngOnDestroy() {
     this.destroy$.next(true);
-    // Desinscribirse
     this.destroy$.unsubscribe();
   }
 }

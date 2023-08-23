@@ -1,16 +1,20 @@
-<mat-card class="shipping-card" >
-    <mat-card-title>Cantidad de producto ordenados en el mes:</mat-card-title>
-    <mat-form-field >  
-        <mat-label>Mes a filtrar</mat-label>
-        <!--<mat-select placeholder="Mes" #mes (selectionChange)="inicioGrafico(mes.value)"> -->
-        <mat-select placeholder="Mes" [(ngModel)]="filtro" 
-          (ngModelChange)="inicioGrafico($event)">
-            <mat-option *ngFor="let m of mesList" [value]="m.Value">
-              {{ m.Text }}
-            </mat-option>
-          </mat-select>
-    </mat-form-field>
-    <mat-card-content>
-        <canvas #graficoCanvas  class="chart"></canvas>
-    </mat-card-content>
-  </mat-card>
+<mat-card class="shipping-card">
+  <mat-card-title>Productos más vendidos por ti</mat-card-title>
+  <mat-form-field>
+    <mat-table [dataSource]="productosDataSource">
+      <!-- Agrega un mensaje de depuración -->
+      <div *ngIf="!datos">Los datos están vacíos.</div>
+      
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+        <mat-cell *matCellDef="let producto">{{ producto.Nombre }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="cantidadVendida">
+        <mat-header-cell *matHeaderCellDef>Cantidad Vendida</mat-header-cell>
+        <mat-cell *matCellDef="let producto">{{ producto.CantidadVendida }}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </mat-form-field>
+</mat-card>

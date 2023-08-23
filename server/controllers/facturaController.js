@@ -1,5 +1,6 @@
 const { PrismaClient, Prisma } = require("@prisma/client");
 const prisma = new PrismaClient();
+
 //Obtener listado de facturas
 module.exports.get = async (request, response, next) => {
   const facturas = await prisma.factura.findMany({
@@ -141,8 +142,8 @@ module.exports.getProductosVendidosDelMes = async (request, response, next) => {
 };
 
 
-//get productos mas vendido del vendedor
-module.exports.getProductosMasVendidosVendedor=async(request,response,next)=>{
+//get el Producto más vendido del vendedor con id
+module.exports.getProductosMasVendidosVendedor = async (request, response, next) => {
   let id= +(request.params.id);
   const result= await prisma.$queryRaw
   (Prisma.sql `SELECT p.Nombre, SUM(fd.Cantidad) as CantidadVendida FROM FacturaDetalle fd
@@ -152,6 +153,8 @@ module.exports.getProductosMasVendidosVendedor=async(request,response,next)=>{
   GROUP BY p.Nombre
   ORDER BY CantidadVendida DESC`);
   response.json(result);
-}
+};
 
+
+///get mejores vendedores calificados
 

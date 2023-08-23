@@ -11,7 +11,13 @@
         https://material.angular.io/components/menu/overview
         nested menu
       -->
-      <button mat-menu-item [routerLink]="['/']" routerLinkActive="mat-raised-button">
+      <button mat-menu-item *ngIf="Cliente" [routerLink]="['/']"   routerLinkActive="mat-raised-button">
+        Inicio
+      </button>
+      <button mat-menu-item *ngIf="Vendedor" [routerLink]="['facturas/rGraficoVendedor']"   routerLinkActive="mat-raised-button">
+        Reporte
+      </button>
+      <button mat-menu-item *ngIf="Admin" [routerLink]="['facturas/rGraficoAdmin']"   routerLinkActive="mat-raised-button">
         Inicio
       </button>
       <button mat-menu-item [routerLink]="['/acerca-de']" routerLinkActive="mat-raised-button">

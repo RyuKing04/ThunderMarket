@@ -67,5 +67,7 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/direcciones/usuario',id])
     }
    
+    
+   
   }
 

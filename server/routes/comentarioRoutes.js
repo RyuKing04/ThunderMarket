@@ -7,7 +7,12 @@ router.get('/', comentarioController.get);
 
 router.post('/', comentarioController.create);
 
+router.get('/mejores-vendedores', comentarioController.getMejoresVendedoresCalificados);
+
+
 router.get('/:id', comentarioController.getById);
+
+
 
 
 module.exports=router;

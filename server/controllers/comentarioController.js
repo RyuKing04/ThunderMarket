@@ -1,4 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient, Prisma } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
@@ -42,4 +42,21 @@ module.exports.create = async (request, response, next) => {
         console.error(error);
         response.status(500).json({ error: "Error al crear el comentario." });
 }
+}
+
+// Obtener los mejores vendedores calificados (con promedio de calificación mayor a 3) PARA UN GRAFICO 
+module.exports.getMejoresVendedoresCalificados = async (request, response, next) => {
+
+    const mejoresVendedores = await prisma.comentario.findMany({
+        where: {
+            CalificacionVendedor: {
+                gt: 3,
+            },
+        },
+        select: {
+            UsuarioVendedorID: true,
+            CalificacionVendedor: true,
+        },
+    });
+    response.json(mejoresVendedores);
 }
