@@ -156,5 +156,16 @@ module.exports.getProductosMasVendidosVendedor = async (request, response, next)
 };
 
 
-///get mejores vendedores calificados
+///get Cliente que ha realizado más compras, sumando las cantidades de todos los productos correspondientes al vendedor
+module.exports.getClienteMasCompras = async (request, response, next) => {
+  let id= +(request.params.id);
+  const result= await prisma.$queryRaw
+  (Prisma.sql `SELECT u.Nombre, SUM(fd.Cantidad) as CantidadComprada FROM FacturaDetalle fd
+  INNER JOIN Factura f ON fd.FacturaID=f.id
+  INNER JOIN Usuario u ON f.UsuarioID=u.id
+  WHERE fd.ProductoID IN (SELECT id FROM Producto WHERE UsuarioID=${id})
+  GROUP BY u.Nombre
+  ORDER BY CantidadComprada DESC`);
+  response.json(result);
+};
 

@@ -111,7 +111,7 @@ export class PedidosIndexComponent  {
         UsuarioID: this.idUsuario, // Asegúrate de que idUsuario tenga un valor correcto
         DireccionID: this.pedidosForm.value.direccion,
         MetodoDePagoID: this.pedidosForm.value.metodoDePago,
-        Total: this.total,
+        Total: this.total * 1.13,
         Estado: 'pendiente',
         facturaDetalle: productos,
       };

@@ -1,20 +1,19 @@
 <mat-card class="shipping-card">
   <mat-card-title>Productos más vendidos por ti</mat-card-title>
-  <mat-form-field>
-    <mat-table [dataSource]="productosDataSource">
-      <!-- Agrega un mensaje de depuración -->
-      <div *ngIf="!datos">Los datos están vacíos.</div>
-      
-      <ng-container matColumnDef="nombre">
-        <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
-        <mat-cell *matCellDef="let producto">{{ producto.Nombre }}</mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="cantidadVendida">
-        <mat-header-cell *matHeaderCellDef>Cantidad Vendida</mat-header-cell>
-        <mat-cell *matCellDef="let producto">{{ producto.CantidadVendida }}</mat-cell>
-      </ng-container>
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  </mat-form-field>
+
+  <mat-table [dataSource]="productosDataSource">
+    <!-- Agrega un mensaje de depuración -->
+    <div *ngIf="!datos">Los datos están vacíos.</div>
+
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let producto">{{ producto.Nombre }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="cantidadVendida">
+      <mat-header-cell *matHeaderCellDef>Cantidad Vendida</mat-header-cell>
+      <mat-cell *matCellDef="let producto">{{ producto.CantidadVendida }}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 </mat-card>

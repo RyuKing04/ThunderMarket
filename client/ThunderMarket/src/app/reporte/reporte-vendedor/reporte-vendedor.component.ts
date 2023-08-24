@@ -31,7 +31,7 @@ export class ReporteVendedorComponent implements OnInit {
     console.log(this.idUsuario)
 
     this.gService
-      .get('facturas/Producto', 8)
+      .get('facturas/productos', this.idUsuario)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (data: any) => {

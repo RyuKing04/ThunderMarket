@@ -46,7 +46,6 @@ module.exports.create = async (request, response, next) => {
 
 // Obtener los mejores vendedores calificados (con promedio de calificación mayor a 3) PARA UN GRAFICO 
 module.exports.getMejoresVendedoresCalificados = async (request, response, next) => {
-
     const mejoresVendedores = await prisma.comentario.findMany({
         where: {
             CalificacionVendedor: {
@@ -54,7 +53,12 @@ module.exports.getMejoresVendedoresCalificados = async (request, response, next)
             },
         },
         select: {
-            UsuarioVendedorID: true,
+            UsuarioVendedor: {
+                select: {
+                    id: true,
+                    Nombre: true, // Asegúrate de tener el campo 'nombre' en tu modelo Usuario
+                },
+            },
             CalificacionVendedor: true,
         },
     });

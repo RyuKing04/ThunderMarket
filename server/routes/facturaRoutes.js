@@ -11,6 +11,8 @@ router.get('/:id', facturaController.getById);
 
 router.put('/:id', facturaController.updateEstado);
 
+router.get('/productos-mas-vendidos/:id', facturaController.getClienteMasCompras);
+
 router.get('/usuario/:id', facturaController.getByiDUsuario);
 
 router.get('/vendedor/:id', facturaController.getByIdVendedor);
@@ -18,7 +20,7 @@ router.get('/vendedor/:id', facturaController.getByIdVendedor);
 router.get("/Producto/:mes", facturaController.getProductosVendidosDelMes)
 
 //ruta para este getProductosMasVendidosVendedo
-router.get("/Producto/:id", facturaController.getProductosMasVendidosVendedor)
+router.get("/productos/:id", facturaController.getProductosMasVendidosVendedor)
 
 
 module.exports=router;
